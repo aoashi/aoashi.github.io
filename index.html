@@ -80,6 +80,28 @@
   .fit .box{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:18px;}
   .fit h3{margin-bottom:8px;font-size:1rem;}
   .fit ul{margin-left:1.2em;font-size:.93rem;color:#33424e;}
+  .demo-box{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;max-width:640px;}
+  .demo-scroll{max-height:190px;overflow:auto;border:1px solid #eee3c8;border-radius:8px;}
+  table.raw{border-collapse:collapse;width:100%;font-size:.83rem;}
+  table.raw th,table.raw td{padding:5px 9px;border-bottom:1px solid #f0e7cd;text-align:left;font-variant-numeric:tabular-nums;}
+  table.raw th{background:#fdf6df;position:sticky;top:0;}
+  table.raw td:last-child,table.raw th:last-child{text-align:right;}
+  .run-btn{margin-top:14px;background:var(--blue);color:#fff;border:none;font-weight:800;font-size:1rem;border-radius:10px;padding:12px 26px;cursor:pointer;}
+  .run-btn:hover{opacity:.88;}
+  .run-btn:disabled{opacity:.45;cursor:default;}
+  .bars{margin-top:18px;display:grid;gap:10px;}
+  .bar-row{display:grid;grid-template-columns:86px 1fr 96px;align-items:center;gap:10px;font-size:.9rem;}
+  .bar-track{background:#efe7d0;border-radius:6px;height:20px;overflow:hidden;}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-deep));border-radius:6px;transition:width 1s ease;}
+  .bar-num{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;}
+  .demo-total{margin-top:12px;font-weight:800;font-size:1.05rem;}
+  .quiz-box{background:var(--card);border:2px solid var(--blue);border-radius:14px;padding:22px;max-width:640px;}
+  .quiz-q{font-weight:800;font-size:1.05rem;margin-bottom:12px;}
+  .quiz-opts{display:grid;gap:10px;}
+  .quiz-opts button{background:#fff;border:1.5px solid var(--blue);color:var(--blue-deep);font-weight:700;border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;font-size:.95rem;}
+  .quiz-opts button:hover{background:var(--blue);color:#fff;}
+  .quiz-result .price{font-size:1.4rem;font-weight:800;color:var(--blue-deep);}
+  .quiz-restart{margin-top:14px;background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;text-decoration:underline;font-size:.9rem;}
   footer{max-width:880px;margin:0 auto;padding:40px 20px 90px;color:var(--sub);font-size:.9rem;}
   footer .small{font-size:.8rem;margin-top:10px;}
 </style>
@@ -102,7 +124,7 @@
   <p class="lead">案内人は、この青い足の鳥です。月末の集計・転記・定型レポートを、「担当者が引き継いで使い続けられる仕組み」に整える旅にご案内します。やり取りはすべて書面・チャットで完結します。</p>
   <figure><img src="part-station.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high"></figure>
   <nav class="chips">
-    <a href="#s1">紙の山</a><a href="#s2">仕組みの工場</a><a href="#s3">進め方</a><a href="#s4">実物の証拠</a><a href="#tickets">切符売り場</a><a href="#faq">よくある質問</a><a href="#master">駅長室</a>
+    <a href="#s1">紙の山</a><a href="#s2">仕組みの工場</a><a href="#s3">進め方</a><a href="#s4">実物の証拠</a><a href="#tickets">切符売り場</a><a href="#quiz">プラン診断</a><a href="#faq">よくある質問</a><a href="#master">駅長室</a>
   </nav>
   <div class="scroll-hint">▼ 下へ進むと、旅が始まります</div>
 </header>
@@ -142,14 +164,17 @@
 <section class="scene from-right" id="s4">
   <span class="tag">STATION 04 ・ 実物の車窓（証拠）</span>
   <h2>言葉より、実物を見てください。</h2>
-  <p>これは、サンプルの売上データ（架空データ22件）を、実際に作った仕組みで集計した結果です。フォームの回答を取り込んで、月別に自動で集計し、通知まで送る一連の流れが動きます。</p>
-  <table class="data">
-    <tr><th>月</th><th>集計額</th></tr>
-    <tr><td>2026年9月</td><td>¥366,600</td></tr>
-    <tr><td>2026年10月</td><td>¥386,300</td></tr>
-    <tr class="total"><td>合計</td><td>¥752,900</td></tr>
-  </table>
-  <p class="note-small">※ 架空データを使ったサンプルの集計結果です。実在の顧客の実績ではありません。集計のもとデータと結果は検算済みです。</p>
+  <p>これは、サンプルの売上データ（架空データ22件）を集計する仕組みの実物です。下の「集計する」ボタンを押すと、このページの中で実際に計算して、月別の合計を出します。普段はこれが、フォームの回答を取り込んで、集計して、通知まで送る一連の流れとして動きます。</p>
+  <div class="demo-box">
+    <div class="demo-scroll"><table class="raw"><thead><tr><th>受付日</th><th>店舗</th><th>カテゴリ</th><th>金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
+    <button class="run-btn" id="demo-run" type="button">集計する</button>
+    <div class="bars" id="demo-result" hidden>
+      <div class="bar-row"><span>2026年9月</span><div class="bar-track"><div class="bar-fill" id="bar-9"></div></div><span class="bar-num" id="num-9">¥0</span></div>
+      <div class="bar-row"><span>2026年10月</span><div class="bar-track"><div class="bar-fill" id="bar-10"></div></div><span class="bar-num" id="num-10">¥0</span></div>
+      <div class="demo-total">合計 <span id="num-total">¥0</span>（<span id="num-count">0</span>件）</div>
+    </div>
+  </div>
+  <p class="note-small">※ 架空データを使ったサンプルの集計です。実在の顧客の実績ではありません。集計結果は検算済みの値と一致します。</p>
   <figure class="small"><img src="part-proud.webp" alt="整ったグラフを指さすヒナ" loading="lazy"></figure>
   <div class="btns">
     <a class="btn alt" href="https://www.lancers.jp/profile/dyooota/portfolio_popup/760934">作例を見る（ランサーズのポートフォリオ）</a>
@@ -213,7 +238,14 @@
   </div>
 </section>
 
-<section class="scene from-right" id="faq">
+<section class="scene from-right" id="quiz">
+  <span class="tag">GUIDE ・ プラン診断</span>
+  <h2>どの切符が合うか、3つの質問で分かります。</h2>
+  <figure class="small"><img src="part-goal.webp" alt="到着を喜ぶヒナ" loading="lazy"></figure>
+  <div class="quiz-box" id="quiz-body"></div>
+</section>
+
+<section class="scene from-left" id="faq">
   <span class="tag">GUIDE ・ よくある質問</span>
   <h2>先に答えておきます。</h2>
   <figure class="small"><img src="part-support.webp" alt="質問に答えるヒナ" loading="lazy"></figure>
@@ -264,6 +296,97 @@
     });
   },{threshold:.18});
   document.querySelectorAll('.scene, header.hero').forEach(el=>io.observe(el));
+
+  // ===== 触れる集計デモ（架空データ22件を実際に集計する） =====
+  const DEMO = [
+    ["2026-09-02","横浜店","物販",48200],["2026-09-03","川崎店","サービス",36000],
+    ["2026-09-05","横浜店","サービス",27500],["2026-09-08","横浜店","物販",51900],
+    ["2026-09-10","川崎店","物販",29800],["2026-09-12","横浜店","その他",8400],
+    ["2026-09-15","川崎店","サービス",41200],["2026-09-18","横浜店","物販",44600],
+    ["2026-09-21","川崎店","物販",33500],["2026-09-25","横浜店","サービス",38900],
+    ["2026-09-28","川崎店","その他",6600],
+    ["2026-10-01","横浜店","物販",55400],["2026-10-03","川崎店","サービス",39800],
+    ["2026-10-06","横浜店","サービス",30100],["2026-10-08","横浜店","物販",47300],
+    ["2026-10-11","川崎店","物販",35600],["2026-10-14","横浜店","その他",9200],
+    ["2026-10-17","川崎店","サービス",42700],["2026-10-20","横浜店","物販",50100],
+    ["2026-10-23","川崎店","物販",31900],["2026-10-26","横浜店","サービス",36400],
+    ["2026-10-29","川崎店","その他",7800]
+  ];
+  const yen = n => "¥" + n.toLocaleString("ja-JP");
+  const rowsEl = document.getElementById('demo-rows');
+  if(rowsEl){
+    rowsEl.innerHTML = DEMO.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${yen(r[3])}</td></tr>`).join('');
+  }
+  function countUp(el, target, ms){
+    const t0 = performance.now();
+    (function tick(t){
+      const p = Math.min(1,(t-t0)/ms);
+      el.textContent = yen(Math.round(target * p));
+      if(p<1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const runBtn = document.getElementById('demo-run');
+  if(runBtn){
+    runBtn.addEventListener('click', ()=>{
+      const byMonth = {};
+      DEMO.forEach(r=>{ const m = r[0].slice(0,7); byMonth[m] = (byMonth[m]||0) + r[3]; });
+      const sep = byMonth["2026-09"]||0, oct = byMonth["2026-10"]||0, total = sep+oct;
+      const max = Math.max(sep, oct);
+      document.getElementById('demo-result').hidden = false;
+      requestAnimationFrame(()=>{
+        document.getElementById('bar-9').style.width = (sep/max*100) + "%";
+        document.getElementById('bar-10').style.width = (oct/max*100) + "%";
+      });
+      countUp(document.getElementById('num-9'), sep, 900);
+      countUp(document.getElementById('num-10'), oct, 900);
+      countUp(document.getElementById('num-total'), total, 900);
+      document.getElementById('num-count').textContent = DEMO.length;
+      runBtn.textContent = "もう一度集計する";
+    });
+  }
+
+  // ===== プラン診断（3つの質問） =====
+  const QUIZ = [
+    {q:"毎月の集計・転記の作業は、いまどれくらい手間ですか？",
+     opts:[["数時間かかっている","heavy"],["30分〜1時間くらい","mid"],["ほぼ手間はない","light"]]},
+    {q:"対象の広さはどれくらいですか？",
+     opts:[["1種類の集計だけ","single"],["数種類の集計がある","multi"],["店舗・部門が多くて複雑","complex"]]},
+    {q:"まず、どうしたいですか？",
+     opts:[["設計だけ先に見たい","design"],["仕組みを作ってほしい","build"],["まだ分からない","unsure"]]}
+  ];
+  const PLANS = {
+    diagnosis:{name:"書面診断", price:"¥10,000 ／ 2日",
+      reason:"いきなり作る前に、いまの作業のどこをどう変えられるかを1枚の設計書で見極めるのが先です。作るかどうかは、それを見てから決められます。"},
+    main:{name:"本編：Excel×Power Automateで月次集計を自動化", price:"¥40,000 ／ 7日",
+      reason:"対象が1プロセスに絞れるので、本編が合います。設計書で完成イメージを確認してから、テンプレートまたはフロー1本とマニュアルを納品します。"},
+    premium:{name:"プレミアム", price:"¥60,000 ／ 10日",
+      reason:"対象が広く、1プロセスに収まらないタイプです。範囲は設計書の段階で先に確定するので、金額が膨らむ心配はありません。"}
+  };
+  const quizBody = document.getElementById('quiz-body');
+  let qi = 0; const answers = [];
+  function renderQuiz(){
+    if(!quizBody) return;
+    if(qi < QUIZ.length){
+      const item = QUIZ[qi];
+      quizBody.innerHTML = `<div class="quiz-q">質問 ${qi+1} / ${QUIZ.length}：${item.q}</div>` +
+        `<div class="quiz-opts">${item.opts.map((o,i)=>`<button type="button" data-i="${i}">${o[0]}</button>`).join('')}</div>`;
+      quizBody.querySelectorAll('button').forEach(b=>{
+        b.addEventListener('click', ()=>{ answers.push(item.opts[Number(b.dataset.i)][1]); qi++; renderQuiz(); });
+      });
+    } else {
+      let key = "main";
+      if(answers[2]==="design" || answers[0]==="light" || answers[2]==="unsure") key = "diagnosis";
+      if(answers[1]==="complex" && answers[2]==="build") key = "premium";
+      const p = PLANS[key];
+      quizBody.innerHTML = `<div class="quiz-result"><div class="quiz-q">あなたに合うのは「${p.name}」です</div>` +
+        `<div class="price">${p.price}</div><p style="margin-top:8px;">${p.reason}</p>` +
+        `<div class="btns"><a class="btn" href="https://www.lancers.jp/menu/detail/1352276">ランサーズで見る</a>` +
+        `<a class="btn alt" href="https://coconala.com/services/4482691">ココナラで見る</a></div>` +
+        `<button class="quiz-restart" type="button" id="quiz-restart">最初からやり直す</button></div>`;
+      document.getElementById('quiz-restart').addEventListener('click', ()=>{ qi = 0; answers.length = 0; renderQuiz(); });
+    }
+  }
+  renderQuiz();
 </script>
 </body>
 </html>
