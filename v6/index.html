@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あおあし｜その集計、毎月手で転記してますか。</title>
+<meta name="description" content="月末の集計・転記を、ExcelテンプレートやPower Automateフローに置き換える小さな店。書面診断¥3,000（税込）から。やり取りはすべて書面・チャットで完結します。">
+<link rel="canonical" href="https://aoashi.github.io/">
+<link rel="icon" type="image/webp" href="part-guide-s.webp">
+<meta property="og:type" content="website">
+<meta property="og:title" content="あおあし｜その集計、毎月手で転記してますか。">
+<meta property="og:description" content="月次集計の手作業を、ExcelテンプレートまたはPower Automateフローに。書面診断¥3,000（税込）から、電話・会議なし。">
+<meta property="og:url" content="https://aoashi.github.io/">
+<meta property="og:image" content="https://aoashi.github.io/part-station.webp">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Google Analytics（差し替え・削除禁止：計測IDは全バージョン共通） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED2CZMLZZP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ED2CZMLZZP');
+  document.documentElement.classList.add('js');
+</script>
+<style>
+  :root{
+    --ink:#22303c; --sub:#46565f; --blue:#1c6fb8; --blue-deep:#0f4d84;
+    --accent:#ffb703; --line:#ddd3b8; --card:#fffdf6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;overflow-x:clip;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    color:var(--ink); line-height:1.85; overflow-x:clip; font-size:15px;
+    background:linear-gradient(180deg,
+      #f8f3e6 0%, #f7f0dc 22%, #f9efdb 45%,
+      #fbeed3 60%, #fdeecb 75%, #ffe9bd 88%, #ffe3ab 100%);
+  }
+  button,a,input{font:inherit;}
+  a{color:inherit;}
+  button{cursor:pointer;}
+  button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+  img{max-width:100%;height:auto;display:block;}
+  .wrap{max-width:1240px;margin:auto;padding:0 44px;}
+  /* お知らせバー */
+  .announcement{background:var(--blue-deep);color:#fff;text-align:center;font-size:11px;letter-spacing:.1em;padding:8px 12px;}
+  /* ナビ */
+  nav{height:92px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);}
+  .logo{font-size:24px;font-weight:800;letter-spacing:.08em;text-decoration:none;line-height:1.25;}
+  .logo span{display:block;font-size:9px;letter-spacing:.26em;color:var(--blue-deep);font-weight:700;}
+  .links{display:flex;gap:32px;align-items:center;font-size:12.5px;}
+  .links a{text-decoration:none;font-weight:700;}
+  .links a:hover{color:var(--blue-deep);}
+  .pill{border:2px solid var(--blue-deep);border-radius:30px;padding:9px 20px;color:var(--blue-deep);background:transparent;}
+  .pill:hover{background:var(--blue-deep);color:#fff;}
+  /* バディ（伴走マスコット） */
+  .buddy{position:fixed;left:14px;bottom:14px;z-index:60;display:flex;align-items:flex-end;gap:8px;pointer-events:none;}
+  .buddy img{width:84px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(30,50,70,.28));transition:opacity .35s ease;}
+  .buddy .say{background:#fff;border-radius:14px;border-bottom-left-radius:3px;box-shadow:0 3px 10px rgba(30,50,70,.18);padding:8px 12px;font-size:.8rem;font-weight:700;color:var(--blue-deep);max-width:180px;line-height:1.5;transition:opacity .35s ease;}
+  @media(max-width:640px){.buddy img{width:54px;height:auto;}.buddy .say{display:none;}}
+  /* ヒーロー */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:60px 0 66px;}
+  .eyebrow{font-size:11px;letter-spacing:.18em;font-weight:800;color:var(--blue-deep);display:flex;align-items:center;gap:10px;}
+  .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex:none;}
+  .hero h1{font-size:clamp(32px,4.2vw,54px);line-height:1.45;font-weight:800;margin:20px 0 18px;}
+  .hero h1 em{font-style:normal;color:var(--blue-deep);border-bottom:8px solid var(--accent);}
+  .intro{color:#40525f;font-size:14.5px;line-height:2.05;max-width:560px;}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-weight:700;color:var(--blue-deep);font-size:.92rem;}
+  .facts span::before{content:"● ";color:var(--accent);font-size:.7em;vertical-align:.2em;}
+  .primary{display:inline-flex;justify-content:space-between;align-items:center;gap:34px;background:var(--blue);border:1px solid var(--blue);color:#fff;padding:15px 24px;border-radius:8px;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(28,111,184,.3);}
+  .primary:hover{opacity:.9;}
+  .hero .primary{margin:24px 0 14px;}
+  .fine{font-size:10.5px;color:var(--sub);}
+  .hero-art{min-height:440px;background:rgba(255,253,246,.55);border:1.5px solid var(--line);border-radius:150px 150px 12px 12px;position:relative;display:grid;place-items:center;overflow:hidden;padding:34px 20px 56px;}
+  .hero-art img{width:min(400px,80%);filter:drop-shadow(0 12px 20px rgba(30,50,70,.2));transform:rotate(1.4deg);}
+  .floating{position:absolute;background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;z-index:2;}
+  .floating b{font-size:15px;color:var(--blue-deep);}
+  .floating.first{left:18px;bottom:52px;transform:rotate(-4deg);}
+  .floating.second{right:14px;top:52px;transform:rotate(5deg);}
+  .hero-art .caption{position:absolute;bottom:14px;right:20px;font-size:9px;letter-spacing:.16em;color:var(--sub);}
+  /* ベネフィット帯 */
+  .benefits{display:flex;justify-content:space-between;gap:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;font-size:12px;font-weight:700;}
+  .benefits span{color:var(--sub);margin-left:10px;font-weight:400;}
+  /* セクション共通 */
+  .catalog{padding:72px 0 8px;}
+  .sectiontop{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px;gap:20px;}
+  h2{font-size:clamp(23px,3vw,30px);line-height:1.45;margin:8px 0 0;font-weight:800;}
+  .filters{display:flex;gap:7px;flex-wrap:wrap;}
+  .filter{border:1.5px solid var(--line);background:transparent;color:var(--sub);padding:8px 18px;border-radius:30px;font-size:11.5px;font-weight:700;}
+  .filter.active{background:var(--blue-deep);color:#fff;border-color:var(--blue-deep);}
+  /* 商品カード */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{cursor:pointer;background:transparent;border:0;text-align:left;padding:0;width:100%;}
+  .visual{height:238px;position:relative;border-radius:10px;overflow:hidden;display:grid;place-items:center;transition:transform .3s;border:1px solid rgba(221,211,184,.8);}
+  .card:hover .visual,.card:focus-visible .visual{transform:translateY(-5px);}
+  .visual img{height:86%;width:auto;max-width:88%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(30,50,70,.18));}
+  .t1{background:#fdf6dd;} .t2{background:#e3eef8;} .t3{background:#fdeed3;}
+  .t4{background:#e9f2e4;} .t5{background:#fbe9e4;} .t6{background:#eee9f7;}
+  .badge{position:absolute;left:14px;top:13px;font-size:9.5px;font-weight:700;background:#fffdf5;border:1px solid var(--line);padding:4px 10px;border-radius:20px;z-index:1;color:var(--blue-deep);}
+  .category{font-size:9.5px;color:var(--sub);letter-spacing:.12em;margin:16px 0 5px;font-weight:700;}
+  .card h3{font-size:16.5px;margin:0 0 6px;line-height:1.5;}
+  .desc{font-size:11.5px;color:var(--sub);margin:0;line-height:1.8;}
+  .price-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:15px 0;}
+  .price{font-size:20px;font-weight:800;color:var(--blue-deep);}
+  .price small{font-size:9.5px;font-weight:600;color:var(--sub);}
+  .arrow{height:30px;width:30px;border:1.5px solid var(--blue);color:var(--blue-deep);border-radius:50%;display:grid;place-items:center;flex:none;}
+  /* 触れるデモ */
+  .demo-sec{padding:64px 0 10px;}
+  .demo-sec p.lead{color:#33424e;max-width:660px;margin-top:12px;font-size:13.5px;}
+  .demo-raw{max-height:180px;overflow:auto;max-width:660px;border-top:2px dotted #d8cfba;border-bottom:2px dotted #d8cfba;margin:18px 0 6px;}
+  table.raw{border-collapse:collapse;width:100%;font-size:.83rem;background:rgba(255,255,255,.65);}
+  table.raw caption{text-align:left;font-weight:700;padding:4px 0;}
+  table.raw th,table.raw td{padding:5px 9px;border-bottom:1px solid #f0e7cd;text-align:left;font-variant-numeric:tabular-nums;}
+  table.raw th{background:rgba(253,246,223,.95);position:sticky;top:0;}
+  table.raw td:last-child,table.raw th:last-child{text-align:right;}
+  .run-btn{margin-top:16px;background:var(--blue);color:#fff;border:none;font-weight:800;font-size:1.02rem;border-radius:999px;padding:13px 32px;cursor:pointer;box-shadow:0 4px 12px rgba(28,111,184,.35);}
+  .run-btn:hover{opacity:.9;}
+  .bars{margin-top:20px;display:grid;gap:10px;max-width:660px;}
+  .bars[hidden]{display:none;}
+  .bar-row{display:grid;grid-template-columns:88px 1fr 96px;align-items:center;gap:10px;font-size:.92rem;}
+  .bar-track{background:rgba(255,255,255,.75);border-radius:6px;height:22px;overflow:hidden;}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-deep));border-radius:6px;transition:width 1s ease;}
+  .bar-num{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;}
+  .demo-total{margin-top:12px;font-weight:800;font-size:1.1rem;}
+  table.pivot{border-collapse:collapse;margin-top:16px;font-size:.88rem;background:rgba(255,255,255,.7);max-width:660px;width:100%;}
+  table.pivot caption{text-align:left;font-weight:700;font-size:.85rem;color:var(--blue-deep);padding-bottom:6px;}
+  table.pivot th,table.pivot td{padding:6px 10px;border:1px solid #eadfc2;text-align:right;font-variant-numeric:tabular-nums;}
+  table.pivot th:first-child,table.pivot td:first-child{text-align:left;}
+  table.pivot thead th{background:rgba(253,246,223,.95);text-align:center;}
+  table.pivot thead th:first-child{text-align:left;}
+  .demo-note{margin-top:14px;font-size:.82rem;color:var(--sub);max-width:660px;}
+  /* 哲学（この店について） */
+  .story{background:var(--blue-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr;gap:56px;padding:52px;margin:64px 0 70px;align-items:center;}
+  .story .eyebrow{color:var(--accent);}
+  .story h2{font-size:clamp(24px,3vw,32px);}
+  .story p{font-size:12.5px;color:#d7e4f0;line-height:2.15;}
+  .story p + p{margin-top:14px;}
+  .story figure{display:grid;place-items:center;}
+  .story figure img{width:min(300px,70%);filter:drop-shadow(0 10px 18px rgba(0,0,0,.3));}
+  .story figcaption{font-size:10px;color:#b9cee0;margin-top:10px;letter-spacing:.12em;}
+  /* 購入3ステップ */
+  .steps{padding-bottom:66px;}
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:42px;margin-top:28px;}
+  .step{border-top:2px solid var(--blue);padding-top:16px;}
+  .step .num{font-family:Georgia,serif;font-style:italic;font-size:28px;color:var(--blue);}
+  .step h3{margin-top:8px;font-size:15px;}
+  .step p{font-size:12px;color:var(--sub);line-height:1.9;}
+  /* FAQ */
+  .faq{padding:36px 0 64px;display:grid;grid-template-columns:1fr 1.6fr;gap:64px;border-top:1px solid var(--line);}
+  .faq details{border-bottom:1px solid var(--line);padding:17px 0;font-size:12.5px;}
+  .faq summary{cursor:pointer;font-weight:700;}
+  .faq details p{color:var(--sub);font-size:11.5px;margin-top:8px;line-height:1.9;}
+  .faq a{color:var(--blue-deep);font-weight:700;}
+  /* フッター */
+  .footer{border-top:1px solid var(--line);padding:28px 0 130px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:10.5px;color:var(--sub);}
+  .footer a{color:var(--blue-deep);}
+  .footer .flogo{font-size:17px;color:var(--ink);}
+  /* モーダル */
+  dialog{border:0;border-radius:14px;max-width:840px;width:calc(100% - 32px);padding:0;background:#fffdf6;color:var(--ink);box-shadow:0 30px 90px rgba(15,45,75,.4);}
+  dialog::backdrop{background:rgba(15,40,66,.72);backdrop-filter:blur(5px);}
+  .modal{padding:34px;}
+  .close{float:right;border:1.5px solid var(--line);border-radius:50%;background:transparent;width:32px;height:32px;color:var(--ink);font-size:15px;line-height:1;}
+  .modal-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;clear:both;padding-top:18px;}
+  .modal .visual{height:290px;}
+  .modal h2{font-size:24px;margin-top:4px;}
+  .modal .detail{font-size:12.5px;color:#33424e;line-height:2;margin-top:10px;}
+  .modal ul{padding-left:18px;font-size:12px;line-height:2;margin-top:10px;}
+  .modal .price{margin-top:14px;}
+  .full{width:100%;margin-top:18px;justify-content:center;}
+  .back{border:0;background:transparent;color:var(--sub);font-size:11.5px;padding:0;font-weight:700;}
+  .checkout{max-width:480px;margin:auto;padding:12px 0 4px;}
+  .order{border:1.5px solid var(--line);background:#fff;padding:16px 18px;border-radius:8px;margin:22px 0;display:flex;justify-content:space-between;gap:14px;font-size:12.5px;align-items:center;}
+  .pay-note{background:#fff;border:1.5px solid var(--line);padding:18px;border-radius:8px;font-size:12px;line-height:1.95;color:#33424e;}
+  .moved{text-align:center;padding:26px 10px 8px;}
+  .moved .check{width:64px;height:64px;border-radius:50%;background:var(--accent);display:grid;place-items:center;margin:0 auto 16px;font-size:28px;color:var(--blue-deep);font-weight:800;}
+  [hidden]{display:none!important}
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
+  .js .reveal.in-view{opacity:1;transform:none;}
+  @media(max-width:760px){
+    .wrap{padding:0 22px}
+    nav{height:78px}.links{gap:12px}.links a:not(.pill){display:none}
+    .hero{grid-template-columns:1fr;gap:26px;padding:34px 0 44px}
+    .hero-art{min-height:320px}
+    .benefits{flex-wrap:wrap;font-size:11px}.benefits span{display:none}
+    .sectiontop{display:block}.filters{margin-top:20px}
+    .catalog{padding:48px 0 4px}
+    .grid{grid-template-columns:1fr}
+    .visual{height:250px}
+    .story{grid-template-columns:1fr;gap:18px;padding:28px;margin:44px 0 48px}
+    .steps-grid{grid-template-columns:1fr;gap:14px}
+    .faq{grid-template-columns:1fr;gap:18px}
+    .modal{padding:22px}.modal-grid{grid-template-columns:1fr;gap:14px}.modal .visual{height:170px}
+    .floating.first{left:8px}.floating.second{right:8px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none !important;transition:none !important}
+    .js .reveal{opacity:1;transform:none}
+  }
+</style>
+<style>
+  /* ===== 追加分：Lenis / 熱量グラデーション用（既存スタイルは変更しない） ===== */
+  html.lenis, html.lenis body{height:auto;}
+  .lenis.lenis-smooth{scroll-behavior:auto !important;}
+  .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
+  .lenis.lenis-stopped{overflow:hidden;}
+  /* スクロールに連動して濃くなる暖色のヴェール（本文より背面・背景より前面） */
+  .heat-veil{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;
+    background:radial-gradient(120% 90% at 50% 0%, rgba(255,183,3,.22), rgba(255,150,20,.15) 55%, rgba(255,120,20,.20));}
+  .announcement,.wrap{position:relative;z-index:1;}
+</style>
+</head>
+<body>
+<div class="heat-veil" aria-hidden="true"></div>
+<div class="announcement">やり取りは、すべて書面・チャットで完結します ― 電話・会議はありません</div>
+<div class="wrap">
+<nav>
+  <a href="#" class="logo">あおあし<span>AOASHI / BUSINESS AUTOMATION</span></a>
+  <div class="links">
+    <a href="#products">商品をみる</a>
+    <a href="#demo">触れるデモ</a>
+    <a href="#about">この店について</a>
+    <a href="#faq" class="pill">よくある質問 ↗</a>
+  </div>
+</nav>
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow"><i class="dot"></i> 月次集計の自動化 ― 小さな店</div>
+    <h1>その集計、毎月<br><em>手で転記</em>してますか。</h1>
+    <p class="intro">店舗別・カテゴリ別の月次集計なら、CSVを決まった場所に置くだけで集計表まで出来上がる形にできます。「横浜 店」と「ﾖｺﾊﾏ店」の表記ゆれはルールで揃えるので、月末に目で直す作業が消えます。まず下の「触れるデモ」で、集計がどう変わるかを見てください。あなたの集計でどこが消えるかは、書面診断¥3,000でメモ1枚にしてお返しします。</p>
+    <div class="facts">
+      <span>中小企業の月次集計担当の方へ</span>
+      <span>書面診断 ¥3,000（税込）から</span>
+      <span>電話・会議なし、書面で完結</span>
+    </div>
+    <a class="primary" href="#products">商品をみる <span>↗</span></a>
+    <div class="fine">デジタル商品・オンラインサービス／お支払いは外部の決済ページで行います（このサイト内でカード情報を扱うことはありません）</div>
+  </div>
+  <div class="hero-art" aria-label="案内役のマスコット">
+    <img src="part-station-cut.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high">
+    <div class="floating first">表記ゆれは、目で直さず<br><b>ルールで揃える。</b></div>
+    <div class="floating second">サンプル22件を<br><b>その場で集計できます</b></div>
+    <div class="caption">AOASHI ― GUIDE</div>
+  </div>
+</section>
+
+<div class="benefits">
+  <div>↗ まずは小さく<span>書面診断¥3,000。作るかどうかは、メモを見てから決められます。</span></div>
+  <div>◇ 触れるデモつき<span>言葉ではなく、実物をこのページに置いています。</span></div>
+  <div>✳ 実績は正直に<span>受注実績はまだありません。作例はすべて架空データです。</span></div>
+</div>
+
+<section class="catalog" id="products">
+  <div class="sectiontop">
+    <div>
+      <div class="eyebrow">THE COLLECTION / 商品</div>
+      <h2>困りごとから、選んでください。</h2>
+    </div>
+    <div class="filters" aria-label="商品カテゴリー">
+      <button class="filter active" data-filter="all" aria-pressed="true">すべて</button>
+      <button class="filter" data-filter="digital" aria-pressed="false">デジタル商品</button>
+      <button class="filter" data-filter="service" aria-pressed="false">サービス</button>
+    </div>
+  </div>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section class="demo-sec reveal" id="demo">
+  <div class="eyebrow">TOUCHABLE DEMO / 触れるデモ</div>
+  <h2>言葉より、実物に触ってください。</h2>
+  <p class="lead">下の22件は、サンプルの売上データ（架空）です。よく見ると、店舗名の書き方がバラバラになっています。「集計する」を押すと、このページの中で表記ゆれをルールで揃えてから、月別と店舗×カテゴリ別の集計を出します。普段の納品物では、これがExcelの数式やフローで出来上がります。</p>
+  <div class="demo-raw"><table class="raw"><caption>サンプル売上データ（架空・22件）</caption><thead><tr><th scope="col">受付日</th><th scope="col">店舗</th><th scope="col">カテゴリ</th><th scope="col">金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
+  <button class="run-btn" id="demo-run" type="button">表記ゆれを揃えて、集計する</button>
+  <div class="bars" id="demo-result" hidden aria-live="polite">
+    <div class="bar-row"><span>2026年9月</span><div class="bar-track"><div class="bar-fill" id="bar-9"></div></div><span class="bar-num" id="num-9">¥0</span></div>
+    <div class="bar-row"><span>2026年10月</span><div class="bar-track"><div class="bar-fill" id="bar-10"></div></div><span class="bar-num" id="num-10">¥0</span></div>
+    <div class="demo-total">合計 <span id="num-total">¥0</span>（<span id="num-count">0</span>件）</div>
+    <p style="font-size:.88rem;color:var(--sub);">店舗名の表記ゆれ（「横浜 店」「ﾖｺﾊﾏ店」など）は、ルールで「横浜店」に統一しました。</p>
+    <div id="pivot-wrap"></div>
+  </div>
+  <p class="demo-note">※ 架空データのサンプルです。実在の顧客の実績ではありません。集計結果は、Excelで同じ集計をした結果と一致する値です。</p>
+</section>
+
+<section class="story reveal" id="about">
+  <div>
+    <div class="eyebrow">ABOUT / この店について</div>
+    <h2>実績は、まだありません。<br>実物は、あります。</h2>
+  </div>
+  <div>
+    <p>運営は「あおあし」です。通信建設業界の事務職・企画部門で、月次集計などの定型実務と業務自動化を扱ってきました。日商簿記2級・ITパスポートを持っています。</p>
+    <p>この店の受注実績は、まだありません。その代わりに、触れるデモと設計書の実物を先に置いています。範囲と金額は、着手前に設計書で固定します。金額が途中で膨らむことはありません。</p>
+    <p>このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
+  </div>
+</section>
+
+<section class="steps reveal">
+  <div class="eyebrow">HOW TO BUY / 購入の流れ</div>
+  <h2>購入まで、3ステップ。</h2>
+  <div class="steps-grid">
+    <div class="step"><span class="num">01</span><h3>商品を選んで、詳細を見る</h3><p>カードを押すと、内容物・納期・前提条件が出ます。「作って終わり」ではなく、納品後に何が残るかまで書いています。</p></div>
+    <div class="step"><span class="num">02</span><h3>決済ページで支払う</h3><p>「購入する」を押すと、外部の決済ページ（現在はココナラ／note）へ移動します。このサイト内でカード情報を入力することはありません。</p></div>
+    <div class="step"><span class="num">03</span><h3>受け取る／はじまる</h3><p>デジタル商品は、購入先でそのままダウンロードできます。サービスは、購入先のチャットでヒアリングシートをお渡しし、記入が届いた日から納期を数えます。</p></div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div>
+    <div class="eyebrow">QUESTIONS &amp; ANSWERS</div>
+    <h2>先に答えておきます。</h2>
+  </div>
+  <div>
+    <details><summary>支払いはどうなっていますか？</summary><p>現在は、ココナラとnoteの決済の仕組みを使っています。このサイトから直接の請求はしていません。ココナラでは、代金はプラットフォームに仮払いされ、納品を確認するまで支払いは確定しません。Stripeでの直接決済は準備中で、用意でき次第、このサイトの「購入する」ボタンから買えるようにします。</p></details>
+    <details><summary>業務データの扱いは大丈夫ですか？</summary><p>お預かりした業務データは、本作業のみに使用します。共有の方法は案件ごとに先に取り決め、作業と質疑応答が終わった時点で削除します。実データではなく、項目名だけのサンプルや匿名化したデータで進めることもできます。</p></details>
+    <details><summary>電話や会議はありますか？</summary><p>ありません。やり取りはすべて書面・チャットで完結します。ヒアリングは記入式のシートです。</p></details>
+    <details><summary>書面診断のあと、本編に進むと合計はいくらですか？</summary><p>本編¥40,000から診断料¥3,000を差し引くので、合計は¥40,000（税込）のままです。診断だけで終わる場合は¥3,000のみです。</p></details>
+    <details><summary>納期の数え方を教えてください。</summary><p>ヒアリングシートを受け取った日から、暦日で数えます。書面診断は2日、本編は7日、構造設計は5日です。設計書の確認待ちの期間も含みます。</p></details>
+    <details><summary>Excelがない環境でも使えますか？</summary><p>テンプレートはMicrosoft Excel（Microsoft 365／2019以降のデスクトップ版）前提です。Power Automateフローの場合は、Microsoft 365のライセンスと接続設定が必要です。環境は設計書の段階で確認します。制作に入る前に分かるので、合わなければその時点で止められます。</p></details>
+    <details><summary>納品後に直してほしい点が出たら？</summary><p>3つに分けて対応します。使い方の質問は、納品後7日間チャットで答えます。合意した仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで対応します。仕様そのものの追加・変更は、別途お見積もりです。</p></details>
+    <details><summary>返金・キャンセルはできますか？</summary><p>デジタル商品は、その性質上、納品後の返金・キャンセルは原則としてお受けできません。サービスは、制作に着手する前までキャンセルできます。詳しくは<a href="legal.html">特定商取引法に基づく表記</a>をご覧ください。</p></details>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <a href="#" class="logo flogo">あおあし</a>
+  <span>運営：あおあし｜X：<a href="https://x.com/aoashi_AI">@aoashi_AI</a>／note：<a href="https://note.com/fair_arnica8174">あおあし（@fair_arnica8174）</a>｜<a href="legal.html">特定商取引法に基づく表記</a></span>
+  <span>アクセス解析について：このサイトではGoogleアナリティクスを使用し、Cookieで匿名の利用状況を収集しています。詳しくは<a href="https://policies.google.com/privacy">Googleのプライバシーポリシー</a>へ。</span>
+  <span>© 2026 あおあし</span>
+</footer>
+</div>
+
+<div class="buddy" aria-hidden="true">
+  <img id="buddy-img" src="part-guide-cut.webp" alt="">
+  <div class="say" id="buddy-say">ご案内します。商品は下に並んでいます。</div>
+</div>
+
+<dialog id="dialog" aria-label="商品の詳細と購入">
+  <div class="modal">
+    <button class="close" id="close" aria-label="閉じる">×</button>
+    <div id="modal-content"></div>
+  </div>
+</dialog>
+
+<!-- 実績ライブラリ（CDN）：読み込めなくてもページは完全に動作する（初期化側でガード） -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+/* ================================================================
+   決済リンク設定 ― Stripe Payment Links への差し替えはここだけ
+   ----------------------------------------------------------------
+   使い方：
+   1. Stripeダッシュボードで商品ごとに Payment Link を発行する。
+   2. 下の PAYMENT_LINKS の該当キーに、発行したURL（https://buy.stripe.com/...）を貼る。
+   3. それだけで、その商品の「購入する」ボタンが Stripe の決済ページへ直行する。
+   空文字（""）のままの商品は、FALLBACK_LINKS の暫定購入先
+   （ココナラ／note の商品ページ）へ移動する。
+   ※ support は購入先が無いため、常時「申込方法の案内」表示になる。
+   ================================================================ */
+const PAYMENT_LINKS = {
+  diagnosis: "",  // 書面診断 ¥3,000
+  package:   "",  // Excel×Power Automate 業務改善パッケージ ¥40,000
+  structure: "",  // AI副業×note構造設計 ¥30,000
+  support:   "",  // 見守り・手直し ¥5,000/月（本編購入者向け・チャットで申込）
+  prompt:    "",  // 執筆プロンプト全文（note商品）¥500
+  template:  ""   // 月次売上集計テンプレート（note商品）¥980
+};
+const FALLBACK_LINKS = {
+  diagnosis: "https://coconala.com/services/4482711",
+  package:   "https://coconala.com/services/4482691",
+  structure: "https://coconala.com/services/4482719",
+  support:   "",
+  prompt:    "https://note.com/fair_arnica8174/n/nc736cd2fba20",
+  template:  "https://note.com/fair_arnica8174/n/nb8cfb707dd88"
+};
+function paymentUrl(id){ return PAYMENT_LINKS[id] || FALLBACK_LINKS[id] || ""; }
+function paymentLabel(id){
+  if(PAYMENT_LINKS[id]) return "Stripeの決済ページ";
+  const f = FALLBACK_LINKS[id] || "";
+  if(f.includes("coconala.com")) return "ココナラの商品ページ";
+  if(f.includes("note.com")) return "noteの商品ページ";
+  return "決済ページ";
+}
+
+/* ================= 商品データ ================= */
+const PRODUCTS = [
+  { id:"diagnosis", type:"service", tint:"t2",
+    category:"SERVICE / 書面診断 ・ 納期2日",
+    name:"書面診断",
+    desc:"「自動化できる部分」と「残る部分」を、作る前に切り分ける。",
+    price:3000, priceNote:"税込",
+    tag:"まずここから",
+    img:"part-hearing-cut.webp", imgAlt:"メモを取りながら聞くヒナ",
+    detail:"月末。CSVを開く。集計表に貼る。店舗名のズレを目で探す。直す。合計が合わない。最初から。――その作業の、どこが消えて、どこが残るのか。いまの集計手順をヒアリングシートに書いてもらうと、自動化できる部分・できない部分・進め方を、メモ1枚にして2日で返します。作るかどうかは、メモを見てから決めてください。",
+    includes:["ヒアリングシート（記入式）での現状確認","自動化できる部分／できない部分の切り分けメモ1枚","本編に進む場合の進め方と金額（固定）","本編に進んだ場合、診断料¥3,000は本編代金に充当（合計¥40,000のまま）"] },
+  { id:"package", type:"service", tint:"t1",
+    category:"SERVICE / 制作 ・ 納期7日",
+    name:"Excel×Power Automate 業務改善パッケージ",
+    desc:"CSVを置くだけで、店舗別・カテゴリ別の集計表まで出来上がる形に。",
+    price:40000, priceNote:"税込",
+    tag:"本編",
+    img:"part-working-cut.webp", imgAlt:"紙を機械に入れると整った書類が出てくる工場で働くヒナ",
+    detail:"CSVを決まった場所に置けば、店舗別・カテゴリ別の集計表まで出来上がる仕組みを作ります。「横浜 店」と「ﾖｺﾊﾏ店」のような表記ゆれは、目で直すのではなくルールで揃えます。着手前に、改善設計書1枚で完成イメージを確認してから制作に入ります。受注実績はまだありません。実績の代わりに、上の「触れるデモ」と設計書の実物で判断してください。",
+    includes:["改善設計書1枚（着手前に完成イメージを確認）","Excelテンプレート、またはPower Automateフロー1本","使い方マニュアル","納品後7日間の質疑応答（チャット）","仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで","対象は定型業務1プロセス"] },
+  { id:"structure", type:"service", tint:"t3",
+    category:"SERVICE / 設計 ・ 納期5日",
+    name:"AI副業×note構造設計",
+    desc:"無料記事・有料記事・導線を、1つの商品として組み立てる。",
+    price:30000, priceNote:"税込",
+    tag:"note販売の設計",
+    img:"part-design-cut.webp", imgAlt:"路線図を描くヒナ",
+    detail:"記事を書いても売れないとき、足りないのは文章量ではなく組み立てです。誰に・何を・いくらで売るか、無料記事から有料記事への渡し方、プロフィールと固定記事の置き方までを、構造設計書として1つにまとめます。あなたのnoteアカウントと過去記事を見たうえで、直す順番まで書きます。",
+    includes:["現状の棚卸し（アカウント・既存記事・価格帯）","商品ラダー（入口／本編／継続）の設計","無料→有料の導線設計（固定記事・プロフィール含む）","構造設計書1枚＋着手順リスト","やり取りは書面・チャットで完結"] },
+  { id:"support", type:"service", tint:"t4",
+    category:"SERVICE / オプション ・ 本編購入者向け",
+    name:"見守り・手直し",
+    desc:"動かし始めた最初の数か月、月1回の確認と小さな手直し。",
+    price:5000, priceNote:"税込 / 月",
+    tag:"本編とセットで",
+    img:"part-support-cut.webp", imgAlt:"吹き出しで回答するヒナ",
+    detail:"本編・プレミアムをご購入の方への追加オプションです。納品した仕組みについて、月1回の動作確認と、月1回までの軽微な手直しを行います。お申し込みは、本編の購入先（ココナラ）のチャットでお申し付けください。",
+    includes:["月1回の動作確認","軽微な手直し（月1回まで）","本編・プレミアム購入者限定","申込は本編の購入先チャットから"] },
+  { id:"prompt", type:"digital", tint:"t5",
+    category:"DIGITAL / note商品",
+    name:"執筆プロンプト全文",
+    desc:"売れるnoteは『情報』で勝負しない。実際に使っているプロンプト全文。",
+    price:500, priceNote:"税込",
+    tag:"noteで販売中",
+    img:"part-guide-cut.webp", imgAlt:"案内するヒナ",
+    detail:"noteの有料記事を書くときに実際に使っている、執筆プロンプトの全文です。構成の型と、書き出しの作り方まで含みます。購入はnoteの商品ページで行い、そのままnote上で読めます。",
+    includes:["執筆プロンプト全文（note記事内で提供）","構成の型と書き出しの作り方","購入先：note（そのまま読めます）"] },
+  { id:"template", type:"digital", tint:"t6",
+    category:"DIGITAL / note商品 ・ Excelテンプレート",
+    name:"月次売上集計テンプレート＋使い方ガイド",
+    desc:"CSVを貼るだけで、店舗別×カテゴリ別の集計表が出来上がる。",
+    price:980, priceNote:"税込",
+    tag:"自分で回したい人へ",
+    img:"part-proud-cut.webp", imgAlt:"整ったグラフを指さすヒナ",
+    detail:"CSVを貼るだけで店舗別×カテゴリ別の集計表が出来上がる、Excelテンプレート本体と使い方ガイドのセットです。個別制作ではなく、自分で回したい人向けの入口です。動作前提はMicrosoft Excel（Microsoft 365／2019以降のデスクトップ版）。購入はnoteの商品ページで行います。",
+    includes:["Excelテンプレート本体（ダウンロード）","使い方ガイド","表記ゆれを揃えるルール入り","購入先：note"] }
+];
+
+/* ================= カタログ描画・絞り込み ================= */
+const yen = n => "¥" + n.toLocaleString("ja-JP");
+const cardsEl = document.querySelector("#cards");
+const dialog = document.querySelector("#dialog");
+const content = document.querySelector("#modal-content");
+let selected = null, trigger = null;
+function visual(p, badge){
+  return `<div class="visual ${p.tint}">${badge ? `<span class="badge">${p.tag}</span>` : ""}<img src="${p.img}" alt="${p.imgAlt}" loading="lazy"></div>`;
+}
+function render(filter = "all"){
+  cardsEl.innerHTML = PRODUCTS.filter(p => filter === "all" || p.type === filter).map(p => `
+    <article class="card" tabindex="0" role="button" aria-label="${p.name}の詳細を見る" data-id="${p.id}">
+      ${visual(p, true)}
+      <div class="category">${p.category}</div>
+      <h3>${p.name}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="price-row"><span class="price">${yen(p.price)} <small>${p.priceNote}</small></span><span class="arrow" aria-hidden="true">↗</span></div>
+    </article>`).join("");
+}
+render();
+document.querySelectorAll(".filter").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".filter").forEach(x => { x.classList.toggle("active", x === b); x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+  render(b.dataset.filter);
+});
+cardsEl.onclick = e => { const el = e.target.closest(".card"); if(el) openCard(el); };
+cardsEl.onkeydown = e => { if((e.key === "Enter" || e.key === " ") && e.target.matches(".card")){ e.preventDefault(); openCard(e.target); } };
+function openCard(el){ selected = PRODUCTS.find(p => p.id === el.dataset.id); trigger = el; detail(); dialog.showModal(); }
+
+/* ================= モーダル：詳細 → 決済 → 移動案内 ================= */
+function detail(){
+  const p = selected;
+  const url = paymentUrl(p.id);
+  const btn = url
+    ? `<button class="primary full" id="checkout">購入手続きへ進む <span>→</span></button>
+       <p class="fine" style="margin-top:10px;">次の画面で、${paymentLabel(p.id)}への移動を確認します。このサイト内でカード情報を扱うことはありません。</p>`
+    : `<button class="primary full" disabled style="opacity:.55;cursor:default;">この商品は購入先チャットでのお申し込みです</button>
+       <p class="fine" style="margin-top:10px;">本編（Excel×Power Automate 業務改善パッケージ）をご購入のうえ、購入先のチャットで「見守り・手直し希望」とお申し付けください。</p>`;
+  content.innerHTML = `
+    <div class="modal-grid">
+      <div>${visual(p, true)}</div>
+      <div>
+        <div class="category">${p.category}</div>
+        <h2 id="modal-title">${p.name}</h2>
+        <p class="detail">${p.detail}</p>
+        <ul>${p.includes.map(x => "<li>" + x + "</li>").join("")}</ul>
+        <div class="price">${yen(p.price)} <small>${p.priceNote}</small></div>
+        ${btn}
+      </div>
+    </div>`;
+  const co = document.querySelector("#checkout");
+  if(co) co.onclick = checkout;
+}
+function checkout(){
+  const p = selected, url = paymentUrl(p.id), label = paymentLabel(p.id);
+  const dataNote = p.type === "service"
+    ? `<p style="margin-top:12px;">お預かりした業務データは、本作業のみに使用し、納品後に削除します。決済が終わったら、購入先のチャットでヒアリングシートをお渡しします。</p>` : "";
+  content.innerHTML = `
+    <div class="checkout">
+      <button class="back" id="back">← 商品詳細に戻る</button>
+      <div class="eyebrow" style="margin-top:24px">CHECKOUT / 購入の確認</div>
+      <h2>この内容で、決済ページへ進みます。</h2>
+      <div class="order"><span>${p.name}</span><b>${yen(p.price)}（${p.priceNote}）</b></div>
+      <div class="pay-note">
+        <b>お支払いは${label}で行います。</b>
+        <p>「決済ページを開く」を押すと、${label}を新しいタブで開きます。金額と商品名が合っているか、決済ページ側でもう一度確認してからお支払いください。${dataNote}</p>
+      </div>
+      <a class="primary full" id="pay" href="${url}" target="_blank" rel="noopener">決済ページを開く <span>→</span></a>
+      <p class="fine" style="margin-top:10px;">返金・キャンセルの条件は、<a href="legal.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>に書いています。</p>
+      <div id="moved-slot"></div>
+    </div>`;
+  document.querySelector("#back").onclick = detail;
+  document.querySelector("#pay").onclick = () => {
+    document.querySelector("#moved-slot").innerHTML = `
+      <div class="moved">
+        <div class="check">✓</div>
+        <h2 style="font-size:20px;">決済ページを開きました。</h2>
+        <p class="desc" style="margin-top:8px;">お支払いは、開いたタブの${label}で完了させてください。<br>終わったら、この画面は閉じて大丈夫です。</p>
+      </div>`;
+  };
+}
+document.querySelector("#close").onclick = () => dialog.close();
+dialog.onclick = e => { if(e.target === dialog){ const r = dialog.getBoundingClientRect(); if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } };
+dialog.addEventListener("close", () => { if(trigger) trigger.focus(); });
+
+/* ================= バディ（伴走マスコット） ================= */
+const SCENES = [
+  { id:"products", img:"part-tickets-cut.webp", say:"切符はこちら。合うものをどうぞ。" },
+  { id:"demo",     img:"part-working-cut.webp", say:"実物、置いておきました。触れます。" },
+  { id:"about",    img:"part-master-cut.webp",  say:"経歴と進め方を、正直に書いてます。" },
+  { id:"faq",      img:"part-support-cut.webp", say:"聞きたいことは、先に答えてあります。" }
+];
+SCENES.forEach(s => { const i = new Image(); i.src = s.img; });
+const buddyImg = document.getElementById("buddy-img");
+const buddySay = document.getElementById("buddy-say");
+let curScene = "", swapTimer = null;
+function onScrollBuddy(){
+  const vh = window.innerHeight;
+  let active = "";
+  SCENES.forEach(s => { const el = document.getElementById(s.id); if(el){ const r = el.getBoundingClientRect(); if(r.top <= vh * 0.6 && r.bottom >= vh * 0.3) active = s.id; } });
+  if(active && active !== curScene){
+    curScene = active;
+    const sc = SCENES.find(s => s.id === active);
+    clearTimeout(swapTimer);
+    buddyImg.style.opacity = 0; buddySay.style.opacity = 0;
+    swapTimer = setTimeout(() => { buddyImg.src = sc.img; buddySay.textContent = sc.say; buddyImg.style.opacity = 1; buddySay.style.opacity = 1; }, 200);
+  }
+}
+let ticking = false;
+window.addEventListener("scroll", () => { if(!ticking){ ticking = true; requestAnimationFrame(() => { onScrollBuddy(); ticking = false; }); } }, { passive:true });
+onScrollBuddy();
+
+/* ================= 出現アニメーション ================= */
+const io = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting) e.target.classList.add("in-view"); }); }, { threshold:.1 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ================= 触れる集計デモ（架空データ22件） ================= */
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const DEMO = [
+  ["2026-09-02","横浜店","物販",48200],["2026-09-03","川崎店","サービス",36000],
+  ["2026-09-05","横浜 店","サービス",27500],["2026-09-08","横浜店","物販",51900],
+  ["2026-09-10","川崎 店","物販",29800],["2026-09-12","横浜店","その他",8400],
+  ["2026-09-15","川崎店","サービス",41200],["2026-09-18","ﾖｺﾊﾏ店","物販",44600],
+  ["2026-09-21","川崎店","物販",33500],["2026-09-25","横浜店","サービス",38900],
+  ["2026-09-28","川崎店","その他",6600],
+  ["2026-10-01","横浜店","物販",55400],["2026-10-03","川崎店","サービス",39800],
+  ["2026-10-06","横浜 店","サービス",30100],["2026-10-08","横浜店","物販",47300],
+  ["2026-10-11","川崎 店","物販",35600],["2026-10-14","横浜店","その他",9200],
+  ["2026-10-17","川崎店","サービス",42700],["2026-10-20","ﾖｺﾊﾏ店","物販",50100],
+  ["2026-10-23","川崎店","物販",31900],["2026-10-26","横浜店","サービス",36400],
+  ["2026-10-29","川崎店","その他",7800]
+];
+const normStore = s => s.replace(/\s/g, "").replace("ﾖｺﾊﾏ店", "横浜店");
+const rowsEl = document.getElementById("demo-rows");
+if(rowsEl){ rowsEl.innerHTML = DEMO.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${yen(r[3])}</td></tr>`).join(""); }
+function countUp(el, target, ms){
+  if(REDUCED || ms <= 0){ el.textContent = yen(target); return; }
+  const t0 = performance.now();
+  (function tick(t){ const p = Math.min(1, (t - t0) / ms); el.textContent = yen(Math.round(target * p)); if(p < 1) requestAnimationFrame(tick); })(t0);
+}
+const runBtn = document.getElementById("demo-run");
+if(runBtn){
+  runBtn.addEventListener("click", () => {
+    const byMonth = {}, pivot = {}, stores = [], cats = ["物販","サービス","その他"];
+    DEMO.forEach(r => {
+      const m = r[0].slice(0, 7), st = normStore(r[1]);
+      byMonth[m] = (byMonth[m] || 0) + r[3];
+      if(!pivot[st]){ pivot[st] = {}; stores.push(st); }
+      pivot[st][r[2]] = (pivot[st][r[2]] || 0) + r[3];
+    });
+    const sep = byMonth["2026-09"] || 0, oct = byMonth["2026-10"] || 0, total = sep + oct;
+    const max = Math.max(sep, oct);
+    document.getElementById("demo-result").hidden = false;
+    requestAnimationFrame(() => {
+      document.getElementById("bar-9").style.width = (sep / max * 100) + "%";
+      document.getElementById("bar-10").style.width = (oct / max * 100) + "%";
+    });
+    countUp(document.getElementById("num-9"), sep, 900);
+    countUp(document.getElementById("num-10"), oct, 900);
+    countUp(document.getElementById("num-total"), total, 900);
+    document.getElementById("num-count").textContent = DEMO.length;
+    let ph = '<table class="pivot"><caption>店舗 × カテゴリ別（表記ゆれ統一後・2か月合計）</caption><thead><tr><th scope="col">店舗</th>' + cats.map(c => `<th scope="col">${c}</th>`).join("") + '<th scope="col">合計</th></tr></thead><tbody>';
+    stores.forEach(st => {
+      let rowTotal = 0;
+      ph += `<tr><td>${st}</td>` + cats.map(c => { const v = pivot[st][c] || 0; rowTotal += v; return `<td>${yen(v)}</td>`; }).join("") + `<td>${yen(rowTotal)}</td></tr>`;
+    });
+    ph += "</tbody></table>";
+    document.getElementById("pivot-wrap").innerHTML = ph;
+    runBtn.textContent = "もう一度集計する";
+  });
+}
+</script>
+
+<script>
+/* ================================================================
+   追加分：Lenis（スムーズスクロール）＋ GSAP / ScrollTrigger
+   ----------------------------------------------------------------
+   ・プログレッシブエンハンスメント：CDNが読めなくても何もしない
+     （既存の IntersectionObserver による .reveal 表示がそのまま働く）。
+   ・prefers-reduced-motion の場合はどちらも有効化しない。
+   ・競合回避：既存の .reveal 対象（デモ／ストーリー／ステップ）と
+     バディの仕組みには ScrollTrigger を適用しない。
+   ================================================================ */
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduced) return;
+
+  var hasGsap = typeof window.gsap !== "undefined";
+  var hasST = hasGsap && typeof window.ScrollTrigger !== "undefined";
+  if(hasST) gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- Lenis ---------- */
+  var lenis = null;
+  if(typeof window.Lenis !== "undefined"){
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    if(hasGsap){
+      if(hasST) lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      var rafLoop = function(time){ lenis.raf(time); requestAnimationFrame(rafLoop); };
+      requestAnimationFrame(rafLoop);
+    }
+    /* ページ内アンカーは Lenis で滑らかに移動する */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var id = a.getAttribute("href");
+        if(id && id.length > 1){
+          var target = document.querySelector(id);
+          if(target){ e.preventDefault(); lenis.scrollTo(target, { offset: -8 }); }
+        }
+      });
+    });
+    /* モーダル内はネイティブスクロールを優先する */
+    var dlg = document.querySelector("dialog");
+    if(dlg) dlg.setAttribute("data-lenis-prevent", "");
+  }
+
+  /* ---------- GSAP / ScrollTrigger ---------- */
+  if(hasST){
+    /* ヒーロー周辺の熱量グラデーション：ページ全体のスクロールで濃くなる */
+    gsap.to(".heat-veil", {
+      opacity: 0.6, ease: "none",
+      scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.4 }
+    });
+
+    /* 出現アニメーション（控えめなフェード＋わずかなスライド） */
+    var revealTargets = [".benefits", ".catalog .sectiontop", ".hero-art", ".faq > div"];
+    revealTargets.forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el){
+        gsap.fromTo(el, { opacity: 0, y: 22 }, {
+          opacity: 1, y: 0, duration: 0.85, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true }
+        });
+      });
+    });
+    /* 商品カードは少しずつずらして出す */
+    gsap.fromTo(".card", { opacity: 0, y: 24 }, {
+      opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.08,
+      scrollTrigger: { trigger: "#cards", start: "top 88%", once: true }
+    });
+  }
+})();
+</script>
+</body>
+</html>
