@@ -16,175 +16,173 @@
 <style>
   :root{
     --ink:#22303c; --sub:#5a6b78; --blue:#1c6fb8; --blue-deep:#0f4d84;
-    --paper:#f7f2e7; --card:#fffdf6; --line:#d8cfba; --accent:#ffb703;
+    --accent:#ffb703; --heat:0;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    color:var(--ink); line-height:1.9; overflow-x:hidden;
+    background:linear-gradient(180deg,
+      #f8f3e6 0%, #f7f0dc 22%, #f9efdb 45%,
+      #fbeed3 60%, #fdeecb 75%, #ffe9bd 88%, #ffe3ab 100%);
+  }
   img{max-width:100%;height:auto;display:block;}
-  .rail{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:14px;align-items:center;}
-  .rail .dot{width:12px;height:12px;border-radius:50%;background:#cbbf9f;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);}
-  .rail .dot.on{background:var(--blue);}
-  .rail .bar{width:3px;flex:0 0 26px;background:#ddd2b8;}
-  @media(max-width:640px){.rail{display:none;}}
-  header.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 20px 32px;background:linear-gradient(180deg,#fdfaf1 0%,var(--paper) 100%);}
-  .hero .kicker{letter-spacing:.35em;color:var(--blue);font-weight:700;font-size:.85rem;margin-bottom:14px;}
-  .hero h1{font-size:clamp(1.7rem,5.4vw,3rem);line-height:1.35;font-weight:800;max-width:820px;}
-  .hero h1 .hl{color:var(--blue-deep);border-bottom:6px solid var(--accent);}
-  .hero p.lead{margin-top:18px;color:var(--sub);max-width:640px;}
-  .hero figure{width:min(430px,82vw);margin:26px auto 6px;}
-  nav.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px;max-width:760px;}
-  nav.chips a{text-decoration:none;color:var(--blue-deep);background:#fff;border:1.5px solid var(--blue);border-radius:999px;padding:5px 14px;font-size:.85rem;font-weight:700;}
-  nav.chips a:hover{background:var(--blue);color:#fff;}
-  .scroll-hint{margin-top:26px;color:var(--sub);font-size:.85rem;animation:bob 1.8s ease-in-out infinite;}
+  .track{position:fixed;left:26px;top:0;height:100vh;width:0;z-index:40;pointer-events:none;}
+  .track .line{position:absolute;left:5px;top:0;width:4px;height:100%;background:repeating-linear-gradient(180deg,#c9b98f 0 10px,transparent 10px 20px);opacity:.55;}
+  .track .fill{position:absolute;left:5px;top:0;width:4px;height:calc(var(--heat)*100%);background:var(--blue);border-radius:2px;}
+  .track .dot{position:absolute;left:0;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #c9b98f;transform:translateY(-50%);}
+  .track .dot.on{border-color:var(--blue);background:var(--accent);}
+  @media(max-width:760px){.track{display:none;}}
+  .buddy{position:fixed;left:14px;bottom:14px;z-index:60;display:flex;align-items:flex-end;gap:8px;pointer-events:none;}
+  .buddy img{width:86px;height:86px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 4px 14px rgba(30,50,70,.28);background:#fdfaf1;transition:opacity .35s ease;}
+  .buddy .say{background:#fff;border-radius:14px;border-bottom-left-radius:3px;box-shadow:0 3px 10px rgba(30,50,70,.18);padding:8px 12px;font-size:.8rem;font-weight:700;color:var(--blue-deep);max-width:180px;line-height:1.5;transition:opacity .35s ease;}
+  @media(max-width:560px){.buddy img{width:62px;height:62px;}.buddy .say{max-width:132px;font-size:.72rem;}}
+  .flow{max-width:940px;margin:0 auto;padding:0 22px;}
+  header.hero{min-height:96vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 40px;position:relative;}
+  .kicker{letter-spacing:.35em;color:var(--blue);font-weight:700;font-size:.85rem;margin-bottom:16px;}
+  .hero h1{font-size:clamp(1.9rem,6vw,3.3rem);line-height:1.35;font-weight:800;max-width:800px;}
+  .hero h1 .hl{color:var(--blue-deep);border-bottom:7px solid var(--accent);}
+  .hero .lead{margin-top:20px;color:#40525f;max-width:600px;font-size:1.02rem;}
+  .hero figure{width:min(520px,88vw);margin:8px 0 0 auto;transform:rotate(1.6deg);}
+  .hero .scroll-hint{margin-top:34px;color:var(--sub);font-size:.85rem;animation:bob 1.8s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-  section.scene{max-width:880px;margin:0 auto;padding:74px 20px;}
-  .scene .tag{display:inline-block;background:var(--blue);color:#fff;font-weight:700;letter-spacing:.18em;font-size:.78rem;padding:4px 14px;border-radius:4px;margin-bottom:16px;}
-  .scene h2{font-size:clamp(1.35rem,3.6vw,2rem);line-height:1.45;margin-bottom:14px;}
-  .scene p{color:#33424e;max-width:680px;}
-  .scene figure{width:min(400px,80vw);margin:22px 0;}
-  .scene figure.small{width:min(300px,64vw);}
-  .from-left{opacity:0;transform:translateX(-56px);transition:opacity .8s ease,transform .8s ease;}
-  .from-right{opacity:0;transform:translateX(56px);transition:opacity .8s ease,transform .8s ease;}
-  .in-view{opacity:1;transform:none;}
-  .steps{display:grid;gap:14px;margin-top:8px;}
-  .step{display:flex;gap:16px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:16px;align-items:center;}
-  .step img{width:104px;height:104px;object-fit:cover;border-radius:10px;flex:0 0 auto;}
-  .step .no{font-weight:800;color:var(--blue);letter-spacing:.1em;font-size:.8rem;}
-  .step h3{font-size:1.02rem;margin:2px 0 4px;}
-  .step p{font-size:.92rem;color:var(--sub);}
-  @media(max-width:560px){.step{flex-direction:column;align-items:flex-start;}.step img{width:150px;height:150px;}}
-  table.data{border-collapse:collapse;width:100%;max-width:560px;margin:16px 0;background:#fff;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;}
-  table.data th,table.data td{padding:10px 14px;text-align:right;border-bottom:1px solid #eee3c8;font-variant-numeric:tabular-nums;}
-  table.data th{background:#fdf6df;text-align:left;}
-  table.data td:first-child{text-align:left;}
-  table.data tr.total td{font-weight:800;background:#f4f9ff;}
-  .note-small{font-size:.82rem;color:var(--sub);}
-  .tickets{display:grid;gap:16px;margin-top:10px;}
-  .ticket{background:var(--card);border:2px dashed var(--blue);border-radius:14px;padding:20px;position:relative;}
-  .ticket h3{font-size:1.1rem;margin-bottom:4px;}
-  .ticket .price{font-size:1.5rem;font-weight:800;color:var(--blue-deep);}
+  section.stop{padding:11vh 0;position:relative;}
+  .stop .st{color:var(--blue);font-weight:800;letter-spacing:.22em;font-size:.8rem;margin-bottom:10px;}
+  .stop h2{font-size:clamp(1.45rem,4.2vw,2.2rem);line-height:1.5;margin-bottom:14px;max-width:640px;}
+  .stop p{color:#33424e;max-width:600px;}
+  .bleed-r{width:min(560px,92vw);margin:26px -30px 0 auto;transform:rotate(-1.4deg);}
+  .bleed-l{width:min(560px,92vw);margin:26px auto 0 -30px;transform:rotate(1.2deg);}
+  .overlap{margin-top:-56px;position:relative;z-index:2;background:rgba(255,253,246,.88);padding:6px 10px;border-radius:8px;max-width:520px;}
+  .plx{will-change:transform;}
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s ease;}
+  .reveal.in-view{opacity:1;transform:none;}
+  .route{display:grid;gap:0;margin-top:26px;max-width:680px;}
+  .route .leg{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:18px 0;border-bottom:2px dotted #d8cfba;align-items:center;}
+  .route .leg:last-child{border-bottom:none;}
+  .route img{width:118px;height:118px;object-fit:cover;border-radius:12px;transform:rotate(-1.6deg);}
+  .route .leg:nth-child(even) img{transform:rotate(1.6deg);}
+  .route .no{font-weight:800;color:var(--blue);font-size:.78rem;letter-spacing:.14em;}
+  .route h3{font-size:1.02rem;margin:2px 0 4px;}
+  .route p{font-size:.92rem;color:var(--sub);}
+  @media(max-width:560px){.route .leg{grid-template-columns:88px 1fr;}.route img{width:88px;height:88px;}}
+  .demo-raw{max-height:180px;overflow:auto;max-width:640px;border-top:2px dotted #d8cfba;border-bottom:2px dotted #d8cfba;margin:18px 0 6px;}
+  table.raw{border-collapse:collapse;width:100%;font-size:.83rem;background:rgba(255,255,255,.65);}
+  table.raw th,table.raw td{padding:5px 9px;border-bottom:1px solid #f0e7cd;text-align:left;font-variant-numeric:tabular-nums;}
+  table.raw th{background:rgba(253,246,223,.95);position:sticky;top:0;}
+  table.raw td:last-child,table.raw th:last-child{text-align:right;}
+  .run-btn{margin-top:16px;background:var(--blue);color:#fff;border:none;font-weight:800;font-size:1.05rem;border-radius:999px;padding:14px 34px;cursor:pointer;box-shadow:0 4px 12px rgba(28,111,184,.35);}
+  .run-btn:hover{opacity:.9;}
+  .bars{margin-top:20px;display:grid;gap:10px;max-width:640px;}
+  .bar-row{display:grid;grid-template-columns:88px 1fr 96px;align-items:center;gap:10px;font-size:.92rem;}
+  .bar-track{background:rgba(255,255,255,.75);border-radius:6px;height:22px;overflow:hidden;}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-deep));border-radius:6px;transition:width 1s ease;}
+  .bar-num{text-align:right;font-weight:800;font-variant-numeric:tabular-nums;}
+  .demo-total{margin-top:12px;font-weight:800;font-size:1.12rem;}
+  .tickets{display:grid;gap:18px;margin-top:22px;max-width:720px;}
+  .ticket{background:#fffdf6;border:2px dashed var(--blue);border-radius:14px;padding:22px;transform:rotate(-.5deg);box-shadow:0 6px 18px rgba(30,50,70,.10);}
+  .ticket:nth-child(2){transform:rotate(.5deg);}
+  .ticket h3{font-size:1.12rem;margin-bottom:4px;}
+  .ticket .price{font-size:1.55rem;font-weight:800;color:var(--blue-deep);}
   .ticket .price small{font-size:.85rem;color:var(--sub);font-weight:600;}
   .ticket ul{margin:10px 0 6px 1.2em;font-size:.93rem;color:#33424e;}
   .ticket .who{font-size:.88rem;color:var(--sub);}
   .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
-  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:10px;padding:11px 20px;background:var(--blue);color:#fff;}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:10px;padding:12px 22px;background:var(--blue);color:#fff;}
   .btn.alt{background:#fff;color:var(--blue-deep);border:2px solid var(--blue);}
   .btn:hover{opacity:.88;}
-  .faq{margin-top:8px;display:grid;gap:12px;}
-  .faq details{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;}
-  .faq summary{font-weight:700;cursor:pointer;}
-  .faq p{margin-top:8px;font-size:.94rem;color:#33424e;}
-  .fit{display:grid;gap:14px;}
-  @media(min-width:640px){.fit{grid-template-columns:1fr 1fr;}}
-  .fit .box{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:18px;}
-  .fit h3{margin-bottom:8px;font-size:1rem;}
-  .fit ul{margin-left:1.2em;font-size:.93rem;color:#33424e;}
-  .demo-box{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px;margin:16px 0;max-width:640px;}
-  .demo-scroll{max-height:190px;overflow:auto;border:1px solid #eee3c8;border-radius:8px;}
-  table.raw{border-collapse:collapse;width:100%;font-size:.83rem;}
-  table.raw th,table.raw td{padding:5px 9px;border-bottom:1px solid #f0e7cd;text-align:left;font-variant-numeric:tabular-nums;}
-  table.raw th{background:#fdf6df;position:sticky;top:0;}
-  table.raw td:last-child,table.raw th:last-child{text-align:right;}
-  .run-btn{margin-top:14px;background:var(--blue);color:#fff;border:none;font-weight:800;font-size:1rem;border-radius:10px;padding:12px 26px;cursor:pointer;}
-  .run-btn:hover{opacity:.88;}
-  .run-btn:disabled{opacity:.45;cursor:default;}
-  .bars{margin-top:18px;display:grid;gap:10px;}
-  .bar-row{display:grid;grid-template-columns:86px 1fr 96px;align-items:center;gap:10px;font-size:.9rem;}
-  .bar-track{background:#efe7d0;border-radius:6px;height:20px;overflow:hidden;}
-  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-deep));border-radius:6px;transition:width 1s ease;}
-  .bar-num{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;}
-  .demo-total{margin-top:12px;font-weight:800;font-size:1.05rem;}
-  .quiz-box{background:var(--card);border:2px solid var(--blue);border-radius:14px;padding:22px;max-width:640px;}
-  .quiz-q{font-weight:800;font-size:1.05rem;margin-bottom:12px;}
+  .quiz-box{max-width:640px;margin-top:20px;}
+  .quiz-q{font-weight:800;font-size:1.08rem;margin-bottom:12px;}
   .quiz-opts{display:grid;gap:10px;}
-  .quiz-opts button{background:#fff;border:1.5px solid var(--blue);color:var(--blue-deep);font-weight:700;border-radius:10px;padding:12px 14px;text-align:left;cursor:pointer;font-size:.95rem;}
+  .quiz-opts button{background:rgba(255,255,255,.85);border:1.5px solid var(--blue);color:var(--blue-deep);font-weight:700;border-radius:999px;padding:12px 18px;text-align:left;cursor:pointer;font-size:.95rem;}
   .quiz-opts button:hover{background:var(--blue);color:#fff;}
   .quiz-result .price{font-size:1.4rem;font-weight:800;color:var(--blue-deep);}
   .quiz-restart{margin-top:14px;background:none;border:none;color:var(--blue);font-weight:700;cursor:pointer;text-decoration:underline;font-size:.9rem;}
-  footer{max-width:880px;margin:0 auto;padding:40px 20px 90px;color:var(--sub);font-size:.9rem;}
+  .faq{margin-top:14px;display:grid;gap:12px;max-width:680px;}
+  .faq details{background:rgba(255,253,246,.85);border-radius:12px;padding:14px 18px;}
+  .faq summary{font-weight:700;cursor:pointer;}
+  .faq p{margin-top:8px;font-size:.94rem;}
+  .fit{display:grid;gap:22px;max-width:760px;margin-top:8px;}
+  @media(min-width:640px){.fit{grid-template-columns:1fr 1fr;}}
+  .fit h3{margin-bottom:8px;font-size:1rem;}
+  .fit ul{margin-left:1.2em;font-size:.93rem;color:#33424e;}
+  footer{max-width:940px;margin:0 auto;padding:30px 22px 150px;color:var(--sub);font-size:.9rem;}
   footer .small{font-size:.8rem;margin-top:10px;}
+  .master-img{width:min(340px,70vw);transform:rotate(-1.4deg);margin:20px 0;}
 </style>
 </head>
 <body>
-<div class="rail" aria-hidden="true">
-  <span class="dot" data-r="hero"></span><span class="bar"></span>
-  <span class="dot" data-r="s1"></span><span class="bar"></span>
-  <span class="dot" data-r="s2"></span><span class="bar"></span>
-  <span class="dot" data-r="s3"></span><span class="bar"></span>
-  <span class="dot" data-r="s4"></span><span class="bar"></span>
-  <span class="dot" data-r="tickets"></span><span class="bar"></span>
-  <span class="dot" data-r="faq"></span><span class="bar"></span>
-  <span class="dot" data-r="master"></span>
+<div class="track" aria-hidden="true">
+  <div class="line"></div><div class="fill"></div>
+  <span class="dot" data-r="hero" style="top:6%"></span>
+  <span class="dot" data-r="s1" style="top:22%"></span>
+  <span class="dot" data-r="s2" style="top:38%"></span>
+  <span class="dot" data-r="s3" style="top:54%"></span>
+  <span class="dot" data-r="s4" style="top:68%"></span>
+  <span class="dot" data-r="tickets" style="top:82%"></span>
+  <span class="dot" data-r="master" style="top:96%"></span>
 </div>
-
+<div class="buddy" aria-hidden="true">
+  <img id="buddy-img" src="part-guide.webp" alt="">
+  <div class="say" id="buddy-say">ご案内します。月末の旅へ、出発です。</div>
+</div>
+<div class="flow">
 <header class="hero" id="hero">
   <div class="kicker">AOASHI LINE ・ 出発</div>
   <h1>毎月の集計作業を、<span class="hl">仕組み</span>に変える。</h1>
-  <p class="lead">案内人は、この青い足の鳥です。月末の集計・転記・定型レポートを、「担当者が引き継いで使い続けられる仕組み」に整える旅にご案内します。やり取りはすべて書面・チャットで完結します。</p>
-  <figure><img src="part-station.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high"></figure>
-  <nav class="chips">
-    <a href="#s1">紙の山</a><a href="#s2">仕組みの工場</a><a href="#s3">進め方</a><a href="#s4">実物の証拠</a><a href="#tickets">切符売り場</a><a href="#quiz">プラン診断</a><a href="#faq">よくある質問</a><a href="#master">駅長室</a>
-  </nav>
-  <div class="scroll-hint">▼ 下へ進むと、旅が始まります</div>
+  <p class="lead">月末の集計・転記・定型レポート。その「毎月の手作業」を、担当が変わっても回り続ける形に整える旅です。ご案内は、この青い足の鳥が。やり取りは、すべて書面とチャットで完結します。</p>
+  <figure class="plx" data-plx="0.35"><img src="part-station.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high"></figure>
+  <div class="scroll-hint">▼ 進むほど、景色が変わります</div>
 </header>
 
-<section class="scene from-left" id="s1">
-  <span class="tag">STATION 01 ・ 紙の山</span>
+<section class="stop reveal" id="s1">
+  <div class="st">STATION 01 ・ 紙の山</div>
   <h2>月末になると、紙とCSVの山に埋もれる。</h2>
-  <p>CSVを開いて、コピペして、店舗名の表記ゆれを目で直して、ピボットをかけて、前月と並べて目視確認。頑張りの問題じゃありません。設計がないだけです。</p>
-  <figure><img src="part-buried.webp" alt="紙の山に埋もれるアオアシカツオドリのヒナ" loading="lazy"></figure>
+  <p>CSVを開く。コピペする。店舗名の表記ゆれを目で直す。ピボットをかける。前月と並べて、目視で確かめる。</p>
+  <p style="margin-top:10px;">頑張れば終わります。でも、来月も同じ山が来る。足りないのは根性じゃなくて、設計です。</p>
+  <figure class="bleed-r plx" data-plx="0.5"><img src="part-buried.webp" alt="紙の山に埋もれるヒナ" loading="lazy"></figure>
 </section>
 
-<section class="scene from-right" id="s2">
-  <span class="tag">STATION 02 ・ 仕組みの工場</span>
+<section class="stop reveal" id="s2">
+  <div class="st">STATION 02 ・ 仕組みの工場</div>
   <h2>段取りが決まれば、あとは流れるだけ。</h2>
-  <p>現場仕事と同じです。段取りの決まっていない現場は、職人がどれだけ速くても終わらない。集計も、3つの段取りを決めれば「確認」だけの作業になります。</p>
-  <figure><img src="part-working.webp" alt="紙を機械に入れると整った書類が出てくる工場で働くヒナ" loading="lazy"></figure>
-  <div class="steps">
-    <div class="step"><div><div class="no">段取り 1</div><h3>CSVを決まった場所に置く</h3><p>入力の形を固定する。置く場所とファイルの形が決まれば、迷う工程が消えます。</p></div></div>
-    <div class="step"><div><div class="no">段取り 2</div><h3>表記ゆれはルールで自動統一する</h3><p>「（株）」の有無や全角・半角の違いは、人の目ではなくルールで直します。</p></div></div>
-    <div class="step"><div><div class="no">段取り 3</div><h3>集計表は数式で出来上がる</h3><p>店舗別×カテゴリ別、前月比較まで。あとは中身を確認するだけです。</p></div></div>
+  <p>現場仕事と同じです。段取りの悪い現場は、職人がどれだけ速くても終わらない。集計も同じで、決めるのは3つだけ。</p>
+  <figure class="bleed-l plx" data-plx="0.5"><img src="part-working.webp" alt="紙を機械に入れると整った書類が出てくる工場で働くヒナ" loading="lazy"></figure>
+  <p class="overlap">置く場所を決める。表記ゆれはルールで直す。集計表は数式で出来上がる。残るのは「確認」だけです。</p>
+</section>
+
+<section class="stop reveal" id="s3">
+  <div class="st">STATION 03 ・ 旅のしおり</div>
+  <h2>乗ってから着くまで、5駅で進みます。</h2>
+  <p>作り始める前に、完成イメージを1枚で確認します。「思っていた形と違う」を、着手前に潰すためです。</p>
+  <div class="route">
+    <div class="leg"><img src="part-hearing.webp" alt="話を聞いてメモを取るヒナ" loading="lazy"><div><div class="no">STEP 1 ・ ヒアリング</div><h3>シートに書いてもらうだけ</h3><p>いまの集計のやり方を、記入式のシートで教えてください。電話も会議もありません。</p></div></div>
+    <div class="leg"><img src="part-design.webp" alt="設計図を描くヒナ" loading="lazy"><div><div class="no">STEP 2 ・ 設計</div><h3>改善設計書1枚で、完成イメージを確認</h3><p>何をどこまで自動化するか、出来上がりの形を1枚にまとめます。認識が合ってから制作に入ります。</p></div></div>
+    <div class="leg"><img src="part-working.webp" alt="工場で制作するヒナ" loading="lazy"><div><div class="no">STEP 3 ・ 制作</div><h3>テンプレート、またはフロー1本を制作</h3><p>Excelテンプレート、またはPower Automateフロー1本。対象は定型業務1プロセスです。</p></div></div>
+    <div class="leg"><img src="part-delivery.webp" alt="整った荷物を手渡すヒナ" loading="lazy"><div><div class="no">STEP 4 ・ 納品</div><h3>使い方マニュアルと一緒に納品</h3><p>本体だけでは残れません。担当者が引き継いで使い続けられるよう、マニュアルを添えます。</p></div></div>
+    <div class="leg"><img src="part-support.webp" alt="吹き出しで質問に答えるヒナ" loading="lazy"><div><div class="no">STEP 5 ・ 納品後</div><h3>7日間の質疑応答つき</h3><p>納品後7日間は、使い方の質問にチャットで答えます。</p></div></div>
   </div>
 </section>
 
-<section class="scene from-left" id="s3">
-  <span class="tag">STATION 03 ・ 旅のしおり（進め方）</span>
-  <h2>乗ってから着くまで、5つの駅で進みます。</h2>
-  <p>最初に完成イメージを1枚で確認してから作り始めるので、「思っていた形と違う」を着手前に潰せます。</p>
-  <div class="steps" style="margin-top:20px;">
-    <div class="step"><img src="part-hearing.webp" alt="話を聞いてメモを取るヒナ" loading="lazy"><div><div class="no">STEP 1 ・ ヒアリング</div><h3>シートに書いてもらうだけ</h3><p>いまの集計のやり方を、記入式のヒアリングシートで教えてください。電話や会議はありません。</p></div></div>
-    <div class="step"><img src="part-design.webp" alt="路線図のような設計図を描くヒナ" loading="lazy"><div><div class="no">STEP 2 ・ 設計</div><h3>改善設計書1枚で完成イメージを確認</h3><p>何をどこまで自動化するか、出来上がりの形を1枚にまとめます。ここで認識を合わせてから制作に入ります。</p></div></div>
-    <div class="step"><img src="part-working.webp" alt="仕組みの工場で制作するヒナ" loading="lazy"><div><div class="no">STEP 3 ・ 制作</div><h3>テンプレート、またはフロー1本を制作</h3><p>Excelテンプレート、またはPower Automateフロー1本を作ります。対象は定型業務1プロセスです。</p></div></div>
-    <div class="step"><img src="part-delivery.webp" alt="整った荷物を手渡すヒナ" loading="lazy"><div><div class="no">STEP 4 ・ 納品</div><h3>使い方マニュアルと一緒に納品</h3><p>本体だけでなく、担当者が引き継いで使い続けられるよう、使い方マニュアルを添えます。</p></div></div>
-    <div class="step"><img src="part-support.webp" alt="吹き出しで質問に答えるヒナ" loading="lazy"><div><div class="no">STEP 5 ・ 納品後</div><h3>7日間の質疑応答つき</h3><p>納品後7日間は、使い方の質問にチャットで答えます。</p></div></div>
+<section class="stop reveal" id="s4">
+  <div class="st">STATION 04 ・ 実物の車窓</div>
+  <h2>言葉より、実物に触ってください。</h2>
+  <p>下の22件は、サンプルの売上データ（架空）です。「集計する」を押すと、このページの中でその場で計算して、月別の合計を出します。普段はこれが、回答の取り込みから集計、通知まで、ひとりでに流れます。</p>
+  <div class="demo-raw"><table class="raw"><thead><tr><th>受付日</th><th>店舗</th><th>カテゴリ</th><th>金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
+  <button class="run-btn" id="demo-run" type="button">集計する</button>
+  <div class="bars" id="demo-result" hidden>
+    <div class="bar-row"><span>2026年9月</span><div class="bar-track"><div class="bar-fill" id="bar-9"></div></div><span class="bar-num" id="num-9">¥0</span></div>
+    <div class="bar-row"><span>2026年10月</span><div class="bar-track"><div class="bar-fill" id="bar-10"></div></div><span class="bar-num" id="num-10">¥0</span></div>
+    <div class="demo-total">合計 <span id="num-total">¥0</span>（<span id="num-count">0</span>件）</div>
   </div>
+  <p style="margin-top:14px;font-size:.82rem;color:var(--sub);">※ 架空データのサンプルです。実在の顧客の実績ではありません。集計結果は検算済みの値と一致します。</p>
+  <figure class="bleed-r plx" data-plx="0.45"><img src="part-proud.webp" alt="整ったグラフを指さすヒナ" loading="lazy"></figure>
+  <div class="btns"><a class="btn alt" href="https://www.lancers.jp/profile/dyooota/portfolio_popup/760934">作例を見る（ランサーズのポートフォリオ）</a></div>
 </section>
 
-<section class="scene from-right" id="s4">
-  <span class="tag">STATION 04 ・ 実物の車窓（証拠）</span>
-  <h2>言葉より、実物を見てください。</h2>
-  <p>これは、サンプルの売上データ（架空データ22件）を集計する仕組みの実物です。下の「集計する」ボタンを押すと、このページの中で実際に計算して、月別の合計を出します。普段はこれが、フォームの回答を取り込んで、集計して、通知まで送る一連の流れとして動きます。</p>
-  <div class="demo-box">
-    <div class="demo-scroll"><table class="raw"><thead><tr><th>受付日</th><th>店舗</th><th>カテゴリ</th><th>金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
-    <button class="run-btn" id="demo-run" type="button">集計する</button>
-    <div class="bars" id="demo-result" hidden>
-      <div class="bar-row"><span>2026年9月</span><div class="bar-track"><div class="bar-fill" id="bar-9"></div></div><span class="bar-num" id="num-9">¥0</span></div>
-      <div class="bar-row"><span>2026年10月</span><div class="bar-track"><div class="bar-fill" id="bar-10"></div></div><span class="bar-num" id="num-10">¥0</span></div>
-      <div class="demo-total">合計 <span id="num-total">¥0</span>（<span id="num-count">0</span>件）</div>
-    </div>
-  </div>
-  <p class="note-small">※ 架空データを使ったサンプルの集計です。実在の顧客の実績ではありません。集計結果は検算済みの値と一致します。</p>
-  <figure class="small"><img src="part-proud.webp" alt="整ったグラフを指さすヒナ" loading="lazy"></figure>
-  <div class="btns">
-    <a class="btn alt" href="https://www.lancers.jp/profile/dyooota/portfolio_popup/760934">作例を見る（ランサーズのポートフォリオ）</a>
-  </div>
-</section>
-
-<section class="scene from-left" id="tickets">
-  <span class="tag">TICKETS ・ 切符売り場</span>
+<section class="stop reveal" id="tickets">
+  <div class="st">TICKETS ・ 切符売り場</div>
   <h2>乗るなら、ここから。</h2>
-  <figure class="small"><img src="part-tickets.webp" alt="切符を差し出すヒナ" loading="lazy"></figure>
   <div class="tickets">
     <div class="ticket">
       <h3>書面診断</h3>
@@ -194,7 +192,7 @@
         <li>改善設計書1枚＋進め方の提案</li>
         <li>作るかどうかは、設計を見てから決められます</li>
       </ul>
-      <p class="who">向いている人：まず見極めたい人、いきなり作るのは不安な人。</p>
+      <p class="who">まず見極めたい人、いきなり作るのは不安な人へ。</p>
     </div>
     <div class="ticket">
       <h3>本編：Excel×Power Automateで月次集計を自動化</h3>
@@ -206,23 +204,23 @@
         <li>納品後7日間の質疑応答（チャット）</li>
         <li>対象は定型業務1プロセス</li>
       </ul>
-      <p class="who">向いている人：毎月の集計・転記を、担当が変わっても回る形にしたい人。</p>
+      <p class="who">毎月の集計を、担当が変わっても回る形にしたい人へ。</p>
     </div>
     <div class="ticket">
       <h3>プレミアム</h3>
       <div class="price">¥60,000 <small>／ 10日</small></div>
       <ul>
-        <li>本編の内容を土台に、対象範囲が広い案件向け</li>
+        <li>本編を土台に、対象範囲が広い案件向け</li>
         <li>範囲は設計書の段階で先に確定します</li>
       </ul>
-      <p class="who">向いている人：集計の種類や店舗数が多く、1プロセスに収まらない人。</p>
+      <p class="who">集計の種類や店舗数が多く、1プロセスに収まらない人へ。</p>
     </div>
   </div>
   <div class="btns">
     <a class="btn" href="https://www.lancers.jp/menu/detail/1352276">ランサーズで買う</a>
     <a class="btn" href="https://coconala.com/services/4482691">ココナラで買う</a>
   </div>
-  <div class="tickets" style="margin-top:22px;">
+  <div class="tickets">
     <div class="ticket">
       <h3>商品：月次売上集計テンプレート＋使い方ガイド</h3>
       <div class="price">¥980 <small>／ noteで販売</small></div>
@@ -238,17 +236,16 @@
   </div>
 </section>
 
-<section class="scene from-right" id="quiz">
-  <span class="tag">GUIDE ・ プラン診断</span>
+<section class="stop reveal" id="quiz">
+  <div class="st">GUIDE ・ プラン診断</div>
   <h2>どの切符が合うか、3つの質問で分かります。</h2>
-  <figure class="small"><img src="part-goal.webp" alt="到着を喜ぶヒナ" loading="lazy"></figure>
+  <figure class="bleed-l plx" data-plx="0.4" style="width:min(340px,70vw);"><img src="part-goal.webp" alt="到着を喜ぶヒナ" loading="lazy"></figure>
   <div class="quiz-box" id="quiz-body"></div>
 </section>
 
-<section class="scene from-left" id="faq">
-  <span class="tag">GUIDE ・ よくある質問</span>
+<section class="stop reveal" id="faq">
+  <div class="st">GUIDE ・ よくある質問</div>
   <h2>先に答えておきます。</h2>
-  <figure class="small"><img src="part-support.webp" alt="質問に答えるヒナ" loading="lazy"></figure>
   <div class="faq">
     <details><summary>業務データの扱いは大丈夫ですか？</summary><p>お預かりした業務データは、本作業のみに使用し、納品後に削除します。共有の方法は、案件ごとに先に取り決めます。</p></details>
     <details><summary>電話や会議はありますか？</summary><p>ありません。やり取りはすべて書面・チャットで完結します。ヒアリングは記入式のシートです。</p></details>
@@ -256,13 +253,13 @@
     <details><summary>Excelがない環境でも使えますか？</summary><p>テンプレートはExcel前提です。環境に合わない場合は、設計書の段階で代替の形を提示します。買う前に分かるので、合わなければその時点で止められます。</p></details>
     <details><summary>納品後に直してほしい点が出たら？</summary><p>納品後7日間は質疑応答がついています。使い方の範囲の質問はその中で答えます。仕様そのものの変更は、別途ご相談ください。</p></details>
   </div>
-  <div class="fit" style="margin-top:26px;">
-    <div class="box"><h3>向いている人</h3><ul>
+  <div class="fit" style="margin-top:34px;">
+    <div><h3>向いている人</h3><ul>
       <li>毎月、同じ集計・転記・レポート作成がある</li>
       <li>担当が変わっても回る形にしたい</li>
       <li>まず設計だけ見てから決めたい</li>
     </ul></div>
-    <div class="box"><h3>向いていない人</h3><ul>
+    <div><h3>向いていない人</h3><ul>
       <li>その場限りの手作業の代行を探している</li>
       <li>対面・電話での打ち合わせが必須</li>
       <li>実績の件数だけで判断したい（現在の受注実績はまだゼロです）</li>
@@ -270,15 +267,14 @@
   </div>
 </section>
 
-<section class="scene from-left" id="master">
-  <span class="tag">STATION MASTER ・ 駅長室</span>
+<section class="stop reveal" id="master">
+  <div class="st">STATION MASTER ・ 駅長室</div>
   <h2>正直に書いておきます。</h2>
-  <figure class="small"><img src="part-master.webp" alt="駅長の帽子をかぶり書類のそばに座るヒナ" loading="lazy"></figure>
+  <img class="master-img plx" data-plx="0.3" src="part-master.webp" alt="駅長の帽子をかぶり書類のそばに座るヒナ" loading="lazy">
   <p>現在の受注実績はまだありません。その分、範囲を1プロセスに絞り、着手前に完成イメージを1枚でお返ししてから作業に入ります。「思っていた形と違う」を着手前に潰す進め方です。</p>
   <p style="margin-top:12px;">このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
-  <figure class="small"><img src="part-guide.webp" alt="案内するヒナ" loading="lazy"></figure>
 </section>
-
+</div>
 <footer>
   <p>運営：あおあし｜通信建設業界の事務職・企画部門で、月次集計などの定型実務と業務自動化を扱っています。日商簿記2級・ITパスポート。</p>
   <p>X：@aoashi_AI ／ note：あおあし（@fair_arnica8174）</p>
@@ -286,16 +282,62 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver((es)=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('in-view');
-        const id = e.target.id;
-        document.querySelectorAll('.rail .dot').forEach(d=>d.classList.toggle('on', d.dataset.r===id));
+  // ===== 旅のエンジン：熱量・線路・伴走・視差 =====
+  const SCENES = [
+    {id:'hero',   img:'part-guide.webp',   say:'ご案内します。月末の旅へ、出発です。'},
+    {id:'s1',     img:'part-buried.webp',  say:'この山、毎月来るんです。'},
+    {id:'s2',     img:'part-working.webp', say:'段取りが決まれば、あとは流れます。'},
+    {id:'s3',     img:'part-design.webp',  say:'まず設計書で、完成形を確かめます。'},
+    {id:'s4',     img:'part-proud.webp',   say:'実物、置いておきました。触れます。'},
+    {id:'tickets',img:'part-tickets.webp', say:'切符は3種類。合うものをどうぞ。'},
+    {id:'quiz',   img:'part-goal.webp',    say:'迷ったら診断。3問だけです。'},
+    {id:'faq',    img:'part-support.webp', say:'聞きたいことは、先に答えてあります。'},
+    {id:'master', img:'part-master.webp',  say:'実績はまだゼロ。正直に書いてます。'}
+  ];
+  const buddyImg = document.getElementById('buddy-img');
+  const buddySay = document.getElementById('buddy-say');
+  const plxEls = Array.from(document.querySelectorAll('.plx'));
+  let currentScene = 'hero';
+  function onScroll(){
+    const vh = window.innerHeight;
+    const max = document.documentElement.scrollHeight - vh;
+    const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    document.documentElement.style.setProperty('--heat', p.toFixed(3));
+    // いま真ん中にある場面
+    let active = 'hero';
+    for(const s of SCENES){
+      const el = document.getElementById(s.id);
+      if(!el) continue;
+      const r = el.getBoundingClientRect();
+      if(r.top <= vh*0.55 && r.bottom >= vh*0.3) active = s.id;
+    }
+    if(active !== currentScene){
+      currentScene = active;
+      const sc = SCENES.find(s=>s.id===active);
+      if(sc && buddyImg){
+        buddyImg.style.opacity = 0; buddySay.style.opacity = 0;
+        setTimeout(()=>{ buddyImg.src = sc.img; buddySay.textContent = sc.say; buddyImg.style.opacity = 1; buddySay.style.opacity = 1; }, 200);
       }
-    });
-  },{threshold:.18});
-  document.querySelectorAll('.scene, header.hero').forEach(el=>io.observe(el));
+      document.querySelectorAll('.track .dot').forEach(d=>{
+        const order = ['hero','s1','s2','s3','s4','tickets','master'];
+        d.classList.toggle('on', order.indexOf(d.dataset.r) <= order.indexOf(active === 'quiz' || active === 'faq' ? 'tickets' : active));
+      });
+    }
+    // 視差：画像が文字より少し遅れてついてくる
+    for(const el of plxEls){
+      const r = el.getBoundingClientRect();
+      const off = (r.top + r.height/2 - vh/2) * parseFloat(el.dataset.plx || 0.3) * -0.12;
+      el.style.translate = `0 ${off.toFixed(1)}px`;
+    }
+  }
+  let ticking = false;
+  window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(()=>{ onScroll(); ticking = false; }); } }, {passive:true});
+  onScroll();
+
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
   // ===== 触れる集計デモ（架空データ22件を実際に集計する） =====
   const DEMO = [
@@ -314,9 +356,7 @@
   ];
   const yen = n => "¥" + n.toLocaleString("ja-JP");
   const rowsEl = document.getElementById('demo-rows');
-  if(rowsEl){
-    rowsEl.innerHTML = DEMO.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${yen(r[3])}</td></tr>`).join('');
-  }
+  if(rowsEl){ rowsEl.innerHTML = DEMO.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${yen(r[3])}</td></tr>`).join(''); }
   function countUp(el, target, ms){
     const t0 = performance.now();
     (function tick(t){
