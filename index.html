@@ -44,9 +44,10 @@
   .track .dot.on{border-color:var(--blue);background:var(--accent);}
   @media(max-width:1039px){.track{display:none;}}
   .buddy{position:fixed;left:14px;bottom:14px;z-index:60;display:flex;align-items:flex-end;gap:8px;pointer-events:none;}
-  .buddy img{width:86px;height:86px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 4px 14px rgba(30,50,70,.28);background:#fdfaf1;transition:opacity .35s ease;}
+  .buddy img{width:86px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(30,50,70,.28));transition:opacity .35s ease;}
+  .buddy img.rect,.route img.rect{border-radius:14px;}
   .buddy .say{background:#fff;border-radius:14px;border-bottom-left-radius:3px;box-shadow:0 3px 10px rgba(30,50,70,.18);padding:8px 12px;font-size:.8rem;font-weight:700;color:var(--blue-deep);max-width:180px;line-height:1.5;transition:opacity .35s ease;}
-  @media(max-width:640px){.buddy img{width:56px;height:56px;}.buddy .say{display:none;}}
+  @media(max-width:640px){.buddy img{width:56px;height:auto;}.buddy .say{display:none;}}
   .flow{max-width:940px;margin:0 auto;padding:0 22px;}
   header.hero{min-height:96vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 40px;position:relative;}
   .kicker{letter-spacing:.35em;color:var(--blue);font-weight:700;font-size:.85rem;margin-bottom:16px;}
@@ -70,12 +71,12 @@
   .route{display:grid;gap:0;margin-top:26px;max-width:680px;}
   .route .leg{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:18px 0;border-bottom:2px dotted #d8cfba;align-items:center;}
   .route .leg:last-child{border-bottom:none;}
-  .route img{width:118px;height:118px;object-fit:cover;border-radius:12px;transform:rotate(-1.6deg);}
+  .route img{width:118px;height:auto;object-fit:contain;filter:drop-shadow(0 6px 12px rgba(30,50,70,.20));transform:rotate(-1.6deg);}
   .route .leg:nth-child(even) img{transform:rotate(1.6deg);}
   .route .no{font-weight:800;color:var(--blue);font-size:.78rem;letter-spacing:.14em;}
   .route h3{font-size:1.02rem;margin:2px 0 4px;}
   .route p{font-size:.92rem;color:var(--sub);}
-  @media(max-width:560px){.route .leg{grid-template-columns:88px 1fr;}.route img{width:88px;height:88px;}}
+  @media(max-width:560px){.route .leg{grid-template-columns:88px 1fr;}.route img{width:88px;height:auto;}}
   .demo-raw{max-height:180px;overflow:auto;max-width:640px;border-top:2px dotted #d8cfba;border-bottom:2px dotted #d8cfba;margin:18px 0 6px;}
   table.raw{border-collapse:collapse;width:100%;font-size:.83rem;background:rgba(255,255,255,.65);}
   table.raw th,table.raw td{padding:5px 9px;border-bottom:1px solid #f0e7cd;text-align:left;font-variant-numeric:tabular-nums;}
@@ -126,7 +127,8 @@
   footer{max-width:940px;margin:0 auto;padding:30px 22px 150px;color:var(--sub);font-size:.9rem;}
   footer .small{font-size:.8rem;margin-top:10px;}
   footer a{color:var(--blue-deep);}
-  .master-img{width:min(340px,70vw);transform:rotate(-1.4deg);margin:20px 0;}
+  .master-img{width:min(340px,70vw);transform:rotate(-1.4deg);margin:20px 0;filter:drop-shadow(0 10px 18px rgba(30,50,70,.18));}
+  .hero figure img,.bleed-r img,.bleed-l img{filter:drop-shadow(0 10px 18px rgba(30,50,70,.18));}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *,*::before,*::after{animation:none !important;transition:none !important;}
@@ -146,7 +148,7 @@
   <span class="dot" data-r="master" style="top:96%"></span>
 </div>
 <div class="buddy" aria-hidden="true">
-  <img id="buddy-img" src="part-guide-s.webp" alt="" width="240" height="360">
+  <img id="buddy-img" src="part-guide-cut.webp" alt="" width="1117" height="1423">
   <div class="say" id="buddy-say">ご案内します。月末の旅へ、出発です。</div>
 </div>
 <main class="flow">
@@ -163,7 +165,7 @@
     <a class="btn" href="#tickets">料金とプランを見る</a>
     <a class="btn alt" href="https://www.lancers.jp/profile/dyooota/portfolio_popup/760934">作例を見る</a>
   </div>
-  <figure class="plx" data-plx="0.35"><img src="part-station.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" width="1920" height="1280" fetchpriority="high"></figure>
+  <figure class="plx" data-plx="0.35"><img src="part-station-cut.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" width="1200" height="915" fetchpriority="high"></figure>
   <div class="scroll-hint">▼ 進むほど、景色が変わります</div>
 </header>
 
@@ -172,14 +174,14 @@
   <h2>月末になると、紙とCSVの山に埋もれる。</h2>
   <p>CSVを開く。コピペする。店舗名の表記ゆれを目で直す。ピボットをかける。前月と並べて、目視で確かめる。</p>
   <p style="margin-top:10px;">頑張れば終わります。でも、来月も同じ山が来る。足りないのは根性じゃなくて、設計です。</p>
-  <figure class="bleed-r plx" data-plx="0.5"><img src="part-buried.webp" alt="紙の山に埋もれるヒナ" width="1920" height="1280" loading="lazy"></figure>
+  <figure class="bleed-r plx" data-plx="0.5"><img src="part-buried-cut.webp" alt="紙の山に埋もれるヒナ" width="1200" height="775" loading="lazy"></figure>
 </section>
 
 <section class="stop reveal" id="s2">
   <div class="st">STATION 02 ・ 仕組みの工場</div>
   <h2>段取りが決まれば、あとは流れるだけ。</h2>
   <p>現場仕事と同じです。段取りの悪い現場は、職人がどれだけ速くても終わらない。集計も同じで、決めるのは3つだけ。</p>
-  <figure class="bleed-l plx" data-plx="0.5"><img src="part-working.webp" alt="紙を機械に入れると整った書類が出てくる工場で働くヒナ" width="1920" height="1280" loading="lazy"></figure>
+  <figure class="bleed-l plx" data-plx="0.5"><img src="part-working-cut.webp" alt="紙を機械に入れると整った書類が出てくる工場で働くヒナ" width="1200" height="836" loading="lazy"></figure>
   <p class="overlap">置く場所を決める。表記ゆれはルールで直す。集計表は数式で出来上がる。残るのは「確認」だけです。</p>
 </section>
 
@@ -188,11 +190,11 @@
   <h2>乗ってから着くまで、5駅で進みます。</h2>
   <p>作り始める前に、完成イメージを1枚で確認します。「思っていた形と違う」を、着手前に潰すためです。</p>
   <div class="route">
-    <div class="leg"><img src="part-hearing-s.webp" alt="" width="240" height="240" loading="lazy"><div><div class="no">STEP 1 ・ ヒアリング</div><h3>シートに書いてもらうだけ</h3><p>いまの集計のやり方を、記入式のシートで教えてください。電話も会議もありません。</p></div></div>
-    <div class="leg"><img src="part-design-s.webp" alt="" width="240" height="160" loading="lazy"><div><div class="no">STEP 2 ・ 設計</div><h3>改善設計書1枚で、完成イメージを確認</h3><p>何をどこまで自動化するか、出来上がりの形を1枚にまとめます。認識が合ってから制作に入ります。</p></div></div>
-    <div class="leg"><img src="part-working-s.webp" alt="" width="240" height="160" loading="lazy"><div><div class="no">STEP 3 ・ 制作</div><h3>テンプレート、またはフロー1本を制作</h3><p>Excelテンプレート、またはPower Automateフロー1本。対象は定型業務1プロセスです。</p></div></div>
-    <div class="leg"><img src="part-delivery-s.webp" alt="" width="240" height="160" loading="lazy"><div><div class="no">STEP 4 ・ 納品</div><h3>使い方マニュアルと一緒に納品</h3><p>本体だけでは定着しません。担当者が引き継いで使い続けられるよう、マニュアルを添えます。</p></div></div>
-    <div class="leg"><img src="part-support-s.webp" alt="" width="240" height="160" loading="lazy"><div><div class="no">STEP 5 ・ 納品後</div><h3>初回の運用まで見守ります</h3><p>使い方の質問は納品後7日間。仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで対応します。</p></div></div>
+    <div class="leg"><img src="part-hearing-cut.webp" alt="" width="1156" height="1450" loading="lazy"><div><div class="no">STEP 1 ・ ヒアリング</div><h3>シートに書いてもらうだけ</h3><p>いまの集計のやり方を、記入式のシートで教えてください。電話も会議もありません。</p></div></div>
+    <div class="leg"><img class="rect" src="part-design.webp" alt="" width="1920" height="1280" loading="lazy"><div><div class="no">STEP 2 ・ 設計</div><h3>改善設計書1枚で、完成イメージを確認</h3><p>何をどこまで自動化するか、出来上がりの形を1枚にまとめます。認識が合ってから制作に入ります。</p></div></div>
+    <div class="leg"><img src="part-working-cut.webp" alt="" width="1200" height="836" loading="lazy"><div><div class="no">STEP 3 ・ 制作</div><h3>テンプレート、またはフロー1本を制作</h3><p>Excelテンプレート、またはPower Automateフロー1本。対象は定型業務1プロセスです。</p></div></div>
+    <div class="leg"><img src="part-delivery-cut.webp" alt="" width="824" height="1240" loading="lazy"><div><div class="no">STEP 4 ・ 納品</div><h3>使い方マニュアルと一緒に納品</h3><p>本体だけでは定着しません。担当者が引き継いで使い続けられるよう、マニュアルを添えます。</p></div></div>
+    <div class="leg"><img src="part-support-cut.webp" alt="" width="1200" height="1040" loading="lazy"><div><div class="no">STEP 5 ・ 納品後</div><h3>初回の運用まで見守ります</h3><p>使い方の質問は納品後7日間。仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで対応します。</p></div></div>
   </div>
 </section>
 
@@ -210,7 +212,7 @@
     <div id="pivot-wrap"></div>
   </div>
   <p style="margin-top:14px;font-size:.82rem;color:var(--sub);">※ 架空データのサンプルです。実在の顧客の実績ではありません。集計結果は、Excelで同じ集計をした結果と一致する値です。</p>
-  <figure class="bleed-r plx" data-plx="0.45"><img src="part-proud.webp" alt="整ったグラフを指さすヒナ" width="1920" height="1280" loading="lazy"></figure>
+  <figure class="bleed-r plx" data-plx="0.45"><img src="part-proud-cut.webp" alt="整ったグラフを指さすヒナ" width="1200" height="858" loading="lazy"></figure>
   <div class="btns"><a class="btn alt" href="https://www.lancers.jp/profile/dyooota/portfolio_popup/760934">作例を見る（ランサーズのポートフォリオ）</a></div>
 </section>
 
@@ -286,7 +288,7 @@
 <section class="stop reveal" id="quiz">
   <div class="st">GUIDE ・ プラン診断</div>
   <h2>どの切符が合うか、3つの質問で分かります。</h2>
-  <figure class="bleed-l plx" data-plx="0.4" style="width:min(340px,70vw);"><img src="part-goal.webp" alt="到着を喜ぶヒナ" width="1920" height="1280" loading="lazy"></figure>
+  <figure class="bleed-l plx" data-plx="0.4" style="width:min(340px,70vw);"><img src="part-goal-cut.webp" alt="到着を喜ぶヒナ" width="1200" height="815" loading="lazy"></figure>
   <div class="quiz-box" id="quiz-body" aria-live="polite"></div>
 </section>
 
@@ -319,7 +321,7 @@
 <section class="stop reveal" id="master">
   <div class="st">STATION MASTER ・ 駅長室</div>
   <h2>正直に書いておきます。</h2>
-  <img class="master-img plx" data-plx="0.3" src="part-master.webp" alt="駅長の帽子をかぶり書類のそばに座るヒナ" width="1920" height="1280" loading="lazy">
+  <img class="master-img plx" data-plx="0.3" src="part-master-cut.webp" alt="駅長の帽子をかぶり書類のそばに座るヒナ" width="1200" height="792" loading="lazy">
   <p>運営は「あおあし」です。通信建設業界の事務職・企画部門で、月次集計などの定型実務と業務自動化を扱ってきました。日商簿記2級・ITパスポートを持っています。</p>
   <p style="margin-top:12px;">このサービスの受注実績は、まだありません。その分、範囲を絞り、着手前に完成イメージを1枚でお返ししてから作業に入ります。代金はプラットフォームの仮払いで預かられ、納品を確認するまで確定しません。</p>
   <p style="margin-top:12px;">このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
@@ -339,15 +341,15 @@
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // ===== 旅のエンジン：熱量・線路・伴走・視差 =====
   const SCENES = [
-    {id:'hero',   img:'part-guide-s.webp',   say:'ご案内します。月末の旅へ、出発です。'},
-    {id:'s1',     img:'part-buried-s.webp',  say:'この山、毎月来るんです。'},
-    {id:'s2',     img:'part-working-s.webp', say:'段取りが決まれば、あとは流れます。'},
-    {id:'s3',     img:'part-design-s.webp',  say:'まず設計書で、完成形を確かめます。'},
-    {id:'s4',     img:'part-proud-s.webp',   say:'実物、置いておきました。触れます。'},
-    {id:'tickets',img:'part-tickets-s.webp', say:'切符はこちら。合うものをどうぞ。'},
-    {id:'quiz',   img:'part-goal-s.webp',    say:'迷ったら診断。3問だけです。'},
-    {id:'faq',    img:'part-support-s.webp', say:'聞きたいことは、先に答えてあります。'},
-    {id:'master', img:'part-master-s.webp',  say:'経歴と進め方を、正直に書いてます。'}
+    {id:'hero',   img:'part-guide-cut.webp',   say:'ご案内します。月末の旅へ、出発です。'},
+    {id:'s1',     img:'part-buried-cut.webp',  say:'この山、毎月来るんです。'},
+    {id:'s2',     img:'part-working-cut.webp', say:'段取りが決まれば、あとは流れます。'},
+    {id:'s3',     img:'part-design.webp',  say:'まず設計書で、完成形を確かめます。'},
+    {id:'s4',     img:'part-proud-cut.webp',   say:'実物、置いておきました。触れます。'},
+    {id:'tickets',img:'part-tickets.webp', say:'切符はこちら。合うものをどうぞ。'},
+    {id:'quiz',   img:'part-goal-cut.webp',    say:'迷ったら診断。3問だけです。'},
+    {id:'faq',    img:'part-support-cut.webp', say:'聞きたいことは、先に答えてあります。'},
+    {id:'master', img:'part-master-cut.webp',  say:'経歴と進め方を、正直に書いてます。'}
   ];
   SCENES.forEach(s=>{ const i = new Image(); i.src = s.img; });
   const ORDER = ['hero','s1','s2','s3','s4','tickets','master'];
@@ -369,7 +371,7 @@
       if(sc && buddyImg){
         clearTimeout(swapTimer);
         buddyImg.style.opacity = 0; buddySay.style.opacity = 0;
-        swapTimer = setTimeout(()=>{ buddyImg.src = sc.img; buddySay.textContent = sc.say; buddyImg.style.opacity = 1; buddySay.style.opacity = 1; }, 200);
+        swapTimer = setTimeout(()=>{ buddyImg.src = sc.img; buddyImg.classList.toggle('rect', sc.img === 'part-design.webp' || sc.img === 'part-tickets.webp'); buddySay.textContent = sc.say; buddyImg.style.opacity = 1; buddySay.style.opacity = 1; }, 200);
       }
       const key = (active === 'quiz' || active === 'faq') ? 'tickets' : active;
       document.querySelectorAll('.track .dot').forEach(d=>{
