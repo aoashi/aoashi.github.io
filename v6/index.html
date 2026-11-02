@@ -71,8 +71,8 @@
   .primary:hover{opacity:.9;}
   .hero .primary{margin:24px 0 14px;}
   .fine{font-size:10.5px;color:var(--sub);}
-  .hero-art{min-height:440px;background:rgba(255,253,246,.55);border:1.5px solid var(--line);border-radius:150px 150px 12px 12px;position:relative;display:grid;place-items:center;overflow:hidden;padding:34px 20px 56px;}
-  .hero-art img{width:min(400px,80%);filter:drop-shadow(0 12px 20px rgba(30,50,70,.2));transform:rotate(1.4deg);}
+  .hero-art{position:relative;display:grid;place-items:center;min-height:400px;}
+  .hero-art img{width:min(540px,112%);max-width:none;margin-left:-64px;margin-top:-24px;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));transform:rotate(1.4deg);}
   .floating{position:absolute;background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;z-index:2;}
   .floating b{font-size:15px;color:var(--blue-deep);}
   .floating.first{left:18px;bottom:52px;transform:rotate(-4deg);}
@@ -91,11 +91,10 @@
   /* 商品カード */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .card{cursor:pointer;background:transparent;border:0;text-align:left;padding:0;width:100%;}
-  .visual{height:238px;position:relative;border-radius:10px;overflow:hidden;display:grid;place-items:center;transition:transform .3s;border:1px solid rgba(221,211,184,.8);}
+  .visual{height:238px;position:relative;display:grid;place-items:center;transition:transform .3s;}
   .card:hover .visual,.card:focus-visible .visual{transform:translateY(-5px);}
   .visual img{height:86%;width:auto;max-width:88%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(30,50,70,.18));}
-  .t1{background:#fdf6dd;} .t2{background:#e3eef8;} .t3{background:#fdeed3;}
-  .t4{background:#e9f2e4;} .t5{background:#fbe9e4;} .t6{background:#eee9f7;}
+  .t1,.t2,.t3,.t4,.t5,.t6,.t7{background:transparent;}
   .badge{position:absolute;left:14px;top:13px;font-size:9.5px;font-weight:700;background:#fffdf5;border:1px solid var(--line);padding:4px 10px;border-radius:20px;z-index:1;color:var(--blue-deep);}
   .category{font-size:9.5px;color:var(--sub);letter-spacing:.12em;margin:16px 0 5px;font-weight:700;}
   .card h3{font-size:16.5px;margin:0 0 6px;line-height:1.5;}
@@ -130,7 +129,7 @@
   table.pivot thead th:first-child{text-align:left;}
   .demo-note{margin-top:14px;font-size:.82rem;color:var(--sub);max-width:660px;}
   /* 哲学（この店について） */
-  .story{background:var(--blue-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr;gap:56px;padding:52px;margin:64px 0 70px;align-items:center;}
+  .story{background:var(--blue-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr;gap:56px;padding:52px;margin:64px 0 78px;align-items:center;position:relative;}
   .story .eyebrow{color:var(--accent);}
   .story h2{font-size:clamp(24px,3vw,32px);}
   .story p{font-size:12.5px;color:#d7e4f0;line-height:2.15;}
@@ -159,7 +158,8 @@
   dialog{border:0;border-radius:14px;max-width:840px;width:calc(100% - 32px);padding:0;background:#fffdf6;color:var(--ink);box-shadow:0 30px 90px rgba(15,45,75,.4);}
   dialog::backdrop{background:rgba(15,40,66,.72);backdrop-filter:blur(5px);}
   .modal{padding:34px;}
-  .close{float:right;border:1.5px solid var(--line);border-radius:50%;background:transparent;width:32px;height:32px;color:var(--ink);font-size:15px;line-height:1;}
+  .close{float:right;border:1.5px solid var(--blue-deep);border-radius:50%;background:#fff;width:34px;height:34px;color:var(--blue-deep);font-size:16px;line-height:1;font-weight:700;transition:background .2s,color .2s;}
+  .close:hover{background:var(--blue-deep);color:#fff;}
   .modal-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;clear:both;padding-top:18px;}
   .modal .visual{height:290px;}
   .modal h2{font-size:24px;margin-top:4px;}
@@ -167,12 +167,39 @@
   .modal ul{padding-left:18px;font-size:12px;line-height:2;margin-top:10px;}
   .modal .price{margin-top:14px;}
   .full{width:100%;margin-top:18px;justify-content:center;}
-  .back{border:0;background:transparent;color:var(--sub);font-size:11.5px;padding:0;font-weight:700;}
+  .back{border:1.5px solid var(--line);background:#fff;color:var(--blue-deep);font-size:11.5px;padding:7px 16px;font-weight:700;border-radius:30px;transition:border-color .2s;}
+  .back:hover{border-color:var(--blue);}
   .checkout{max-width:480px;margin:auto;padding:12px 0 4px;}
   .order{border:1.5px solid var(--line);background:#fff;padding:16px 18px;border-radius:8px;margin:22px 0;display:flex;justify-content:space-between;gap:14px;font-size:12.5px;align-items:center;}
   .pay-note{background:#fff;border:1.5px solid var(--line);padding:18px;border-radius:8px;font-size:12px;line-height:1.95;color:#33424e;}
   .moved{text-align:center;padding:26px 10px 8px;}
   .moved .check{width:64px;height:64px;border-radius:50%;background:var(--accent);display:grid;place-items:center;margin:0 auto 16px;font-size:28px;color:var(--blue-deep);font-weight:800;}
+  /* 考え方セクション：キャラをパネルの縁に食い込ませる */
+  .story-chara{position:absolute;right:30px;bottom:-42px;width:172px;pointer-events:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));transform:rotate(-2deg);z-index:2;}
+  /* カタログ：プランの階段（キャラがテキストに食い込む） */
+  .family-strip{position:relative;padding:22px 0 10px 158px;margin-bottom:30px;border-top:2px solid var(--blue);}
+  .family-chara{position:absolute;left:-4px;bottom:-16px;width:158px;pointer-events:none;transform:rotate(-2deg);filter:drop-shadow(0 8px 12px rgba(30,50,70,.2));}
+  .family-strip h3{font-size:17px;margin-bottom:6px;}
+  .family-strip p{font-size:12.5px;color:#33424e;line-height:1.95;max-width:840px;}
+  .family-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-weight:700;font-size:12.5px;color:var(--blue-deep);}
+  .family-steps span{border:1.5px solid var(--blue);border-radius:20px;padding:4px 13px;background:rgba(255,255,255,.65);}
+  .family-steps i{font-style:normal;color:var(--sub);}
+  /* モーダル：プラン選択（カード型の自作セレクタ） */
+  .plan-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;clear:both;padding-top:16px;}
+  .plan-card{position:relative;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;text-align:left;transition:border-color .15s,background .15s,box-shadow .15s;}
+  .plan-card:hover{border-color:var(--blue);}
+  .plan-card .plan-name{display:block;font-weight:800;font-size:13px;line-height:1.45;}
+  .plan-card .plan-price{display:block;font-size:11.5px;color:var(--sub);margin-top:2px;}
+  .plan-card.on{border-color:var(--blue);background:#e9f2fa;box-shadow:0 3px 10px rgba(28,111,184,.18);}
+  .plan-card.on .plan-price{color:var(--blue-deep);font-weight:700;}
+  .plan-check{position:absolute;top:-9px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;}
+  @media(max-width:760px){
+    .hero-art img{width:100%;max-width:430px;margin:0 auto;}
+    .story-chara{width:118px;right:14px;bottom:-28px;}
+    .family-strip{padding-left:108px;}
+    .family-chara{width:106px;}
+    .plan-picker{grid-template-columns:repeat(2,1fr);}
+  }
   [hidden]{display:none!important}
   .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
   .js .reveal.in-view{opacity:1;transform:none;}
@@ -228,14 +255,14 @@
   <div>
     <div class="eyebrow"><i class="dot"></i> 月次集計の自動化 ― 小さな店</div>
     <h1>その集計、毎月<br><em>手で転記</em>してますか。</h1>
-    <p class="intro">店舗別・カテゴリ別の月次集計なら、CSVを決まった場所に置くだけで集計表まで出来上がる形にできます。「横浜 店」と「ﾖｺﾊﾏ店」の表記ゆれはルールで揃えるので、月末に目で直す作業が消えます。まず下の「触れるデモ」で、集計がどう変わるかを見てください。あなたの集計でどこが消えるかは、書面診断¥3,000でメモ1枚にしてお返しします。</p>
+    <p class="intro">店舗別・カテゴリ別の月次集計は、CSVを決まった場所に置くだけで、集計表まで自動で出来上がります。「横浜 店」と「ﾖｺﾊﾏ店」の表記ゆれはルールで揃えるので、月末に目で直す手間がなくなります。まず下の「触れるデモ」を触ってみてください。あなたの集計でどこが消えるかは、書面診断¥3,000でメモ1枚にしてお返しします。</p>
     <div class="facts">
       <span>中小企業の月次集計担当の方へ</span>
       <span>書面診断 ¥3,000（税込）から</span>
       <span>電話・会議なし、書面で完結</span>
     </div>
     <a class="primary" href="#products">商品をみる <span>↗</span></a>
-    <div class="fine">デジタル商品・オンラインサービス／お支払いは外部の決済ページで行います（このサイト内でカード情報を扱うことはありません）</div>
+    <div class="fine">デジタル商品・オンラインサービスです。支払いは外部の決済ページで行い、このサイトでカード情報を扱うことはありません。</div>
   </div>
   <div class="hero-art" aria-label="案内役のマスコット">
     <img src="part-station-cut.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high">
@@ -263,13 +290,21 @@
       <button class="filter" data-filter="service" aria-pressed="false">サービス</button>
     </div>
   </div>
+  <div class="family-strip">
+    <img class="family-chara" src="part-goal-cut.webp" alt="" aria-hidden="true">
+    <div>
+      <h3>集計自動化のプランは、階段になっています</h3>
+      <p>入口は書面診断¥3,000。本編は診断の中身をすべて含んで、制作まで進みます。プレミアムは本編をすべて含んで、対象が3プロセスまで。どの段も、上の段が下の段をまるごと含む作りです。既製に合わない業務は、最上段のオーダーメイドで、見積もりから始めます。</p>
+      <div class="family-steps" aria-hidden="true"><span>書面診断 ¥3,000</span><i>→</i><span>本編 ¥40,000</span><i>→</i><span>プレミアム ¥60,000</span><i>→</i><span>オーダーメイド 要相談</span></div>
+    </div>
+  </div>
   <div class="grid" id="cards"></div>
 </section>
 
 <section class="demo-sec reveal" id="demo">
   <div class="eyebrow">TOUCHABLE DEMO / 触れるデモ</div>
   <h2>言葉より、実物に触ってください。</h2>
-  <p class="lead">下の22件は、サンプルの売上データ（架空）です。よく見ると、店舗名の書き方がバラバラになっています。「集計する」を押すと、このページの中で表記ゆれをルールで揃えてから、月別と店舗×カテゴリ別の集計を出します。普段の納品物では、これがExcelの数式やフローで出来上がります。</p>
+  <p class="lead">下の表は、サンプルの売上データ（架空・22件）です。店舗名の書き方がバラバラなところを見てください。「集計する」を押すと、表記ゆれをルールで揃えてから、月別と店舗×カテゴリ別の集計をその場で出します。納品物では、これがExcelの数式やフローの形で届きます。</p>
   <div class="demo-raw"><table class="raw"><caption>サンプル売上データ（架空・22件）</caption><thead><tr><th scope="col">受付日</th><th scope="col">店舗</th><th scope="col">カテゴリ</th><th scope="col">金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
   <button class="run-btn" id="demo-run" type="button">表記ゆれを揃えて、集計する</button>
   <div class="bars" id="demo-result" hidden aria-live="polite">
@@ -288,10 +323,11 @@
     <h2>実績は、まだありません。<br>実物は、あります。</h2>
   </div>
   <div>
-    <p>運営は「あおあし」です。通信建設業界の事務職・企画部門で、月次集計などの定型実務と業務自動化を扱ってきました。日商簿記2級・ITパスポートを持っています。</p>
-    <p>この店の受注実績は、まだありません。その代わりに、触れるデモと設計書の実物を先に置いています。範囲と金額は、着手前に設計書で固定します。金額が途中で膨らむことはありません。</p>
+    <p>運営は「あおあし」です。通信建設業界の事務職・企画部門で、月次集計などの定型業務と、その自動化を扱ってきました。資格は日商簿記2級とITパスポートです。</p>
+    <p>この店の受注実績は、まだありません。代わりに、触れるデモと設計書の実物を先に置いています。範囲と金額は、着手前に設計書で決めます。途中で金額が膨らむことはありません。</p>
     <p>このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
   </div>
+  <img class="story-chara" src="part-master-cut.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="steps reveal">
@@ -299,8 +335,8 @@
   <h2>購入まで、3ステップ。</h2>
   <div class="steps-grid">
     <div class="step"><span class="num">01</span><h3>商品を選んで、詳細を見る</h3><p>カードを押すと、内容物・納期・前提条件が出ます。「作って終わり」ではなく、納品後に何が残るかまで書いています。</p></div>
-    <div class="step"><span class="num">02</span><h3>決済ページで支払う</h3><p>「購入する」を押すと、外部の決済ページ（現在はココナラ／note）へ移動します。このサイト内でカード情報を入力することはありません。</p></div>
-    <div class="step"><span class="num">03</span><h3>受け取る／はじまる</h3><p>デジタル商品は、購入先でそのままダウンロードできます。サービスは、購入先のチャットでヒアリングシートをお渡しし、記入が届いた日から納期を数えます。</p></div>
+    <div class="step"><span class="num">02</span><h3>決済ページで支払う</h3><p>「購入する」を押すと、外部の決済ページ（いまはココナラ／note）へ移動します。このサイトの中で、カード情報を入力することはありません。</p></div>
+    <div class="step"><span class="num">03</span><h3>受け取る／はじまる</h3><p>デジタル商品は、購入先でそのままダウンロードできます。サービスは、購入先のチャットでヒアリングシートをお渡しします。記入が届いた日から、納期を数えます。</p></div>
   </div>
 </section>
 
@@ -310,13 +346,14 @@
     <h2>先に答えておきます。</h2>
   </div>
   <div>
-    <details><summary>支払いはどうなっていますか？</summary><p>現在は、ココナラとnoteの決済の仕組みを使っています。このサイトから直接の請求はしていません。ココナラでは、代金はプラットフォームに仮払いされ、納品を確認するまで支払いは確定しません。Stripeでの直接決済は準備中で、用意でき次第、このサイトの「購入する」ボタンから買えるようにします。</p></details>
-    <details><summary>業務データの扱いは大丈夫ですか？</summary><p>お預かりした業務データは、本作業のみに使用します。共有の方法は案件ごとに先に取り決め、作業と質疑応答が終わった時点で削除します。実データではなく、項目名だけのサンプルや匿名化したデータで進めることもできます。</p></details>
-    <details><summary>電話や会議はありますか？</summary><p>ありません。やり取りはすべて書面・チャットで完結します。ヒアリングは記入式のシートです。</p></details>
-    <details><summary>書面診断のあと、本編に進むと合計はいくらですか？</summary><p>本編¥40,000から診断料¥3,000を差し引くので、合計は¥40,000（税込）のままです。診断だけで終わる場合は¥3,000のみです。</p></details>
-    <details><summary>納期の数え方を教えてください。</summary><p>ヒアリングシートを受け取った日から、暦日で数えます。書面診断は2日、本編は7日、構造設計は5日です。設計書の確認待ちの期間も含みます。</p></details>
-    <details><summary>Excelがない環境でも使えますか？</summary><p>テンプレートはMicrosoft Excel（Microsoft 365／2019以降のデスクトップ版）前提です。Power Automateフローの場合は、Microsoft 365のライセンスと接続設定が必要です。環境は設計書の段階で確認します。制作に入る前に分かるので、合わなければその時点で止められます。</p></details>
-    <details><summary>納品後に直してほしい点が出たら？</summary><p>3つに分けて対応します。使い方の質問は、納品後7日間チャットで答えます。合意した仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで対応します。仕様そのものの追加・変更は、別途お見積もりです。</p></details>
+    <details><summary>支払いはどうなっていますか？</summary><p>いまは、ココナラとnoteの決済の仕組みを使っています。このサイトから直接請求することはありません。ココナラでは、代金はいったんプラットフォームに預けられ、納品を確認するまで確定しません。Stripeでの直接決済は準備中です。使えるようになったら、このサイトの「購入する」ボタンから、そのまま買えるようにします。</p></details>
+    <details><summary>業務データの扱いは大丈夫ですか？</summary><p>お預かりしたデータは、この作業のためだけに使います。渡し方は案件ごとに先に決めておき、作業と質疑応答が終わった時点で削除します。実データではなく、項目名だけのサンプルや、名前を伏せたデータで進めることもできます。</p></details>
+    <details><summary>電話や会議はありますか？</summary><p>ありません。やり取りは、すべて書面・チャットです。ヒアリングも、記入式のシートでお願いしています。</p></details>
+    <details><summary>書面診断のあと、本編に進むと合計はいくらですか？</summary><p>本編¥40,000から診断料¥3,000を差し引くので、合計は¥40,000（税込）のままです。診断だけで終われば、¥3,000だけです。</p></details>
+    <details><summary>納期の数え方を教えてください。</summary><p>ヒアリングシートを受け取った日から、暦日で数えます。書面診断は2日、本編は7日、プレミアムは10日、構造設計は5日です。設計書の確認をお待ちする期間も含みます。</p></details>
+    <details><summary>Excelがない環境でも使えますか？</summary><p>テンプレートは、Microsoft Excel（Microsoft 365／2019以降のデスクトップ版）が前提です。Power Automateのフローにする場合は、Microsoft 365のライセンスと接続設定が要ります。環境は設計書の段階で確認するので、合わない場合は、作り始める前に止められます。</p></details>
+    <details><summary>納品後に直してほしい点が出たら？</summary><p>3つに分けて対応します。使い方の質問は、納品後7日間、チャットでお答えします。合意した仕様どおりに動かない不具合は、初回の月次運用が終わるまで直します。仕様そのものの追加や変更は、別のお見積もりです。</p></details>
+    <details><summary>既製プランに合わない業務でも頼めますか？</summary><p>オーダーメイドで受けます。入口は書面診断か、チャットでの相談です。範囲と進め方を設計書にまとめ、金額と納期は見積もりで決めてから始めます。見積もりだけで終わっても構いません。</p></details>
     <details><summary>返金・キャンセルはできますか？</summary><p>デジタル商品は、その性質上、納品後の返金・キャンセルは原則としてお受けできません。サービスは、制作に着手する前までキャンセルできます。詳しくは<a href="legal.html">特定商取引法に基づく表記</a>をご覧ください。</p></details>
   </div>
 </section>
@@ -361,6 +398,8 @@
 const PAYMENT_LINKS = {
   diagnosis: "",  // 書面診断 ¥3,000
   package:   "",  // Excel×Power Automate 業務改善パッケージ ¥40,000
+  premium:   "",  // プレミアム ¥60,000（本編の内容をすべて含む・集計3プロセスまで）
+  custom:    "",  // オーダーメイド（要相談・相談ボタン）
   structure: "",  // AI副業×note構造設計 ¥30,000
   support:   "",  // 見守り・手直し ¥5,000/月（本編購入者向け・チャットで申込）
   prompt:    "",  // 執筆プロンプト全文（note商品）¥500
@@ -369,6 +408,8 @@ const PAYMENT_LINKS = {
 const FALLBACK_LINKS = {
   diagnosis: "https://coconala.com/services/4482711",
   package:   "https://coconala.com/services/4482691",
+  premium:   "https://www.lancers.jp/menu/detail/1352276",
+  custom:    "https://coconala.com/services/4482691",
   structure: "https://coconala.com/services/4482719",
   support:   "",
   prompt:    "https://note.com/fair_arnica8174/n/nc736cd2fba20",
@@ -379,6 +420,7 @@ function paymentLabel(id){
   if(PAYMENT_LINKS[id]) return "Stripeの決済ページ";
   const f = FALLBACK_LINKS[id] || "";
   if(f.includes("coconala.com")) return "ココナラの商品ページ";
+  if(f.includes("lancers.jp")) return "ランサーズの商品ページ";
   if(f.includes("note.com")) return "noteの商品ページ";
   return "決済ページ";
 }
@@ -397,12 +439,30 @@ const PRODUCTS = [
   { id:"package", type:"service", tint:"t1",
     category:"SERVICE / 制作 ・ 納期7日",
     name:"Excel×Power Automate 業務改善パッケージ",
-    desc:"CSVを置くだけで、店舗別・カテゴリ別の集計表まで出来上がる形に。",
+    desc:"書面診断の内容をすべて含む。切り分けから制作、納品まで一括で。",
     price:40000, priceNote:"税込",
     tag:"本編",
     img:"part-working-cut.webp", imgAlt:"紙を機械に入れると整った書類が出てくる工場で働くヒナ",
-    detail:"CSVを決まった場所に置けば、店舗別・カテゴリ別の集計表まで出来上がる仕組みを作ります。「横浜 店」と「ﾖｺﾊﾏ店」のような表記ゆれは、目で直すのではなくルールで揃えます。着手前に、改善設計書1枚で完成イメージを確認してから制作に入ります。受注実績はまだありません。実績の代わりに、上の「触れるデモ」と設計書の実物で判断してください。",
-    includes:["改善設計書1枚（着手前に完成イメージを確認）","Excelテンプレート、またはPower Automateフロー1本","使い方マニュアル","納品後7日間の質疑応答（チャット）","仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで","対象は定型業務1プロセス"] },
+    detail:"書面診断の内容（切り分けメモと設計書）をすべて含んだうえで、制作まで進めるプランです。CSVを決まった場所に置けば、店舗別・カテゴリ別の集計表まで出来上がる仕組みを作ります。「横浜 店」と「ﾖｺﾊﾏ店」のような表記ゆれは、目で直すのではなくルールで揃えます。受注実績はまだありません。実績の代わりに、上の「触れるデモ」と設計書の実物で判断してください。",
+    includes:["書面診断の内容をすべて含みます（切り分けメモ＋改善設計書1枚）","制作：Excelテンプレート、またはPower Automateフロー1本（定型業務1プロセス）","使い方マニュアル","納品後7日間の質疑応答（チャット）","仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで"] },
+  { id:"premium", type:"service", tint:"t7",
+    category:"SERVICE / 制作 ・ 納期10日",
+    name:"プレミアム",
+    desc:"本編の内容をすべて含む。対象は集計3プロセスまで。",
+    price:60000, priceNote:"税込",
+    tag:"本編の上位",
+    img:"part-master-cut.webp", imgAlt:"駅長の帽子をかぶり書類のそばに座るヒナ",
+    detail:"「1プロセスだけでは足りない」。月次の集計が複数の流れに分かれているなら、こちらです。プレミアムは本編パッケージの上位プランで、内容をすべて含んだうえで、対象を集計3プロセスまで広げています。範囲は、着手前に設計書で固定します。",
+    includes:["本編パッケージの内容をすべて含みます","対象は集計3プロセスまで（本編は1プロセス）","範囲は設計書で固定してから制作に入ります","納期は10日（ヒアリングシートを受け取った日から）"] },
+  { id:"custom", type:"service", tint:"t5",
+    category:"SERVICE / オーダーメイド ・ 要相談",
+    name:"オーダーメイド",
+    desc:"既製プランに当てはまらない業務に。範囲も金額も、見積もりで決めます。",
+    price:null, priceNote:"要相談", consult:true,
+    tag:"最上位",
+    img:"part-tickets-cut.webp", imgAlt:"切符を差し出すヒナ",
+    detail:"「うちの集計は、ちょっと変わっていて」。店舗と本部で書式が違う。途中で人の判断が入る。何が自動化できるのか、自分でも分からない。そういう業務は、既製プランに押し込まず、まず中身を見ます。入口は書面診断か、チャットでの相談です。範囲と進め方を設計書にまとめ、金額と納期は見積もりで固定してから始めます。見積もりだけで終わっても構いません。",
+    includes:["入口は書面診断、またはチャットでの相談","設計書で範囲と進め方を明記","金額・納期は見積もりで固定（始める前に確定）","やり取りは書面・チャットで完結"] },
   { id:"structure", type:"service", tint:"t3",
     category:"SERVICE / 設計 ・ 納期5日",
     name:"AI副業×note構造設計",
@@ -419,7 +479,7 @@ const PRODUCTS = [
     price:5000, priceNote:"税込 / 月",
     tag:"本編とセットで",
     img:"part-support-cut.webp", imgAlt:"吹き出しで回答するヒナ",
-    detail:"本編・プレミアムをご購入の方への追加オプションです。納品した仕組みについて、月1回の動作確認と、月1回までの軽微な手直しを行います。お申し込みは、本編の購入先（ココナラ）のチャットでお申し付けください。",
+    detail:"本編・プレミアムをご購入の方への追加オプションです。納品した仕組みについて、月1回の動作確認と、月1回までの小さな手直しを行います。申し込みは、本編の購入先（ココナラ）のチャットからどうぞ。",
     includes:["月1回の動作確認","軽微な手直し（月1回まで）","本編・プレミアム購入者限定","申込は本編の購入先チャットから"] },
   { id:"prompt", type:"digital", tint:"t5",
     category:"DIGITAL / note商品",
@@ -457,7 +517,7 @@ function render(filter = "all"){
       <div class="category">${p.category}</div>
       <h3>${p.name}</h3>
       <p class="desc">${p.desc}</p>
-      <div class="price-row"><span class="price">${yen(p.price)} <small>${p.priceNote}</small></span><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="price-row"><span class="price">${p.price != null ? yen(p.price) + " <small>" + p.priceNote + "</small>" : "要相談"}</span><span class="arrow" aria-hidden="true">↗</span></div>
     </article>`).join("");
 }
 render();
@@ -470,15 +530,26 @@ cardsEl.onkeydown = e => { if((e.key === "Enter" || e.key === " ") && e.target.m
 function openCard(el){ selected = PRODUCTS.find(p => p.id === el.dataset.id); trigger = el; detail(); dialog.showModal(); }
 
 /* ================= モーダル：詳細 → 決済 → 移動案内 ================= */
+const FAMILY = ["diagnosis", "package", "premium", "custom"];
+function priceText(p){ return p.price != null ? yen(p.price) + "（" + p.priceNote + "）" : "要相談"; }
+function planPicker(){
+  if(!FAMILY.includes(selected.id)) return "";
+  const cards = FAMILY.map(id => {
+    const q = PRODUCTS.find(x => x.id === id), on = q.id === selected.id;
+    return `<button type="button" class="plan-card${on ? " on" : ""}" role="radio" aria-checked="${on}" data-plan="${q.id}"><span class="plan-name">${q.name}</span><span class="plan-price">${q.price != null ? yen(q.price) : "要相談"}</span>${on ? '<span class="plan-check" aria-hidden="true">✓</span>' : ""}</button>`;
+  }).join("");
+  return `<div class="plan-picker" role="radiogroup" aria-label="プランを選ぶ">${cards}</div><p class="fine" style="margin-top:9px;">集計自動化のプランは階段になっていて、上位のプランは下位の内容をすべて含みます。</p>`;
+}
 function detail(){
   const p = selected;
   const url = paymentUrl(p.id);
   const btn = url
-    ? `<button class="primary full" id="checkout">購入手続きへ進む <span>→</span></button>
-       <p class="fine" style="margin-top:10px;">次の画面で、${paymentLabel(p.id)}への移動を確認します。このサイト内でカード情報を扱うことはありません。</p>`
+    ? `<button class="primary full" id="checkout">${p.consult ? "相談する" : "購入手続きへ進む"} <span>→</span></button>
+       <p class="fine" style="margin-top:10px;">次に、移動先の確認画面が出ます。このサイトでカード情報を扱うことはありません。</p>`
     : `<button class="primary full" disabled style="opacity:.55;cursor:default;">この商品は購入先チャットでのお申し込みです</button>
        <p class="fine" style="margin-top:10px;">本編（Excel×Power Automate 業務改善パッケージ）をご購入のうえ、購入先のチャットで「見守り・手直し希望」とお申し付けください。</p>`;
   content.innerHTML = `
+    ${planPicker()}
     <div class="modal-grid">
       <div>${visual(p, true)}</div>
       <div>
@@ -486,29 +557,30 @@ function detail(){
         <h2 id="modal-title">${p.name}</h2>
         <p class="detail">${p.detail}</p>
         <ul>${p.includes.map(x => "<li>" + x + "</li>").join("")}</ul>
-        <div class="price">${yen(p.price)} <small>${p.priceNote}</small></div>
+        <div class="price">${p.price != null ? yen(p.price) + " <small>" + p.priceNote + "</small>" : "要相談"}</div>
         ${btn}
       </div>
     </div>`;
+  content.querySelectorAll(".plan-card").forEach(b => b.onclick = () => { selected = PRODUCTS.find(x => x.id === b.dataset.plan); detail(); });
   const co = document.querySelector("#checkout");
   if(co) co.onclick = checkout;
 }
 function checkout(){
   const p = selected, url = paymentUrl(p.id), label = paymentLabel(p.id);
   const dataNote = p.type === "service"
-    ? `<p style="margin-top:12px;">お預かりした業務データは、本作業のみに使用し、納品後に削除します。決済が終わったら、購入先のチャットでヒアリングシートをお渡しします。</p>` : "";
+    ? `<p style="margin-top:12px;">お預かりした業務データは、本作業のみに使用し、納品後に削除します。${p.consult ? "相談が終わったら、チャットで進め方をご案内します。" : "決済が終わったら、購入先のチャットでヒアリングシートをお渡しします。"}</p>` : "";
+  const payBody = p.consult
+    ? `<b>相談は${label}で行います。</b><p>「相談ページを開く」を押すと、${label}を新しいタブで開きます。開いた先のチャットで、業務の内容をお聞かせください。${dataNote}</p>`
+    : `<b>お支払いは${label}で行います。</b><p>「決済ページを開く」を押すと、${label}を新しいタブで開きます。金額と商品名が合っているか、決済ページ側でもう一度確認してからお支払いください。${dataNote}</p>`;
   content.innerHTML = `
     <div class="checkout">
       <button class="back" id="back">← 商品詳細に戻る</button>
-      <div class="eyebrow" style="margin-top:24px">CHECKOUT / 購入の確認</div>
-      <h2>この内容で、決済ページへ進みます。</h2>
-      <div class="order"><span>${p.name}</span><b>${yen(p.price)}（${p.priceNote}）</b></div>
-      <div class="pay-note">
-        <b>お支払いは${label}で行います。</b>
-        <p>「決済ページを開く」を押すと、${label}を新しいタブで開きます。金額と商品名が合っているか、決済ページ側でもう一度確認してからお支払いください。${dataNote}</p>
-      </div>
-      <a class="primary full" id="pay" href="${url}" target="_blank" rel="noopener">決済ページを開く <span>→</span></a>
-      <p class="fine" style="margin-top:10px;">返金・キャンセルの条件は、<a href="legal.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>に書いています。</p>
+      <div class="eyebrow" style="margin-top:24px">${p.consult ? "CONSULT / 相談の確認" : "CHECKOUT / 購入の確認"}</div>
+      <h2>${p.consult ? "この内容で、相談ページへ進みます。" : "この内容で、決済ページへ進みます。"}</h2>
+      <div class="order"><span>${p.name}</span><b>${priceText(p)}</b></div>
+      <div class="pay-note">${payBody}</div>
+      <a class="primary full" id="pay" href="${url}" target="_blank" rel="noopener">${p.consult ? "相談ページを開く" : "決済ページを開く"} <span>→</span></a>
+      <p class="fine" style="margin-top:10px;">${p.consult ? "金額と納期は、相談のあとの見積もりで確定します。" : '返金・キャンセルの条件は、<a href="legal.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>に書いています。'}</p>
       <div id="moved-slot"></div>
     </div>`;
   document.querySelector("#back").onclick = detail;
@@ -516,8 +588,8 @@ function checkout(){
     document.querySelector("#moved-slot").innerHTML = `
       <div class="moved">
         <div class="check">✓</div>
-        <h2 style="font-size:20px;">決済ページを開きました。</h2>
-        <p class="desc" style="margin-top:8px;">お支払いは、開いたタブの${label}で完了させてください。<br>終わったら、この画面は閉じて大丈夫です。</p>
+        <h2 style="font-size:20px;">${p.consult ? "相談ページを開きました。" : "決済ページを開きました。"}</h2>
+        <p class="desc" style="margin-top:8px;">${p.consult ? "相談は、開いたタブの" + label + "で進めてください。" : "お支払いは、開いたタブの" + label + "で完了させてください。"}<br>終わったら、この画面は閉じて大丈夫です。</p>
       </div>`;
   };
 }
