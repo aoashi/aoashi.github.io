@@ -6,7 +6,7 @@
 <title>あおあし｜その集計、毎月手で転記してますか。</title>
 <meta name="description" content="月末の集計・転記を、ExcelテンプレートやPower Automateフローに置き換える小さな店。書面診断¥3,000（税込）から。やり取りはすべて書面・チャットで完結します。">
 <link rel="canonical" href="https://aoashi.github.io/">
-<link rel="icon" type="image/webp" href="part-guide-s.webp">
+<link rel="icon" type="image/webp" href="part-hero-flat.webp">
 <meta property="og:type" content="website">
 <meta property="og:title" content="あおあし｜その集計、毎月手で転記してますか。">
 <meta property="og:description" content="月次集計の手作業を、ExcelテンプレートまたはPower Automateフローに。書面診断¥3,000（税込）から、電話・会議なし。">
@@ -66,13 +66,13 @@
   .hero h1 em{font-style:normal;color:var(--blue-deep);border-bottom:8px solid var(--accent);}
   .intro{color:#40525f;font-size:14.5px;line-height:2.05;max-width:560px;}
   .facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-weight:700;color:var(--blue-deep);font-size:.92rem;}
-  .facts span::before{content:"● ";color:var(--accent);font-size:.7em;vertical-align:.2em;}
+  .facts span{padding-left:19px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffb703' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>") no-repeat left .32em/13px 13px;}
   .primary{display:inline-flex;justify-content:space-between;align-items:center;gap:34px;background:var(--blue);border:1px solid var(--blue);color:#fff;padding:15px 24px;border-radius:8px;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 4px 12px rgba(28,111,184,.3);}
   .primary:hover{opacity:.9;}
   .hero .primary{margin:24px 0 14px;}
   .fine{font-size:10.5px;color:var(--sub);}
   .hero-art{position:relative;display:grid;place-items:center;min-height:400px;}
-  .hero-art img{width:min(540px,112%);max-width:none;margin-left:-64px;margin-top:-24px;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));transform:rotate(1.4deg);}
+  .hero-art img{width:min(520px,100%);margin:0;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));}
   .floating{position:absolute;background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;z-index:2;}
   .floating b{font-size:15px;color:var(--blue-deep);}
   .floating.first{left:18px;bottom:52px;transform:rotate(-4deg);}
@@ -129,7 +129,7 @@
   table.pivot thead th:first-child{text-align:left;}
   .demo-note{margin-top:14px;font-size:.82rem;color:var(--sub);max-width:660px;}
   /* 哲学（この店について） */
-  .story{background:var(--blue-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr;gap:56px;padding:52px;margin:64px 0 78px;align-items:center;position:relative;}
+  .story{background:var(--blue-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr auto;gap:56px;padding:52px;margin:64px 0 78px;align-items:center;}
   .story .eyebrow{color:var(--accent);}
   .story h2{font-size:clamp(24px,3vw,32px);}
   .story p{font-size:12.5px;color:#d7e4f0;line-height:2.15;}
@@ -174,16 +174,16 @@
   .pay-note{background:#fff;border:1.5px solid var(--line);padding:18px;border-radius:8px;font-size:12px;line-height:1.95;color:#33424e;}
   .moved{text-align:center;padding:26px 10px 8px;}
   .moved .check{width:64px;height:64px;border-radius:50%;background:var(--accent);display:grid;place-items:center;margin:0 auto 16px;font-size:28px;color:var(--blue-deep);font-weight:800;}
-  /* 考え方セクション：キャラをパネルの縁に食い込ませる */
-  .story-chara{position:absolute;right:30px;bottom:-42px;width:172px;pointer-events:none;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));transform:rotate(-2deg);z-index:2;}
-  /* カタログ：プランの階段（キャラがテキストに食い込む） */
-  .family-strip{position:relative;padding:22px 0 10px 158px;margin-bottom:30px;border-top:2px solid var(--blue);}
-  .family-chara{position:absolute;left:-4px;bottom:-16px;width:158px;pointer-events:none;transform:rotate(-2deg);filter:drop-shadow(0 8px 12px rgba(30,50,70,.2));}
+  /* 考え方セクション：キャラは流れの中に、地の上に直接置く */
+  .story-chara{width:150px;align-self:center;filter:drop-shadow(0 10px 16px rgba(0,0,0,.35));}
+  /* カタログ：プランの階段（キャラはテキストと横並びで流れの中に置く） */
+  .family-strip{display:flex;gap:22px;align-items:flex-start;padding:22px 0 10px;margin-bottom:30px;border-top:2px solid var(--blue);}
+  .family-chara{width:132px;flex:none;filter:drop-shadow(0 8px 12px rgba(30,50,70,.2));}
   .family-strip h3{font-size:17px;margin-bottom:6px;}
   .family-strip p{font-size:12.5px;color:#33424e;line-height:1.95;max-width:840px;}
   .family-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-weight:700;font-size:12.5px;color:var(--blue-deep);}
   .family-steps span{border:1.5px solid var(--blue);border-radius:20px;padding:4px 13px;background:rgba(255,255,255,.65);}
-  .family-steps i{font-style:normal;color:var(--sub);}
+  .family-steps .farr{display:inline-flex;color:var(--sub);}
   /* モーダル：プラン選択（カード型の自作セレクタ） */
   .plan-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;clear:both;padding-top:16px;}
   .plan-card{position:relative;border:2px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;text-align:left;transition:border-color .15s,background .15s,box-shadow .15s;}
@@ -193,11 +193,17 @@
   .plan-card.on{border-color:var(--blue);background:#e9f2fa;box-shadow:0 3px 10px rgba(28,111,184,.18);}
   .plan-card.on .plan-price{color:var(--blue-deep);font-weight:700;}
   .plan-check{position:absolute;top:-9px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800;}
+  /* Lucideアイコンのサイズ（本文の文字サイズに追随させる） */
+  svg.lucide{width:1.05em;height:1.05em;vertical-align:-.14em;flex:none;}
+  .benefits svg.lucide{color:var(--blue-deep);margin-right:3px;}
+  .arrow svg.lucide{width:15px;height:15px;}
+  .close svg.lucide{width:18px;height:18px;vertical-align:middle;}
+  .plan-check svg.lucide{width:12px;height:12px;}
+  .moved .check svg.lucide{width:30px;height:30px;}
   @media(max-width:760px){
     .hero-art img{width:100%;max-width:430px;margin:0 auto;}
-    .story-chara{width:118px;right:14px;bottom:-28px;}
-    .family-strip{padding-left:108px;}
-    .family-chara{width:106px;}
+    .story-chara{width:110px;}
+    .family-chara{width:96px;}
     .plan-picker{grid-template-columns:repeat(2,1fr);}
   }
   [hidden]{display:none!important}
@@ -247,7 +253,7 @@
     <a href="#products">商品をみる</a>
     <a href="#demo">触れるデモ</a>
     <a href="#about">この店について</a>
-    <a href="#faq" class="pill">よくある質問 ↗</a>
+    <a href="#faq" class="pill">よくある質問 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
   </div>
 </nav>
 <main>
@@ -261,11 +267,11 @@
       <span>書面診断 ¥3,000（税込）から</span>
       <span>電話・会議なし、書面で完結</span>
     </div>
-    <a class="primary" href="#products">商品をみる <span>↗</span></a>
+    <a class="primary" href="#products">商品をみる <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
     <div class="fine">デジタル商品・オンラインサービスです。支払いは外部の決済ページで行い、このサイトでカード情報を扱うことはありません。</div>
   </div>
   <div class="hero-art" aria-label="案内役のマスコット">
-    <img src="part-station-cut.webp" alt="駅の案内板のそばで出発を案内するアオアシカツオドリのヒナ" fetchpriority="high">
+    <img src="part-hero-flat.webp" alt="案内するアオアシカツオドリのヒナ" fetchpriority="high">
     <div class="floating first">表記ゆれは、目で直さず<br><b>ルールで揃える。</b></div>
     <div class="floating second">サンプル22件を<br><b>その場で集計できます</b></div>
     <div class="caption">AOASHI ― GUIDE</div>
@@ -273,9 +279,9 @@
 </section>
 
 <div class="benefits">
-  <div>↗ まずは小さく<span>書面診断¥3,000。作るかどうかは、メモを見てから決められます。</span></div>
-  <div>◇ 触れるデモつき<span>言葉ではなく、実物をこのページに置いています。</span></div>
-  <div>✳ 実績は正直に<span>受注実績はまだありません。作例はすべて架空データです。</span></div>
+  <div><i data-lucide="sprout" aria-hidden="true"></i> まずは小さく<span>書面診断¥3,000。作るかどうかは、メモを見てから決められます。</span></div>
+  <div><i data-lucide="mouse-pointer-click" aria-hidden="true"></i> 触れるデモつき<span>言葉ではなく、実物をこのページに置いています。</span></div>
+  <div><i data-lucide="shield-check" aria-hidden="true"></i> 実績は正直に<span>受注実績はまだありません。作例はすべて架空データです。</span></div>
 </div>
 
 <section class="catalog" id="products">
@@ -291,11 +297,11 @@
     </div>
   </div>
   <div class="family-strip">
-    <img class="family-chara" src="part-goal-cut.webp" alt="" aria-hidden="true">
+    <img class="family-chara" src="part-goal-flat.webp" alt="" aria-hidden="true">
     <div>
       <h3>集計自動化のプランは、階段になっています</h3>
       <p>入口は書面診断¥3,000。本編は診断の中身をすべて含んで、制作まで進みます。プレミアムは本編をすべて含んで、対象が3プロセスまで。どの段も、上の段が下の段をまるごと含む作りです。既製に合わない業務は、最上段のオーダーメイドで、見積もりから始めます。</p>
-      <div class="family-steps" aria-hidden="true"><span>書面診断 ¥3,000</span><i>→</i><span>本編 ¥40,000</span><i>→</i><span>プレミアム ¥60,000</span><i>→</i><span>オーダーメイド 要相談</span></div>
+      <div class="family-steps" aria-hidden="true"><span>書面診断 ¥3,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>本編 ¥40,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>プレミアム ¥60,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>オーダーメイド 要相談</span></div>
     </div>
   </div>
   <div class="grid" id="cards"></div>
@@ -327,7 +333,7 @@
     <p>この店の受注実績は、まだありません。代わりに、触れるデモと設計書の実物を先に置いています。範囲と金額は、着手前に設計書で決めます。途中で金額が膨らむことはありません。</p>
     <p>このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
   </div>
-  <img class="story-chara" src="part-master-cut.webp" alt="" aria-hidden="true">
+  <img class="story-chara" src="part-hero-flat.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="steps reveal">
@@ -367,18 +373,19 @@
 </div>
 
 <div class="buddy" aria-hidden="true">
-  <img id="buddy-img" src="part-guide-cut.webp" alt="">
+  <img id="buddy-img" src="part-hero-flat.webp" alt="">
   <div class="say" id="buddy-say">ご案内します。商品は下に並んでいます。</div>
 </div>
 
 <dialog id="dialog" aria-label="商品の詳細と購入">
   <div class="modal">
-    <button class="close" id="close" aria-label="閉じる">×</button>
+    <button class="close" id="close" aria-label="閉じる"><i data-lucide="x" aria-hidden="true"></i></button>
     <div id="modal-content"></div>
   </div>
 </dialog>
 
 <!-- 実績ライブラリ（CDN）：読み込めなくてもページは完全に動作する（初期化側でガード） -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -433,7 +440,7 @@ const PRODUCTS = [
     desc:"「自動化できる部分」と「残る部分」を、作る前に切り分ける。",
     price:3000, priceNote:"税込",
     tag:"まずここから",
-    img:"part-hearing-cut.webp", imgAlt:"メモを取りながら聞くヒナ",
+    img:"part-delivery-flat.webp", imgAlt:"書類を手渡すヒナ",
     detail:"月末。CSVを開く。集計表に貼る。店舗名のズレを目で探す。直す。合計が合わない。最初から。――その作業の、どこが消えて、どこが残るのか。いまの集計手順をヒアリングシートに書いてもらうと、自動化できる部分・できない部分・進め方を、メモ1枚にして2日で返します。作るかどうかは、メモを見てから決めてください。",
     includes:["ヒアリングシート（記入式）での現状確認","自動化できる部分／できない部分の切り分けメモ1枚","本編に進む場合の進め方と金額（固定）","本編に進んだ場合、診断料¥3,000は本編代金に充当（合計¥40,000のまま）"] },
   { id:"package", type:"service", tint:"t1",
@@ -442,7 +449,7 @@ const PRODUCTS = [
     desc:"書面診断の内容をすべて含む。切り分けから制作、納品まで一括で。",
     price:40000, priceNote:"税込",
     tag:"本編",
-    img:"part-working-cut.webp", imgAlt:"紙を機械に入れると整った書類が出てくる工場で働くヒナ",
+    img:"part-working-flat.webp", imgAlt:"集計作業をするヒナ",
     detail:"書面診断の内容（切り分けメモと設計書）をすべて含んだうえで、制作まで進めるプランです。CSVを決まった場所に置けば、店舗別・カテゴリ別の集計表まで出来上がる仕組みを作ります。「横浜 店」と「ﾖｺﾊﾏ店」のような表記ゆれは、目で直すのではなくルールで揃えます。受注実績はまだありません。実績の代わりに、上の「触れるデモ」と設計書の実物で判断してください。",
     includes:["書面診断の内容をすべて含みます（切り分けメモ＋改善設計書1枚）","制作：Excelテンプレート、またはPower Automateフロー1本（定型業務1プロセス）","使い方マニュアル","納品後7日間の質疑応答（チャット）","仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで"] },
   { id:"premium", type:"service", tint:"t7",
@@ -451,7 +458,7 @@ const PRODUCTS = [
     desc:"本編の内容をすべて含む。対象は集計3プロセスまで。",
     price:60000, priceNote:"税込",
     tag:"本編の上位",
-    img:"part-master-cut.webp", imgAlt:"駅長の帽子をかぶり書類のそばに座るヒナ",
+    img:"part-tickets-flat.webp", imgAlt:"プランの切符を持つヒナ",
     detail:"「1プロセスだけでは足りない」。月次の集計が複数の流れに分かれているなら、こちらです。プレミアムは本編パッケージの上位プランで、内容をすべて含んだうえで、対象を集計3プロセスまで広げています。範囲は、着手前に設計書で固定します。",
     includes:["本編パッケージの内容をすべて含みます","対象は集計3プロセスまで（本編は1プロセス）","範囲は設計書で固定してから制作に入ります","納期は10日（ヒアリングシートを受け取った日から）"] },
   { id:"custom", type:"service", tint:"t5",
@@ -460,7 +467,7 @@ const PRODUCTS = [
     desc:"既製プランに当てはまらない業務に。範囲も金額も、見積もりで決めます。",
     price:null, priceNote:"要相談", consult:true,
     tag:"最上位",
-    img:"part-tickets-cut.webp", imgAlt:"切符を差し出すヒナ",
+    img:"part-hero-flat.webp", imgAlt:"案内するヒナ",
     detail:"「うちの集計は、ちょっと変わっていて」。店舗と本部で書式が違う。途中で人の判断が入る。何が自動化できるのか、自分でも分からない。そういう業務は、既製プランに押し込まず、まず中身を見ます。入口は書面診断か、チャットでの相談です。範囲と進め方を設計書にまとめ、金額と納期は見積もりで固定してから始めます。見積もりだけで終わっても構いません。",
     includes:["入口は書面診断、またはチャットでの相談","設計書で範囲と進め方を明記","金額・納期は見積もりで固定（始める前に確定）","やり取りは書面・チャットで完結"] },
   { id:"structure", type:"service", tint:"t3",
@@ -469,7 +476,7 @@ const PRODUCTS = [
     desc:"無料記事・有料記事・導線を、1つの商品として組み立てる。",
     price:30000, priceNote:"税込",
     tag:"note販売の設計",
-    img:"part-design-cut.webp", imgAlt:"路線図を描くヒナ",
+    img:"part-design-flat.webp", imgAlt:"設計図を描くヒナ",
     detail:"記事を書いても売れないとき、足りないのは文章量ではなく組み立てです。誰に・何を・いくらで売るか、無料記事から有料記事への渡し方、プロフィールと固定記事の置き方までを、構造設計書として1つにまとめます。あなたのnoteアカウントと過去記事を見たうえで、直す順番まで書きます。",
     includes:["現状の棚卸し（アカウント・既存記事・価格帯）","商品ラダー（入口／本編／継続）の設計","無料→有料の導線設計（固定記事・プロフィール含む）","構造設計書1枚＋着手順リスト","やり取りは書面・チャットで完結"] },
   { id:"support", type:"service", tint:"t4",
@@ -478,7 +485,7 @@ const PRODUCTS = [
     desc:"動かし始めた最初の数か月、月1回の確認と小さな手直し。",
     price:5000, priceNote:"税込 / 月",
     tag:"本編とセットで",
-    img:"part-support-cut.webp", imgAlt:"吹き出しで回答するヒナ",
+    img:"part-support-flat.webp", imgAlt:"吹き出しで回答するヒナ",
     detail:"本編・プレミアムをご購入の方への追加オプションです。納品した仕組みについて、月1回の動作確認と、月1回までの小さな手直しを行います。申し込みは、本編の購入先（ココナラ）のチャットからどうぞ。",
     includes:["月1回の動作確認","軽微な手直し（月1回まで）","本編・プレミアム購入者限定","申込は本編の購入先チャットから"] },
   { id:"prompt", type:"digital", tint:"t5",
@@ -487,7 +494,7 @@ const PRODUCTS = [
     desc:"売れるnoteは『情報』で勝負しない。実際に使っているプロンプト全文。",
     price:500, priceNote:"税込",
     tag:"noteで販売中",
-    img:"part-guide-cut.webp", imgAlt:"案内するヒナ",
+    img:"part-hero-flat.webp", imgAlt:"案内するヒナ",
     detail:"noteの有料記事を書くときに実際に使っている、執筆プロンプトの全文です。構成の型と、書き出しの作り方まで含みます。購入はnoteの商品ページで行い、そのままnote上で読めます。",
     includes:["執筆プロンプト全文（note記事内で提供）","構成の型と書き出しの作り方","購入先：note（そのまま読めます）"] },
   { id:"template", type:"digital", tint:"t6",
@@ -496,7 +503,7 @@ const PRODUCTS = [
     desc:"CSVを貼るだけで、店舗別×カテゴリ別の集計表が出来上がる。",
     price:980, priceNote:"税込",
     tag:"自分で回したい人へ",
-    img:"part-proud-cut.webp", imgAlt:"整ったグラフを指さすヒナ",
+    img:"part-goal-flat.webp", imgAlt:"到着を喜ぶヒナ",
     detail:"CSVを貼るだけで店舗別×カテゴリ別の集計表が出来上がる、Excelテンプレート本体と使い方ガイドのセットです。個別制作ではなく、自分で回したい人向けの入口です。動作前提はMicrosoft Excel（Microsoft 365／2019以降のデスクトップ版）。購入はnoteの商品ページで行います。",
     includes:["Excelテンプレート本体（ダウンロード）","使い方ガイド","表記ゆれを揃えるルール入り","購入先：note"] }
 ];
@@ -507,6 +514,8 @@ const cardsEl = document.querySelector("#cards");
 const dialog = document.querySelector("#dialog");
 const content = document.querySelector("#modal-content");
 let selected = null, trigger = null;
+/* Lucide：CDNが読めなかった場合は何もしない（本文はそのまま読める） */
+function refreshIcons(){ if(window.lucide && typeof lucide.createIcons === "function") lucide.createIcons(); }
 function visual(p, badge){
   return `<div class="visual ${p.tint}">${badge ? `<span class="badge">${p.tag}</span>` : ""}<img src="${p.img}" alt="${p.imgAlt}" loading="lazy"></div>`;
 }
@@ -517,8 +526,9 @@ function render(filter = "all"){
       <div class="category">${p.category}</div>
       <h3>${p.name}</h3>
       <p class="desc">${p.desc}</p>
-      <div class="price-row"><span class="price">${p.price != null ? yen(p.price) + " <small>" + p.priceNote + "</small>" : "要相談"}</span><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="price-row"><span class="price">${p.price != null ? yen(p.price) + " <small>" + p.priceNote + "</small>" : "要相談"}</span><span class="arrow" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span></div>
     </article>`).join("");
+  refreshIcons();
 }
 render();
 document.querySelectorAll(".filter").forEach(b => b.onclick = () => {
@@ -536,7 +546,7 @@ function planPicker(){
   if(!FAMILY.includes(selected.id)) return "";
   const cards = FAMILY.map(id => {
     const q = PRODUCTS.find(x => x.id === id), on = q.id === selected.id;
-    return `<button type="button" class="plan-card${on ? " on" : ""}" role="radio" aria-checked="${on}" data-plan="${q.id}"><span class="plan-name">${q.name}</span><span class="plan-price">${q.price != null ? yen(q.price) : "要相談"}</span>${on ? '<span class="plan-check" aria-hidden="true">✓</span>' : ""}</button>`;
+    return `<button type="button" class="plan-card${on ? " on" : ""}" role="radio" aria-checked="${on}" data-plan="${q.id}"><span class="plan-name">${q.name}</span><span class="plan-price">${q.price != null ? yen(q.price) : "要相談"}</span>${on ? '<span class="plan-check" aria-hidden="true"><i data-lucide="check"></i></span>' : ""}</button>`;
   }).join("");
   return `<div class="plan-picker" role="radiogroup" aria-label="プランを選ぶ">${cards}</div><p class="fine" style="margin-top:9px;">集計自動化のプランは階段になっていて、上位のプランは下位の内容をすべて含みます。</p>`;
 }
@@ -544,7 +554,7 @@ function detail(){
   const p = selected;
   const url = paymentUrl(p.id);
   const btn = url
-    ? `<button class="primary full" id="checkout">${p.consult ? "相談する" : "購入手続きへ進む"} <span>→</span></button>
+    ? `<button class="primary full" id="checkout">${p.consult ? "相談する" : "購入手続きへ進む"} <i data-lucide="arrow-right" aria-hidden="true"></i></button>
        <p class="fine" style="margin-top:10px;">次に、移動先の確認画面が出ます。このサイトでカード情報を扱うことはありません。</p>`
     : `<button class="primary full" disabled style="opacity:.55;cursor:default;">この商品は購入先チャットでのお申し込みです</button>
        <p class="fine" style="margin-top:10px;">本編（Excel×Power Automate 業務改善パッケージ）をご購入のうえ、購入先のチャットで「見守り・手直し希望」とお申し付けください。</p>`;
@@ -561,6 +571,7 @@ function detail(){
         ${btn}
       </div>
     </div>`;
+  refreshIcons();
   content.querySelectorAll(".plan-card").forEach(b => b.onclick = () => { selected = PRODUCTS.find(x => x.id === b.dataset.plan); detail(); });
   const co = document.querySelector("#checkout");
   if(co) co.onclick = checkout;
@@ -574,23 +585,25 @@ function checkout(){
     : `<b>お支払いは${label}で行います。</b><p>「決済ページを開く」を押すと、${label}を新しいタブで開きます。金額と商品名が合っているか、決済ページ側でもう一度確認してからお支払いください。${dataNote}</p>`;
   content.innerHTML = `
     <div class="checkout">
-      <button class="back" id="back">← 商品詳細に戻る</button>
+      <button class="back" id="back"><i data-lucide="arrow-left" aria-hidden="true"></i> 商品詳細に戻る</button>
       <div class="eyebrow" style="margin-top:24px">${p.consult ? "CONSULT / 相談の確認" : "CHECKOUT / 購入の確認"}</div>
       <h2>${p.consult ? "この内容で、相談ページへ進みます。" : "この内容で、決済ページへ進みます。"}</h2>
       <div class="order"><span>${p.name}</span><b>${priceText(p)}</b></div>
       <div class="pay-note">${payBody}</div>
-      <a class="primary full" id="pay" href="${url}" target="_blank" rel="noopener">${p.consult ? "相談ページを開く" : "決済ページを開く"} <span>→</span></a>
+      <a class="primary full" id="pay" href="${url}" target="_blank" rel="noopener">${p.consult ? "相談ページを開く" : "決済ページを開く"} <i data-lucide="arrow-right" aria-hidden="true"></i></a>
       <p class="fine" style="margin-top:10px;">${p.consult ? "金額と納期は、相談のあとの見積もりで確定します。" : '返金・キャンセルの条件は、<a href="legal.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>に書いています。'}</p>
       <div id="moved-slot"></div>
     </div>`;
+  refreshIcons();
   document.querySelector("#back").onclick = detail;
   document.querySelector("#pay").onclick = () => {
     document.querySelector("#moved-slot").innerHTML = `
       <div class="moved">
-        <div class="check">✓</div>
+        <div class="check"><i data-lucide="check" aria-hidden="true"></i></div>
         <h2 style="font-size:20px;">${p.consult ? "相談ページを開きました。" : "決済ページを開きました。"}</h2>
         <p class="desc" style="margin-top:8px;">${p.consult ? "相談は、開いたタブの" + label + "で進めてください。" : "お支払いは、開いたタブの" + label + "で完了させてください。"}<br>終わったら、この画面は閉じて大丈夫です。</p>
       </div>`;
+    refreshIcons();
   };
 }
 document.querySelector("#close").onclick = () => dialog.close();
@@ -599,10 +612,10 @@ dialog.addEventListener("close", () => { if(trigger) trigger.focus(); });
 
 /* ================= バディ（伴走マスコット） ================= */
 const SCENES = [
-  { id:"products", img:"part-tickets-cut.webp", say:"切符はこちら。合うものをどうぞ。" },
-  { id:"demo",     img:"part-working-cut.webp", say:"実物、置いておきました。触れます。" },
-  { id:"about",    img:"part-master-cut.webp",  say:"経歴と進め方を、正直に書いてます。" },
-  { id:"faq",      img:"part-support-cut.webp", say:"聞きたいことは、先に答えてあります。" }
+  { id:"products", img:"part-tickets-flat.webp", say:"切符はこちら。合うものをどうぞ。" },
+  { id:"demo",     img:"part-working-flat.webp", say:"実物、置いておきました。触れます。" },
+  { id:"about",    img:"part-hero-flat.webp",  say:"経歴と進め方を、正直に書いてます。" },
+  { id:"faq",      img:"part-support-flat.webp", say:"聞きたいことは、先に答えてあります。" }
 ];
 SCENES.forEach(s => { const i = new Image(); i.src = s.img; });
 const buddyImg = document.getElementById("buddy-img");
@@ -683,6 +696,7 @@ if(runBtn){
     runBtn.textContent = "もう一度集計する";
   });
 }
+refreshIcons();
 </script>
 
 <script>
