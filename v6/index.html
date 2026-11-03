@@ -72,7 +72,7 @@
   .hero .primary{margin:24px 0 14px;}
   .fine{font-size:10.5px;color:var(--sub);}
   .hero-art{position:relative;display:grid;place-items:center;min-height:400px;}
-  .hero-art img{width:min(520px,100%);margin:0;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));}
+  .hero-art img{width:min(440px,100%);max-height:640px;object-fit:contain;margin:0;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));}
   .floating{position:absolute;background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;z-index:2;}
   .floating b{font-size:15px;color:var(--blue-deep);}
   .floating.first{left:18px;bottom:52px;transform:rotate(-4deg);}
@@ -201,7 +201,7 @@
   .plan-check svg.lucide{width:12px;height:12px;}
   .moved .check svg.lucide{width:30px;height:30px;}
   @media(max-width:760px){
-    .hero-art img{width:100%;max-width:430px;margin:0 auto;}
+    .hero-art img{width:100%;max-width:430px;max-height:520px;object-fit:contain;margin:0 auto;}
     .story-chara{width:110px;}
     .family-chara{width:96px;}
     .plan-picker{grid-template-columns:repeat(2,1fr);}
@@ -241,6 +241,26 @@
   .heat-veil{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;
     background:radial-gradient(120% 90% at 50% 0%, rgba(255,183,3,.22), rgba(255,150,20,.15) 55%, rgba(255,120,20,.20));}
   .announcement,.wrap{position:relative;z-index:1;}
+  /* ===== 追加分2：演出強化用（見出しマスク／ティッカー／カード／モーダル背景） ===== */
+  .lm{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em;}
+  .lm-in{display:block;will-change:transform;}
+  /* ティッカーストリップ（ヒーロー直下・無限スクロール） */
+  .ticker{overflow:hidden;border-top:1px solid var(--line);padding:11px 0 12px;}
+  .ticker-track{display:flex;width:max-content;will-change:transform;animation:tickmove 30s linear infinite;}
+  .ticker:hover .ticker-track{animation-play-state:paused;}
+  .tick-group{display:flex;align-items:center;flex:none;}
+  .tick-group span{font-size:11.5px;font-weight:700;letter-spacing:.14em;color:var(--blue-deep);white-space:nowrap;padding:0 16px;}
+  .tick-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;}
+  @keyframes tickmove{to{transform:translateX(-50%);}}
+  /* 商品カード：浮き上がり（GSAPのtransformと競合しないよう translate プロパティで）＋光のスイープ */
+  .card{translate:0 0;transition:translate .35s ease;}
+  .card:hover{translate:0 -6px;}
+  .visual{overflow:hidden;}
+  .visual::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);transform:translateX(-130%);transition:transform .9s ease;}
+  .card:hover .visual::after{transform:translateX(130%);}
+  /* モーダル背景のフェードイン */
+  dialog[open]::backdrop{animation:bdin .3s ease;}
+  @keyframes bdin{from{opacity:0;}}
 </style>
 </head>
 <body>
@@ -271,12 +291,14 @@
     <div class="fine">デジタル商品・オンラインサービスです。支払いは外部の決済ページで行い、このサイトでカード情報を扱うことはありません。</div>
   </div>
   <div class="hero-art" aria-label="案内役のマスコット">
-    <img src="part-sharkbite-flat.webp" alt="矢印の案内看板を持つアオアシカツオドリのヒナと、看板にぶら下がるサメ" fetchpriority="high">
+    <img src="part-hero-sheet.webp" alt="タブレットを掲げて案内するアオアシカツオドリと、頭の上に乗る小さなサメ" fetchpriority="high">
     <div class="floating first">表記ゆれは、目で直さず<br><b>ルールで揃える。</b></div>
     <div class="floating second">サンプル22件を<br><b>その場で集計できます</b></div>
     <div class="caption">AOASHI ― GUIDE</div>
   </div>
 </section>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>触れるデモあり</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>触れるデモあり</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>触れるデモあり</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>触れるデモあり</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div></div></div>
 
 <div class="benefits">
   <div><i data-lucide="sprout" aria-hidden="true"></i> まずは小さく<span>書面診断¥3,000。作るかどうかは、メモを見てから決められます。</span></div>
@@ -333,7 +355,7 @@
     <p>この店の受注実績は、まだありません。代わりに、触れるデモと設計書の実物を先に置いています。範囲と金額は、着手前に設計書で決めます。途中で金額が膨らむことはありません。</p>
     <p>このサイトの作例・数字は、すべて架空データを使ったサンプルです。実在の顧客の実績ではありません。</p>
   </div>
-  <img class="story-chara" src="part-hero-flat.webp" alt="" aria-hidden="true">
+  <img class="story-chara" src="part-design-sheet.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="steps reveal">
@@ -373,7 +395,7 @@
 </div>
 
 <div class="buddy" aria-hidden="true">
-  <img id="buddy-img" src="part-hero-flat.webp" alt="">
+  <img id="buddy-img" src="part-guide-sheet.webp" alt="">
   <div class="say" id="buddy-say">ご案内します。商品は下に並んでいます。</div>
 </div>
 
@@ -440,7 +462,7 @@ const PRODUCTS = [
     desc:"「自動化できる部分」と「残る部分」を、作る前に切り分ける。",
     price:3000, priceNote:"税込",
     tag:"まずここから",
-    img:"part-delivery-flat.webp", imgAlt:"書類を手渡すヒナ",
+    img:"part-diagnosis-sheet.webp", imgAlt:"チェックリストボードを持つカツオドリ",
     detail:"月末。CSVを開く。集計表に貼る。店舗名のズレを目で探す。直す。合計が合わない。最初から。――その作業の、どこが消えて、どこが残るのか。いまの集計手順をヒアリングシートに書いてもらうと、自動化できる部分・できない部分・進め方を、メモ1枚にして2日で返します。作るかどうかは、メモを見てから決めてください。",
     includes:["ヒアリングシート（記入式）での現状確認","自動化できる部分／できない部分の切り分けメモ1枚","本編に進む場合の進め方と金額（固定）","本編に進んだ場合、診断料¥3,000は本編代金に充当（合計¥40,000のまま）"] },
   { id:"package", type:"service", tint:"t1",
@@ -449,7 +471,7 @@ const PRODUCTS = [
     desc:"書面診断の内容をすべて含む。切り分けから制作、納品まで一括で。",
     price:40000, priceNote:"税込",
     tag:"本編",
-    img:"part-working-flat.webp", imgAlt:"集計作業をするヒナ",
+    img:"part-working-sheet.webp", imgAlt:"ノートPCで集計表を開くカツオドリ",
     detail:"書面診断の内容（切り分けメモと設計書）をすべて含んだうえで、制作まで進めるプランです。CSVを決まった場所に置けば、店舗別・カテゴリ別の集計表まで出来上がる仕組みを作ります。「横浜 店」と「ﾖｺﾊﾏ店」のような表記ゆれは、目で直すのではなくルールで揃えます。受注実績はまだありません。実績の代わりに、上の「触れるデモ」と設計書の実物で判断してください。",
     includes:["書面診断の内容をすべて含みます（切り分けメモ＋改善設計書1枚）","制作：Excelテンプレート、またはPower Automateフロー1本（定型業務1プロセス）","使い方マニュアル","納品後7日間の質疑応答（チャット）","仕様どおりに動かない不具合の修正は、初回の月次運用が終わるまで"] },
   { id:"premium", type:"service", tint:"t7",
@@ -485,7 +507,7 @@ const PRODUCTS = [
     desc:"動かし始めた最初の数か月、月1回の確認と小さな手直し。",
     price:5000, priceNote:"税込 / 月",
     tag:"本編とセットで",
-    img:"part-support-flat.webp", imgAlt:"吹き出しで回答するヒナ",
+    img:"part-support-sheet.webp", imgAlt:"ヘッドセットで対応するカツオドリ",
     detail:"本編・プレミアムをご購入の方への追加オプションです。納品した仕組みについて、月1回の動作確認と、月1回までの小さな手直しを行います。申し込みは、本編の購入先（ココナラ）のチャットからどうぞ。",
     includes:["月1回の動作確認","軽微な手直し（月1回まで）","本編・プレミアム購入者限定","申込は本編の購入先チャットから"] },
   { id:"prompt", type:"digital", tint:"t5",
@@ -613,8 +635,8 @@ dialog.addEventListener("close", () => { if(trigger) trigger.focus(); });
 /* ================= バディ（伴走マスコット） ================= */
 const SCENES = [
   { id:"products", img:"part-tickets-flat.webp", say:"切符はこちら。合うものをどうぞ。" },
-  { id:"demo",     img:"part-sharkfoot-flat.webp", say:"実物、置いておきました。触れます。" },
-  { id:"about",    img:"part-hero-flat.webp",  say:"経歴と進め方を、正直に書いてます。" },
+  { id:"demo",     img:"part-working-sheet.webp", say:"実物、置いておきました。触れます。" },
+  { id:"about",    img:"part-guide-sheet.webp",  say:"経歴と進め方を、正直に書いてます。" },
   { id:"faq",      img:"part-support-flat.webp", say:"聞きたいことは、先に答えてあります。" }
 ];
 SCENES.forEach(s => { const i = new Image(); i.src = s.img; });
@@ -763,11 +785,155 @@ refreshIcons();
         });
       });
     });
-    /* 商品カードは少しずつずらして出す */
+    /* 商品カードは少しずつずらして出す（完了後は transform を消し、ホバーの浮き上がりを妨げない） */
     gsap.fromTo(".card", { opacity: 0, y: 24 }, {
-      opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.08,
+      opacity: 1, y: 0, duration: 0.7, ease: "power2.out", stagger: 0.08, clearProps: "transform",
       scrollTrigger: { trigger: "#cards", start: "top 88%", once: true }
     });
+  }
+})();
+</script>
+
+<script>
+/* ================================================================
+   追加分2：演出強化
+   ----------------------------------------------------------------
+   ・ヒーロー入場（見出しの行マスク＋時間差フェード＋漂い）
+   ・セクション見出しのラインマスク／画像パララックス
+   ・バディのバウンス＋吹き出し（数秒で消える）
+   ・デモ：行が1行ずつ現れて、初回は自動で集計まで進む
+   ・モーダルの GSAP 遷移／プラン選択のポップ
+   プログレッシブエンハンスメント：GSAP が読めなければ何もしない
+   （見出しのマスク分割も GSAP がある時だけ行うので、素の表示は壊れない）。
+   prefers-reduced-motion の場合はすべて無効。本文・価格・導線は変更しない。
+   ================================================================ */
+(function(){
+  "use strict";
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(typeof window.gsap === "undefined") return;
+  var hasST = typeof window.ScrollTrigger !== "undefined";
+
+  /* ---------- 見出しの行マスク ---------- */
+  function maskLines(el){
+    var parts = el.innerHTML.split(/<br\s*\/?>/i);
+    el.innerHTML = parts.map(function(p){
+      return '<span class="lm"><span class="lm-in">' + p + "</span></span>";
+    }).join("");
+    return el.querySelectorAll(".lm-in");
+  }
+
+  /* ---------- 1. ヒーロー入場 ---------- */
+  var h1 = document.querySelector(".hero h1");
+  var heroInners = h1 ? maskLines(h1) : null;
+  var heroImg = document.querySelector(".hero-art img");
+  var tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  tl.fromTo(".hero .eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .5 }, .05);
+  if(heroInners) tl.fromTo(heroInners, { yPercent: 115 }, { yPercent: 0, duration: .85, stagger: .13 }, .14);
+  tl.fromTo(".hero .intro", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .6 }, .52)
+    .fromTo(".hero .facts", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .55 }, .64)
+    .fromTo(".hero .primary", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .55 }, .74)
+    .fromTo(".hero .fine", { opacity: 0 }, { opacity: 1, duration: .6 }, .86);
+  if(heroImg){
+    tl.fromTo(heroImg, { opacity: 0, scale: .965 }, { opacity: 1, scale: 1, duration: .9, ease: "power2.out" }, .5)
+      .add(function(){ gsap.to(heroImg, { y: -10, duration: 2.9, ease: "sine.inOut", yoyo: true, repeat: -1 }); });
+  }
+  [[".floating.first", 3.6, -7], [".floating.second", 2.7, 7]].forEach(function(cfg, i){
+    var el = document.querySelector(cfg[0]);
+    if(!el) return;
+    tl.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .6 }, .95 + i * .13)
+      .add(function(){ gsap.to(el, { y: cfg[2], duration: cfg[1], ease: "sine.inOut", yoyo: true, repeat: -1, delay: .2 }); });
+  });
+
+  /* ---------- 2. セクション見出しのラインマスク＋画像パララックス ---------- */
+  if(hasST){
+    document.querySelectorAll(".catalog h2, .demo-sec h2, .story h2, .steps h2, .faq h2").forEach(function(h){
+      var inners = maskLines(h);
+      gsap.fromTo(inners, { yPercent: 115 }, {
+        yPercent: 0, duration: .8, ease: "power3.out", stagger: .12,
+        scrollTrigger: { trigger: h, start: "top 92%", once: true }
+      });
+    });
+    function plx(el, amt, trig){
+      if(!el) return;
+      gsap.fromTo(el, { y: -amt }, { y: amt, ease: "none",
+        scrollTrigger: { trigger: trig || el, start: "top bottom", end: "bottom top", scrub: .6 } });
+    }
+    plx(document.querySelector(".family-chara"), 10, document.querySelector(".family-strip"));
+    plx(document.querySelector(".story-chara"), 14, document.querySelector(".story"));
+    document.querySelectorAll(".card .visual img").forEach(function(img){ plx(img, 5, img.closest(".card")); });
+  }
+
+  /* ---------- 3. バディ：セクション切替でバウンス＋吹き出し（数秒で消える） ---------- */
+  var buddySayEl = document.getElementById("buddy-say");
+  var buddyImgEl = document.getElementById("buddy-img");
+  if(buddySayEl && buddyImgEl){
+    var hideTimer = null;
+    function armHide(ms){
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function(){ buddySayEl.style.opacity = "0"; }, ms);
+    }
+    armHide(5200); /* 初回の挨拶も、しばらくしたら引っ込める */
+    new MutationObserver(function(){
+      armHide(4200);
+      gsap.timeline()
+        .to(buddyImgEl, { y: -11, duration: .16, ease: "power2.out" })
+        .to(buddyImgEl, { y: 0, duration: .5, ease: "bounce.out" });
+      gsap.fromTo(buddySayEl, { scale: .72 }, { scale: 1, duration: .38, ease: "back.out(2.2)", transformOrigin: "0% 100%", clearProps: "transform" });
+    }).observe(buddySayEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  /* ---------- 4. デモ：画面に入ったら行が1行ずつ現れ、数字がカウントアップ ---------- */
+  var demoSec = document.getElementById("demo");
+  var fxRunBtn = document.getElementById("demo-run");
+  if(demoSec && fxRunBtn && "IntersectionObserver" in window){
+    var rows = demoSec.querySelectorAll("#demo-rows tr");
+    gsap.set(rows, { opacity: 0 });
+    var played = false;
+    var dio = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting || played) return;
+        played = true; dio.disconnect();
+        var tl2 = gsap.timeline();
+        tl2.to(rows, { opacity: 1, duration: .35, stagger: .07, ease: "power1.out" });
+        tl2.add(function(){
+          var res = document.getElementById("demo-result");
+          if(res && res.hidden){
+            fxRunBtn.click(); /* 既存の集計処理をそのまま使う（数字のカウントアップ込み） */
+            gsap.fromTo(".bar-row", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .45, stagger: .12, delay: .15, clearProps: "opacity,transform" });
+            var prows = document.querySelectorAll("#pivot-wrap tbody tr");
+            if(prows.length) gsap.fromTo(prows, { opacity: 0 }, { opacity: 1, duration: .4, stagger: .14, delay: .3, clearProps: "opacity" });
+          }
+        }, "+=0.15");
+      });
+    }, { threshold: .25 });
+    dio.observe(demoSec);
+  }
+
+  /* ---------- 5. モーダル：開閉の GSAP 遷移／内容の差し替え／プラン選択のポップ ---------- */
+  var fxDialog = document.getElementById("dialog");
+  var fxContent = document.getElementById("modal-content");
+  if(fxDialog){
+    new MutationObserver(function(){
+      if(fxDialog.open){
+        gsap.fromTo(fxDialog, { opacity: 0, scale: .955, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: .38, ease: "power3.out", clearProps: "opacity,transform" });
+      }
+    }).observe(fxDialog, { attributes: true, attributeFilter: ["open"] });
+    /* 閉じる操作（ボタン／背景クリック）にもフェード＋スケールを付ける。Escキーはブラウザ標準のまま即時閉じ */
+    var nativeClose = fxDialog.close.bind(fxDialog);
+    var closingFx = false;
+    fxDialog.close = function(){
+      if(closingFx || !fxDialog.open){ nativeClose(); return; }
+      closingFx = true;
+      gsap.to(fxDialog, { opacity: 0, scale: .965, y: 10, duration: .2, ease: "power2.in",
+        onComplete: function(){ gsap.set(fxDialog, { clearProps: "opacity,transform" }); closingFx = false; nativeClose(); } });
+    };
+  }
+  if(fxContent){
+    new MutationObserver(function(){
+      gsap.fromTo(fxContent, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .3, ease: "power2.out", clearProps: "opacity,transform" });
+      var on = fxContent.querySelector(".plan-card.on");
+      if(on) gsap.fromTo(on, { scale: .9 }, { scale: 1, duration: .4, ease: "back.out(3.2)", clearProps: "transform", delay: .04 });
+    }).observe(fxContent, { childList: true });
   }
 })();
 </script>
