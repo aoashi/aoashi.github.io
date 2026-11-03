@@ -267,6 +267,21 @@
   .visual{overflow:hidden;}
   .visual::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(105deg,transparent 42%,rgba(201,160,94,.45) 50%,transparent 58%);transform:translateX(-130%);transition:transform .9s ease;}
   .card:hover .visual::after{transform:translateX(130%);}
+  /* ===== 追加分3：相談導線（ヒーローのサブボタン／相談セクション） ===== */
+  .secondary{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--teal);background:var(--paper);color:var(--teal-deep);padding:13px 22px;border-radius:8px;font-size:13.5px;font-weight:700;text-decoration:none;transition:background .2s,color .2s;}
+  .secondary svg.lucide{color:var(--brass-deep);}
+  .secondary:hover{background:var(--teal);color:var(--paper);}
+  .secondary:hover svg.lucide{color:var(--brass);}
+  .hero .secondary{margin:24px 0 14px 12px;}
+  .contact{display:flex;gap:28px;align-items:center;padding:30px 0 64px;border-top:2px solid var(--brass);}
+  .contact-chara{width:150px;flex:none;filter:drop-shadow(0 8px 12px rgba(30,50,70,.2));}
+  .contact p{font-size:12.5px;color:#33424e;line-height:1.95;max-width:660px;margin-top:12px;}
+  .contact .primary{margin-top:20px;}
+  @media(max-width:760px){
+    .hero .secondary{margin:0 0 14px;}
+    .contact{flex-direction:column;align-items:flex-start;gap:14px;padding:24px 0 48px;}
+    .contact-chara{width:110px;}
+  }
   /* モーダル背景のフェードイン */
   dialog[open]::backdrop{animation:bdin .3s ease;}
   @keyframes bdin{from{opacity:0;}}
@@ -282,6 +297,7 @@
     <a href="#products">料金と商品</a>
     <a href="#demo">触れるデモ</a>
     <a href="#about">この店について</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhoxPUnkLl9iwa7ARnYj9-72YTYrY7xCsPblVf0JVd4XQNDQ/viewform" target="_blank" rel="noopener">相談する</a>
     <a href="#faq" class="pill">よくある質問 <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
   </div>
 </nav>
@@ -297,6 +313,7 @@
       <span>受注実績はまだ0件です。判断材料は、下の触れるデモと設計書の実物です</span>
     </div>
     <a class="primary" href="#products">料金と商品を見る <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+    <a class="secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhoxPUnkLl9iwa7ARnYj9-72YTYrY7xCsPblVf0JVd4XQNDQ/viewform" target="_blank" rel="noopener">相談してみる（無料） <i data-lucide="external-link" aria-hidden="true"></i></a>
     <div class="fine">デジタル商品・オンラインサービスです。支払いは購入先（ココナラ／note）の決済ページで行い、このサイトでカード情報を扱うことはありません。</div>
   </div>
   <div class="hero-art" aria-label="案内役のマスコット">
@@ -392,6 +409,16 @@
     <details><summary>納品後に直してほしい点が出たら？</summary><p>3つに分けて対応します。使い方の質問は、納品後7日間、チャットでお答えします。合意した仕様どおりに動かない不具合は、初回の月次運用が終わるまで直します。仕様そのものの追加や変更は、別のお見積もりです。</p></details>
     <details><summary>既製プランに合わない業務でも頼めますか？</summary><p>オーダーメイドで受けます。入口は書面診断か、チャットでの相談です。範囲と進め方を設計書にまとめ、金額と納期は見積もりで決めてから始めます。見積もりだけで終わっても構いません。</p></details>
     <details><summary>返金・キャンセルはできますか？</summary><p>デジタル商品は、その性質上、納品後の返金・キャンセルは原則としてお受けできません。サービスは、制作に着手する前までキャンセルできます。詳しくは<a href="legal.html">特定商取引法に基づく表記</a>をご覧ください。</p></details>
+  </div>
+</section>
+
+<section class="contact reveal" id="contact">
+  <img class="contact-chara" src="part-delivery-sheet.webp" alt="" aria-hidden="true" loading="lazy">
+  <div>
+    <div class="eyebrow">CONTACT / 相談</div>
+    <h2>迷ったら、相談してみる</h2>
+    <p>無料チェックリスト『その集計、自動化できるかどうかの見分け方』（A4・1枚）を、メールで送ります。集計作業の相談も同じフォームからどうぞ。内容を確認して返信します。自動化の実施は、書面診断¥3,000からの案内になります。</p>
+    <a class="primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfhoxPUnkLl9iwa7ARnYj9-72YTYrY7xCsPblVf0JVd4XQNDQ/viewform" target="_blank" rel="noopener">チェックリストを受け取る・相談する <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
   </div>
 </section>
 </main>
