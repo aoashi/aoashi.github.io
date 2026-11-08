@@ -418,6 +418,71 @@
   /* 追随バーの分、アンカー移動先の上端を確保 */
   section[id]{scroll-margin-top:64px;}
 </style>
+<style>
+  /* ===== 追加分8：第5回「ゲーミフィケーション」（既存スタイルは変更しない） ===== */
+  /* 3問診断（#diag）。.payback-card / .pbsim の見た目に合わせる */
+  .diag{padding:64px 0 8px;}
+  .diag p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .diag-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:22px 24px;margin-top:22px;max-width:760px;box-shadow:0 6px 18px rgba(30,50,70,.08);}
+  .diag-progress{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .diag-progress-label{flex:none;font-size:12px;font-weight:800;color:var(--teal-deep);font-variant-numeric:tabular-nums;}
+  .diag-track{flex:1;height:8px;background:rgba(38,80,72,.12);border-radius:4px;overflow:hidden;}
+  .diag-fill{height:100%;background:var(--teal);border-radius:4px;transition:width .45s ease;}
+  .diag-q:not([hidden]),.diag-result:not([hidden]){animation:diag-in .28s ease both;}
+  @keyframes diag-in{from{opacity:0;transform:translateX(14px);}}
+  .diag-q-title{font-size:16px;font-weight:800;line-height:1.65;color:var(--ink);}
+  .diag-q-title:focus,.diag-score:focus{outline:none;}
+  .diag-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px;}
+  .diag-opt{min-height:52px;padding:10px 12px;background:var(--paper);border:1.5px solid var(--line);border-radius:8px;color:var(--ink);font-size:13.5px;font-weight:700;line-height:1.5;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease;}
+  .diag-opt:active{transform:scale(.98);}
+  .diag-opt.on{background:var(--teal-deep);border-color:var(--brass-deep);color:var(--paper);}
+  @media(hover:hover){.diag-opt:not(.on):hover{border-color:var(--teal);background:rgba(38,80,72,.07);}}
+  .diag-back,.diag-retry{background:none;border:0;color:var(--sub);font-size:12px;font-weight:700;padding:8px 4px;margin-top:8px;text-decoration:underline;text-underline-offset:3px;}
+  .diag-back:hover,.diag-retry:hover{color:var(--teal-deep);}
+  .diag-back:disabled{visibility:hidden;}
+  .diag-score-label{display:block;font-size:12.5px;font-weight:700;color:var(--sub);}
+  .diag-score-line{display:flex;align-items:baseline;gap:8px;}
+  .diag-score-num{font-size:clamp(48px,6vw,60px);font-weight:800;line-height:1.2;color:var(--teal-deep);font-variant-numeric:tabular-nums;}
+  .diag-score-max{font-size:16px;font-weight:800;color:var(--sub);}
+  .diag-gauge{margin-top:6px;height:12px;border-radius:6px;}
+  .diag-gauge .diag-fill{border-radius:6px;background:linear-gradient(90deg,var(--teal) 0%,var(--brass) 100%);transition:width .9s cubic-bezier(.22,.61,.36,1);}
+  .diag-type{margin-top:16px;font-size:19px;font-weight:800;line-height:1.55;color:var(--teal-deep);}
+  .diag-finding{margin-top:6px;font-size:13.5px;line-height:1.9;color:#33424e;}
+  .diag-note{margin-top:10px;font-size:.76rem;line-height:1.8;color:var(--sub);}
+  .diag-cta{margin-top:16px;gap:18px;}
+  .diag-retry{display:block;margin-top:10px;}
+  /* シミュレーターのランク表示（.pbsim の中） */
+  .pbsim-rank{margin-top:10px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;}
+  .pbsim-rank-label{display:block;font-size:11.5px;font-weight:700;color:var(--sub);line-height:1.6;}
+  .pbsim-rank-name{display:block;font-size:clamp(18px,2.2vw,22px);font-weight:800;line-height:1.5;transition:color .3s ease;}
+  .pbsim-rank-name[data-rank="1"],.pbsim-rank-name[data-rank="2"]{color:var(--teal-deep);}
+  .pbsim-rank-name[data-rank="3"]{color:var(--teal);}
+  .pbsim-rank-name[data-rank="4"]{color:var(--sub);}
+  .pbsim-rank-track{height:8px;margin-top:6px;background:rgba(38,80,72,.12);border-radius:4px;overflow:hidden;}
+  .pbsim-rank-fill{height:100%;background:var(--teal);border-radius:4px;transition:width .4s ease,background .3s ease;}
+  .pbsim-rank-fill[data-rank="4"]{background:var(--sub);}
+  .pbsim-rank-note{display:block;margin-top:6px;font-size:.74rem;line-height:1.7;color:var(--sub);}
+  /* 5ステップの進捗チェック（.flow-step の中） */
+  .flow-check{position:absolute;top:8px;right:0;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--teal-deep);color:var(--paper);opacity:0;transform:scale(.4);transition:opacity .25s ease,transform .35s cubic-bezier(.34,1.56,.64,1);}
+  .flow-check svg.lucide{width:13px;height:13px;stroke-width:3;}
+  .flow-step.checked .flow-check{opacity:1;transform:scale(1);transition-delay:150ms;}
+  @media(min-width:761px){
+    /* PCは5つが同時に判定されるので、順次フェードインの遅れ分を足して各ステップの後に出す */
+    .flow-step:nth-child(2).checked .flow-check{transition-delay:270ms;}
+    .flow-step:nth-child(3).checked .flow-check{transition-delay:390ms;}
+    .flow-step:nth-child(4).checked .flow-check{transition-delay:510ms;}
+    .flow-step:nth-child(5).checked .flow-check{transition-delay:630ms;}
+  }
+  @media(max-width:760px){
+    .diag{padding:44px 0 4px;}
+    .diag-card{padding:16px 14px;}
+    .diag-options{grid-template-columns:1fr;}
+    .diag-q-title{font-size:15px;}
+    .diag-cta{display:flex;}
+    .pbsim-rank{padding:11px 12px;}
+    .flow-check{top:0;right:0;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -464,6 +529,59 @@
   <div><i data-lucide="shield-check" aria-hidden="true"></i> 合計は先に決まります<span>診断から本編に進んでも、合計は¥40,000のまま。設計書の金額から、後で増えることはありません。</span></div>
 </div>
 
+<section class="diag reveal" id="diag">
+  <div class="eyebrow">CHECK / 3問診断</div>
+  <h2>3問で測る、自動化ポテンシャル。</h2>
+  <p class="lead">毎月の集計の状態を3問で測ります。答えると、自動化ポテンシャルスコア（100点満点）と、あなたの型が出ます。</p>
+  <div class="diag-card" id="diag-card">
+    <div class="diag-progress">
+      <span class="diag-progress-label" id="diag-progress-label">質問 1 / 3</span>
+      <div class="diag-track" aria-hidden="true"><div class="diag-fill" id="diag-progress-fill" style="width:33%"></div></div>
+    </div>
+    <div class="diag-q" data-q="0">
+      <h3 class="diag-q-title" tabindex="-1">毎月の集計・転記で、どれくらい時間が減らせそうですか。</h3>
+      <div class="diag-options">
+        <button type="button" class="diag-opt" data-v="0" aria-pressed="false">1時間まで</button>
+        <button type="button" class="diag-opt" data-v="1" aria-pressed="false">3時間くらい</button>
+        <button type="button" class="diag-opt" data-v="2" aria-pressed="false">5時間くらい</button>
+        <button type="button" class="diag-opt" data-v="3" aria-pressed="false">5時間を超える</button>
+      </div>
+      <button type="button" class="diag-back" disabled>もどる</button>
+    </div>
+    <div class="diag-q" data-q="1" hidden>
+      <h3 class="diag-q-title" tabindex="-1">転記ミスや二重入力は、どれくらい起きますか。</h3>
+      <div class="diag-options">
+        <button type="button" class="diag-opt" data-v="0" aria-pressed="false">よくある</button>
+        <button type="button" class="diag-opt" data-v="1" aria-pressed="false">たまにある</button>
+        <button type="button" class="diag-opt" data-v="2" aria-pressed="false">ほぼない</button>
+      </div>
+      <button type="button" class="diag-back">もどる</button>
+    </div>
+    <div class="diag-q" data-q="2" hidden>
+      <h3 class="diag-q-title" tabindex="-1">月末・締め日は、どれくらい追われますか。</h3>
+      <div class="diag-options">
+        <button type="button" class="diag-opt" data-v="0" aria-pressed="false">かなり追われる</button>
+        <button type="button" class="diag-opt" data-v="1" aria-pressed="false">少し追われる</button>
+        <button type="button" class="diag-opt" data-v="2" aria-pressed="false">余裕がある</button>
+      </div>
+      <button type="button" class="diag-back">もどる</button>
+    </div>
+    <div class="diag-result" id="diag-result" hidden>
+      <div class="diag-score" id="diag-score" role="img" tabindex="-1">
+        <span class="diag-score-label">自動化ポテンシャルスコア</span>
+        <div class="diag-score-line"><span class="diag-score-num" id="diag-score-num">0</span><span class="diag-score-max">/ 100</span></div>
+      </div>
+      <div class="diag-track diag-gauge" aria-hidden="true"><div class="diag-fill" id="diag-gauge-fill" style="width:0%"></div></div>
+      <h3 class="diag-type" id="diag-type"></h3>
+      <p class="diag-finding" id="diag-finding"></p>
+      <p class="diag-note">スコアの付け方： かかる時間（40点満点）＋ミスの起きやすさ（30点満点）＋締め日の追われ感（30点満点）。これは簡易診断です。正確な判定は書面診断で行います。</p>
+      <p class="diag-note">Q1の回答（月<span id="diag-hours"></span>時間）は、下の回収シミュレーターにも反映しました。</p>
+      <a class="primary diag-cta" href="#contact">書面診断 ¥3,000 で、あなたの業務の棚卸しをする <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      <button type="button" class="diag-retry" id="diag-retry">もう一度診断する</button>
+    </div>
+  </div>
+</section>
+
 <section class="payback reveal" id="payback">
   <div class="eyebrow">PAYBACK / 元が取れる目安</div>
   <h2><span class="count-yen" data-count-to="40000">¥40,000</span>は、何ヶ月で元が取れるか。</h2>
@@ -487,6 +605,12 @@
         <div class="pbsim-result"><span class="pbsim-result-label">月あたり削減見込み額</span><span class="pbsim-result-num" id="pbsim-monthly">¥6,000</span></div>
         <div class="pbsim-result is-key"><span class="pbsim-result-label">¥40,000の元が取れるまで</span><span class="pbsim-result-num" id="pbsim-months">約6.7ヶ月</span></div>
         <div class="pbsim-result"><span class="pbsim-result-label">年間削減見込み額</span><span class="pbsim-result-num" id="pbsim-annual">¥72,000</span></div>
+      </div>
+      <div class="pbsim-rank">
+        <span class="pbsim-rank-label">回収ランク</span>
+        <span class="pbsim-rank-name" id="pbsim-rank-name" data-rank="3" aria-live="polite">妥当な回収圏</span>
+        <div class="pbsim-rank-track" aria-hidden="true"><div class="pbsim-rank-fill" id="pbsim-rank-fill" data-rank="3" style="width:44%"></div></div>
+        <span class="pbsim-rank-note">ランクは、上の試算にもとづく目安です。</span>
       </div>
       <p class="payback-note">※ あなたの入力での試算です。実際に何時間減るかは業務によって異なります。書面診断¥3,000の切り分けメモで、先に確認できます。</p>
     </div>
@@ -609,11 +733,11 @@
   <div class="eyebrow">AFTER PAYMENT / 購入後の流れ</div>
   <h2>払ったあと、何が起きるか。</h2>
   <ol class="flow-steps">
-    <li class="flow-step"><span class="flow-num">01</span><h3>申込</h3><p>商品を選んで、購入先（ココナラ／note）のページで支払います。このサイトの中で、カード情報を入力する場面はありません。</p></li>
-    <li class="flow-step"><span class="flow-num">02</span><h3>書面診断 ¥3,000</h3><p>いまの集計手順を切り分け、消える作業と残る作業をメモ1枚にして、2日で返します。診断料は、本編に進めば全額充当します。</p></li>
-    <li class="flow-step"><span class="flow-num">03</span><h3>ヒアリングシート</h3><p>本編に進む場合、記入式のシートで業務の細部を確認します。シートが届いた日から、納期を数えます。</p></li>
-    <li class="flow-step"><span class="flow-num">04</span><h3>設計・納品</h3><p>設計書で範囲と金額を固定してから作ります。テンプレート／フローを納め（本編7日）、使い方マニュアルと、納品後7日間の質疑応答が付きます。</p></li>
-    <li class="flow-step"><span class="flow-num">05</span><h3>見守り ¥5,000/月</h3><p>納品したあとも、月1回の動作確認と小さな手直し。本編を買った方だけの、任意の継続プランです。</p></li>
+    <li class="flow-step"><span class="flow-num">01</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>申込</h3><p>商品を選んで、購入先（ココナラ／note）のページで支払います。このサイトの中で、カード情報を入力する場面はありません。</p></li>
+    <li class="flow-step"><span class="flow-num">02</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>書面診断 ¥3,000</h3><p>いまの集計手順を切り分け、消える作業と残る作業をメモ1枚にして、2日で返します。診断料は、本編に進めば全額充当します。</p></li>
+    <li class="flow-step"><span class="flow-num">03</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>ヒアリングシート</h3><p>本編に進む場合、記入式のシートで業務の細部を確認します。シートが届いた日から、納期を数えます。</p></li>
+    <li class="flow-step"><span class="flow-num">04</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>設計・納品</h3><p>設計書で範囲と金額を固定してから作ります。テンプレート／フローを納め（本編7日）、使い方マニュアルと、納品後7日間の質疑応答が付きます。</p></li>
+    <li class="flow-step"><span class="flow-num">05</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>見守り ¥5,000/月</h3><p>納品したあとも、月1回の動作確認と小さな手直し。本編を買った方だけの、任意の継続プランです。</p></li>
   </ol>
   <p class="flow-note">やり取りは、すべて書面・チャットで完結します。電話・会議はありません。</p>
 </section>
@@ -1324,6 +1448,176 @@ function paybackCalc(hours, wage){
     new IntersectionObserver(function(es){ heroIn = es[es.length - 1].isIntersecting; syncCta(); }).observe(ctaHero);
     new IntersectionObserver(function(es){ contactIn = es[es.length - 1].isIntersecting; syncCta(); }).observe(ctaContact);
     if(ctaDialog) new MutationObserver(syncCta).observe(ctaDialog, { attributes: true, attributeFilter: ["open"] });
+  }
+})();
+</script>
+
+<script>
+/* ================================================================
+   追加分4：第5回「ゲーミフィケーション」
+   ----------------------------------------------------------------
+   ・3問診断（#diag）：スコア／型／次の一手
+   ・回収ランク（.pbsim-rank）
+   ・5ステップの進捗チェック（.flow-check）
+   既存の paybackCalc / REDUCED は読むだけ。既存スクリプトは変更しない。
+   ================================================================ */
+function diagCalc(q1, q2, q3){
+  var p1 = [10, 20, 30, 40][q1];
+  var p2 = [30, 20, 10][q2];
+  var p3 = [30, 20, 10][q3];
+  var score = p1 + p2 + p3;
+  var type;
+  if(score <= 40) type = "almost";
+  else if(q2 === 0) type = "mistake";
+  else if(q3 === 0) type = "squeeze";
+  else type = "volume";
+  var hours = [1, 3, 5, 8][q1];
+  return { score: score, type: type, hours: hours };
+}
+
+function paybackRank(months){
+  var rank, label;
+  if(months <= 3){ rank = 1; label = "即回収圏"; }
+  else if(months <= 6){ rank = 2; label = "優良な投資圏"; }
+  else if(months <= 12){ rank = 3; label = "妥当な回収圏"; }
+  else { rank = 4; label = "まず診断で作業の棚卸しから"; }
+  var fill = months >= 12 ? 4 : Math.max(4, Math.round((12 - months) / 12 * 100));
+  return { rank: rank, label: label, fill: fill };
+}
+
+(function(){
+  "use strict";
+  var byId = function(id){ return document.getElementById(id); };
+  var hoursEl = byId("pbsim-hours"), wageEl = byId("pbsim-wage");
+
+  /* ---------- 1. 3問診断 ---------- */
+  var card = byId("diag-card");
+  if(card){
+    var TYPES = {
+      squeeze: { name: "締め日に追われる手作業型", finding: "締め日に作業が集中しています。月の手順を先に固定して、自動で流れる形にすると、締め日の山が崩れます。" },
+      mistake: { name: "ミス防止が先の型", finding: "転記ミスと二重入力の手戻りが、先に効いています。表記ゆれをルールで揃える設計にすると、確認と直しの時間が減ります。" },
+      almost:  { name: "あと一歩で流れる型", finding: "大きな詰まりは無さそうです。残っている手作業の山場だけを切り分けて自動化すると、無理なく効きます。" },
+      volume:  { name: "作業量から崩す型", finding: "毎月の手作業の量そのものが多い状態です。時間の大きい工程から自動化すると、回収の見通しが立ちます。" }
+    };
+    var PROGRESS = [33, 66, 100];
+    var panes = Array.prototype.slice.call(card.querySelectorAll(".diag-q"));
+    var result = byId("diag-result"), label = byId("diag-progress-label"), bar = byId("diag-progress-fill");
+    var scoreBox = byId("diag-score"), scoreNum = byId("diag-score-num"), gauge = byId("diag-gauge-fill");
+    var answers = [null, null, null], advanceTimer = 0, countRaf = 0;
+
+    var cancelAdvance = function(){ clearTimeout(advanceTimer); advanceTimer = 0; };
+    /* 非表示になるボタンからフォーカスが失われないよう、次の表示先へ移す（スクロールはさせない） */
+    var focusQuiet = function(el){ el.focus({ preventScroll: true }); };
+
+    var showQuestion = function(i, moveFocus){
+      result.hidden = true;
+      panes.forEach(function(p, n){ p.hidden = n !== i; });
+      label.textContent = "質問 " + (i + 1) + " / 3";
+      bar.style.width = PROGRESS[i] + "%";
+      if(moveFocus) focusQuiet(panes[i].querySelector(".diag-q-title"));
+    };
+
+    var countScore = function(score){
+      if(REDUCED){ scoreNum.textContent = score; return; }
+      var t0 = performance.now();
+      var step = function(t){
+        var p = Math.min(1, Math.max(0, t - t0) / 900);
+        scoreNum.textContent = Math.round(score * (1 - Math.pow(1 - p, 3)));
+        if(p < 1) countRaf = requestAnimationFrame(step);
+      };
+      countRaf = requestAnimationFrame(step);
+    };
+
+    var showResult = function(){
+      var r = diagCalc(answers[0], answers[1], answers[2]);
+      panes.forEach(function(p){ p.hidden = true; });
+      result.hidden = false;
+      label.textContent = "結果";
+      bar.style.width = "100%";
+      byId("diag-type").textContent = TYPES[r.type].name;
+      byId("diag-finding").textContent = TYPES[r.type].finding;
+      byId("diag-hours").textContent = r.hours;
+      scoreBox.setAttribute("aria-label", "自動化ポテンシャルスコア " + r.score + "点（100点満点）");
+      scoreNum.textContent = "0";
+      gauge.style.width = "0%";
+      void gauge.offsetWidth; /* 0% の状態を確定させてから充填のトランジションを走らせる */
+      gauge.style.width = r.score + "%";
+      countScore(r.score);
+      focusQuiet(scoreBox);
+    };
+
+    var choose = function(q, v, btn){
+      if(advanceTimer) return; /* 連打で質問を飛ばさない */
+      answers[q] = v;
+      panes[q].querySelectorAll(".diag-opt").forEach(function(b){
+        var on = b === btn;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      if(q === 0 && hoursEl){
+        hoursEl.value = diagCalc(v, 0, 0).hours;
+        hoursEl.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      var advance = function(){
+        advanceTimer = 0;
+        if(q < panes.length - 1) showQuestion(q + 1, true); else showResult();
+      };
+      if(REDUCED) advance(); else advanceTimer = setTimeout(advance, 300);
+    };
+
+    panes.forEach(function(pane, q){
+      pane.querySelectorAll(".diag-opt").forEach(function(btn){
+        btn.addEventListener("click", function(){ choose(q, Number(btn.getAttribute("data-v")), btn); });
+      });
+      pane.querySelector(".diag-back").addEventListener("click", function(){
+        if(q === 0) return;
+        cancelAdvance();
+        showQuestion(q - 1, true);
+      });
+    });
+
+    byId("diag-retry").addEventListener("click", function(){
+      cancelAdvance();
+      cancelAnimationFrame(countRaf);
+      answers = [null, null, null];
+      card.querySelectorAll(".diag-opt").forEach(function(b){
+        b.classList.remove("on");
+        b.setAttribute("aria-pressed", "false");
+      });
+      scoreNum.textContent = "0";
+      gauge.style.width = "0%";
+      showQuestion(0, true);
+    });
+  }
+
+  /* ---------- 2. 回収ランク ---------- */
+  var rankName = byId("pbsim-rank-name"), rankFill = byId("pbsim-rank-fill");
+  if(hoursEl && wageEl && rankName && rankFill){
+    var syncRank = function(){
+      var r = paybackRank(paybackCalc(Number(hoursEl.value), Number(wageEl.value)).months);
+      rankName.textContent = r.label;
+      rankName.setAttribute("data-rank", r.rank);
+      rankFill.setAttribute("data-rank", r.rank);
+      rankFill.style.width = r.fill + "%";
+    };
+    syncRank();
+    hoursEl.addEventListener("input", syncRank);
+    wageEl.addEventListener("input", syncRank);
+  }
+
+  /* ---------- 3. 5ステップの進捗チェック ---------- */
+  var flowSteps = document.querySelectorAll(".flow-steps .flow-step");
+  if(REDUCED || !("IntersectionObserver" in window)){
+    flowSteps.forEach(function(s){ s.classList.add("checked"); });
+  } else {
+    var checkIO = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting) return;
+        en.target.classList.add("checked");
+        checkIO.unobserve(en.target);
+      });
+    }, { threshold: .6 });
+    flowSteps.forEach(function(s){ checkIO.observe(s); });
   }
 })();
 </script>
