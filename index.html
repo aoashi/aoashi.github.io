@@ -77,13 +77,14 @@
   .primary:active{transform:translateY(1px);box-shadow:inset 0 2px 5px rgba(0,0,0,.35),inset 0 -1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(201,160,94,.35),0 2px 6px rgba(27,58,52,.28);}
   .hero .primary{margin:24px 0 14px;}
   .fine{font-size:10.5px;color:var(--sub);}
-  .hero-art{position:relative;display:grid;place-items:center;min-height:400px;}
+  .hero-art{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;}
   .hero-art img{width:min(400px,100%);max-height:600px;object-fit:contain;margin:0;filter:drop-shadow(0 14px 22px rgba(30,50,70,.22));}
-  .floating{position:absolute;background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;z-index:2;}
+  .hero-cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;width:100%;margin-top:22px;}
+  .floating{background:#fffdf7;padding:12px 18px;border-radius:8px;box-shadow:0 8px 22px rgba(30,50,70,.14);font-size:11.5px;line-height:1.6;}
   .floating b{font-size:15px;color:var(--teal-deep);}
-  .floating.first{left:18px;bottom:52px;transform:rotate(-4deg);}
-  .floating.second{right:14px;top:52px;transform:rotate(5deg);}
-  .hero-art .caption{position:absolute;bottom:14px;right:20px;font-size:9px;letter-spacing:.16em;color:var(--sub);}
+  .floating.first{transform:rotate(-4deg);}
+  .floating.second{transform:rotate(5deg);}
+  .hero-art .caption{align-self:flex-end;margin-top:12px;font-size:9px;letter-spacing:.16em;color:var(--sub);}
   /* ベネフィット帯 */
   .benefits{display:flex;justify-content:space-between;gap:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;font-size:12px;font-weight:700;}
   .benefits span{color:var(--sub);margin-left:10px;font-weight:400;}
@@ -114,7 +115,7 @@
   /* 触れるデモ */
   .demo-sec{padding:64px 0 10px;}
   .demo-sec p.lead{color:#33424e;max-width:660px;margin-top:12px;font-size:13.5px;}
-  .demo-movie{max-width:720px;margin:22px 0 2px;}
+  .demo-movie{max-width:720px;margin:2px 0 30px;}
   .demo-movie-cap{font-weight:700;font-size:1rem;color:var(--teal-deep);margin:0 0 10px;}
   .demo-movie video{display:block;width:100%;height:auto;border:1px solid #eadfc2;border-radius:10px;background:#23423c;box-shadow:0 6px 14px rgba(27,58,52,.18);}
   .demo-raw{max-height:180px;overflow:auto;max-width:660px;border-top:2px dotted #d8cfba;border-bottom:2px dotted #d8cfba;margin:18px 0 6px;}
@@ -235,7 +236,8 @@
     .steps-grid{grid-template-columns:1fr;gap:14px}
     .faq{grid-template-columns:1fr;gap:18px}
     .modal{padding:22px}.modal-grid{grid-template-columns:1fr;gap:14px}.modal .visual{height:170px}
-    .floating.first{left:8px}.floating.second{right:8px}
+    .hero-cards{gap:10px;margin-top:16px}
+    .floating{flex:1 1 100%}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -518,11 +520,18 @@
   </div>
   <div class="hero-art" aria-label="案内役のマスコット">
     <img src="part-hero-sheet-anim.webp" alt="タブレットを掲げて案内するアオアシカツオドリと、頭の上に乗る小さなサメ" fetchpriority="high" onerror="this.onerror=null;this.src='part-hero-sheet.webp';">
-    <div class="floating first">表記ゆれは、目で直さず<br><b>ルールで揃える。</b></div>
-    <div class="floating second">サンプル22件を<br><b>その場で集計できます</b></div>
+    <div class="hero-cards">
+      <div class="floating first">表記ゆれは、目で直さず<br><b>ルールで揃える。</b></div>
+      <div class="floating second">サンプル22件を<br><b>その場で集計できます</b></div>
+    </div>
     <div class="caption">AOASHI ― GUIDE</div>
   </div>
 </section>
+
+<div class="demo-movie">
+  <p class="demo-movie-cap">26秒で見る、受け取ってから納品まで。</p>
+  <video autoplay muted loop playsinline preload="metadata" poster="demo-flow-poster.webp" src="demo-flow.mp4" aria-label="受け取りから納品まで、集計自動化の流れを案内する動画（26秒）"></video>
+</div>
 
 <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面診断 ¥3,000／本編 ¥40,000</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面診断 ¥3,000／本編 ¥40,000</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面診断 ¥3,000／本編 ¥40,000</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div><div class="tick-group"><span>月次集計の自動化</span><i class="tick-dot"></i><span>書面診断 ¥3,000／本編 ¥40,000</span><i class="tick-dot"></i><span>書面・チャット完結</span><i class="tick-dot"></i><span>納期は日数で固定</span><i class="tick-dot"></i></div></div></div>
 
@@ -707,10 +716,6 @@
   <div class="eyebrow">TOUCHABLE DEMO / 触れるデモ</div>
   <h2>納品物の形を、そのまま触れます。</h2>
   <p class="lead">下の表は、架空の売上データ22件です。店舗名が「横浜 店」「ﾖｺﾊﾏ店」とバラバラに入っているところを見てください。「集計する」を押すと、表記をルールで揃えてから、月別と店舗×カテゴリ別に集計します。出てくる数字は、2026年9月 ¥366,600／10月 ¥386,300／合計 ¥752,900（22件）。Excelで同じ集計をした結果と一致する値です。本編（¥40,000）を買うと、この集計が、あなたのExcelで毎月回る形——テンプレートかフロー——で届きます。</p>
-  <div class="demo-movie">
-    <p class="demo-movie-cap">26秒で見る、受け取ってから納品まで。</p>
-    <video autoplay muted loop playsinline preload="metadata" poster="demo-flow-poster.webp" src="demo-flow.mp4" aria-label="受け取りから納品まで、集計自動化の流れを案内する動画（26秒）"></video>
-  </div>
   <div class="demo-raw"><table class="raw"><caption>サンプル売上データ（架空・22件）</caption><thead><tr><th scope="col">受付日</th><th scope="col">店舗</th><th scope="col">カテゴリ</th><th scope="col">金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
   <button class="run-btn" id="demo-run" type="button">表記ゆれを揃えて、集計する</button>
   <div class="bars" id="demo-result" hidden aria-live="polite">
