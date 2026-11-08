@@ -114,6 +114,9 @@
   /* 触れるデモ */
   .demo-sec{padding:64px 0 10px;}
   .demo-sec p.lead{color:#33424e;max-width:660px;margin-top:12px;font-size:13.5px;}
+  .demo-movie{max-width:720px;margin:22px 0 2px;}
+  .demo-movie-cap{font-weight:700;font-size:1rem;color:var(--teal-deep);margin:0 0 10px;}
+  .demo-movie video{display:block;width:100%;height:auto;border:1px solid #eadfc2;border-radius:10px;background:#23423c;box-shadow:0 6px 14px rgba(27,58,52,.18);}
   .demo-raw{max-height:180px;overflow:auto;max-width:660px;border-top:2px dotted #d8cfba;border-bottom:2px dotted #d8cfba;margin:18px 0 6px;}
   table.raw{border-collapse:collapse;width:100%;font-size:.83rem;background:rgba(255,255,255,.65);}
   table.raw caption{text-align:left;font-weight:700;padding:4px 0;}
@@ -704,6 +707,10 @@
   <div class="eyebrow">TOUCHABLE DEMO / 触れるデモ</div>
   <h2>納品物の形を、そのまま触れます。</h2>
   <p class="lead">下の表は、架空の売上データ22件です。店舗名が「横浜 店」「ﾖｺﾊﾏ店」とバラバラに入っているところを見てください。「集計する」を押すと、表記をルールで揃えてから、月別と店舗×カテゴリ別に集計します。出てくる数字は、2026年9月 ¥366,600／10月 ¥386,300／合計 ¥752,900（22件）。Excelで同じ集計をした結果と一致する値です。本編（¥40,000）を買うと、この集計が、あなたのExcelで毎月回る形——テンプレートかフロー——で届きます。</p>
+  <div class="demo-movie">
+    <p class="demo-movie-cap">26秒で見る、受け取ってから納品まで。</p>
+    <video autoplay muted loop playsinline preload="metadata" poster="demo-flow-poster.webp" src="demo-flow.mp4" aria-label="受け取りから納品まで、集計自動化の流れを案内する動画（26秒）"></video>
+  </div>
   <div class="demo-raw"><table class="raw"><caption>サンプル売上データ（架空・22件）</caption><thead><tr><th scope="col">受付日</th><th scope="col">店舗</th><th scope="col">カテゴリ</th><th scope="col">金額</th></tr></thead><tbody id="demo-rows"></tbody></table></div>
   <button class="run-btn" id="demo-run" type="button">表記ゆれを揃えて、集計する</button>
   <div class="bars" id="demo-result" hidden aria-live="polite">
