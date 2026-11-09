@@ -488,6 +488,36 @@
     .flow-check{top:0;right:0;}
   }
 </style>
+<style>
+  /* ===== 追加分9：第6回「時間が消えている場所」自己判定（#waste、既存スタイルは変更しない） ===== */
+  .waste{padding:64px 0 8px;}
+  .waste p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .waste-honest{max-width:760px;margin-top:8px;font-size:.76rem;line-height:1.8;color:var(--sub);}
+  .waste-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:22px;max-width:960px;}
+  .waste-card{display:flex;flex-direction:column;justify-content:flex-start;gap:10px;width:100%;min-width:0;padding:20px 20px 22px;text-align:left;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;box-shadow:0 6px 18px rgba(30,50,70,.08);overflow-wrap:break-word;transition:background .18s ease,border-color .18s ease,box-shadow .18s ease;}
+  .waste-card span{display:block;min-width:0;}
+  .waste-num{font-family:Georgia,serif;font-style:italic;font-size:26px;line-height:1.2;color:var(--teal);}
+  .waste-title{font-size:16px;font-weight:800;line-height:1.5;color:var(--teal-deep);}
+  .waste-label{font-size:11.5px;font-weight:800;line-height:1.6;color:var(--brass-deep);}
+  .waste-body{margin-top:2px;font-size:13px;font-weight:400;line-height:1.8;color:#33424e;}
+  .waste-card.on{border-color:var(--teal);background:rgba(38,80,72,.07);box-shadow:inset 0 0 0 1.5px var(--teal),0 4px 12px rgba(27,58,52,.18);}
+  @media(hover:hover){.waste-card:not(.on):hover{border-color:var(--teal);}}
+  .waste-result{max-width:960px;margin-top:16px;padding:20px 24px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;}
+  .waste-hint{font-size:13.5px;font-weight:700;line-height:1.8;color:var(--sub);}
+  .waste-verdict.is-in{animation:waste-in .3s ease both;}
+  @keyframes waste-in{from{opacity:0;transform:translateY(6px);}}
+  .waste-type{font-size:clamp(20px,2.4vw,24px);font-weight:800;line-height:1.5;color:var(--teal-deep);}
+  .waste-step{margin-top:6px;font-size:14px;font-weight:700;line-height:1.85;color:var(--ink);}
+  .waste-note{margin-top:8px;font-size:.76rem;line-height:1.8;color:var(--sub);}
+  .waste-cta{max-width:100%;margin-top:14px;gap:18px;}
+  @media(max-width:760px){
+    .waste{padding:44px 0 4px;}
+    .waste-cards{grid-template-columns:minmax(0,1fr);gap:14px;}
+    .waste-card{padding:16px 14px 18px;}
+    .waste-result{padding:16px 14px;}
+    .waste-cta{display:flex;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -590,6 +620,45 @@
       <p class="diag-note">Q1の回答（月<span id="diag-hours"></span>時間）は、下の回収シミュレーターにも反映しました。</p>
       <a class="primary diag-cta" href="#contact">書面診断 ¥3,000 で、あなたの業務の棚卸しをする <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
       <button type="button" class="diag-retry" id="diag-retry">もう一度診断する</button>
+    </div>
+  </div>
+</section>
+
+<section class="waste reveal" id="waste">
+  <div class="eyebrow">BOTTLENECK / 時間の消え方</div>
+  <h2>時間が消えている場所は、どこか。</h2>
+  <p class="lead">月次集計で時間が消える場所は、大きく3つです。①が原因なのに③だけを自動にしても、揃っていない数字が速く資料に載るだけです。当てはまるものを1つ選んでください。最初の一手が分かります。</p>
+  <p class="waste-honest">※ あおあしの受注実績はまだ0件です。これは実績紹介ではなく、書面診断¥3,000の切り分けメモで実際に判定する3つの型です。</p>
+  <div class="waste-cards">
+    <button type="button" class="waste-card" data-waste="data" aria-pressed="false">
+      <span class="waste-num">01</span>
+      <span class="waste-title">元のデータ</span>
+      <span><span class="waste-label">こんな状態</span><span class="waste-body">店舗名が『横浜 店』『ﾖｺﾊﾏ店』とバラバラで、集計の前に目で直す作業が毎月発生している。</span></span>
+      <span><span class="waste-label">見分け方</span><span class="waste-body">集計するたびに『この数字、合ってる？』と元のデータを直しに行っているなら、この型です。</span></span>
+      <span><span class="waste-label">打つ手</span><span class="waste-body">表記ゆれをルールで揃える変換表（店舗・カテゴリのマスタ）を、テンプレート側に組み込みます。</span></span>
+    </button>
+    <button type="button" class="waste-card" data-waste="copy" aria-pressed="false">
+      <span class="waste-num">02</span>
+      <span class="waste-title">システムからの写し</span>
+      <span><span class="waste-label">こんな状態</span><span class="waste-body">データはシステムやCSVにあるのに、数字を拾って集計表へ手で入れ直している。合計が合わないと、最初からやり直しになる。</span></span>
+      <span><span class="waste-label">見分け方</span><span class="waste-body">画面やCSVを見ながら、集計表に打ち込んでいるなら、この型です。</span></span>
+      <span><span class="waste-label">打つ手</span><span class="waste-body">CSVを決まった場所に置くと、集計表が出来上がっている形にします。</span></span>
+    </button>
+    <button type="button" class="waste-card" data-waste="report" aria-pressed="false">
+      <span class="waste-num">03</span>
+      <span class="waste-title">資料への転記</span>
+      <span><span class="waste-label">こんな状態</span><span class="waste-body">集計表は完成しているのに、月次レポートや報告資料へ数字を毎月貼り直している。</span></span>
+      <span><span class="waste-label">見分け方</span><span class="waste-body">集計が終わったあと、資料作りだけで半日かかっているなら、この型です。</span></span>
+      <span><span class="waste-label">打つ手</span><span class="waste-body">集計結果が、そのまま報告レポートの形で出るようにします。</span></span>
+    </button>
+  </div>
+  <div class="waste-result" aria-live="polite">
+    <p class="waste-hint" id="waste-hint">当てはまるものを1つ選ぶと、最初の一手が出ます。</p>
+    <div class="waste-verdict" id="waste-verdict" hidden>
+      <h3 class="waste-type" id="waste-type"></h3>
+      <p class="waste-step" id="waste-step"></p>
+      <p class="waste-note">どの型かは、書面診断¥3,000の切り分けメモで、あなたの手順を見て判定します。</p>
+      <a class="primary waste-cta" href="#contact">書面診断 ¥3,000 で、うちの型を判定する <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
     </div>
   </div>
 </section>
@@ -1631,6 +1700,47 @@ function paybackRank(months){
     }, { threshold: .6 });
     flowSteps.forEach(function(s){ checkIO.observe(s); });
   }
+})();
+</script>
+
+<script>
+/* 追加分：第6回「時間が消えている場所」自己判定（#waste）。既存スクリプトは変更しない。 */
+function wasteVerdict(key){
+  if(key === "data") return { type: "元のデータ型", step: "表記ゆれをルールで揃える変換表（店舗・カテゴリのマスタ）を先に作る" };
+  if(key === "copy") return { type: "システムからの写し型", step: "CSVを決まった場所に置くと集計表が出来上がる形にする" };
+  if(key === "report") return { type: "資料への転記型", step: "集計結果がそのまま報告レポートの形で出るようにする" };
+  return null;
+}
+
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cards = document.querySelectorAll("#waste .waste-card");
+  var hint = document.getElementById("waste-hint");
+  var verdict = document.getElementById("waste-verdict");
+  var typeEl = document.getElementById("waste-type");
+  var stepEl = document.getElementById("waste-step");
+
+  cards.forEach(function(card){
+    card.addEventListener("click", function(){
+      var v = wasteVerdict(card.getAttribute("data-waste"));
+      if(!v) return;
+      cards.forEach(function(c){
+        var on = c === card;
+        c.classList.toggle("on", on);
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      typeEl.textContent = v.type;
+      stepEl.textContent = "最初の一手： " + v.step;
+      hint.hidden = true;
+      verdict.hidden = false;
+      if(!reduced){
+        verdict.classList.remove("is-in");
+        void verdict.offsetWidth;
+        verdict.classList.add("is-in");
+      }
+    });
+  });
 })();
 </script>
 </body>
