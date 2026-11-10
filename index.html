@@ -518,6 +518,33 @@
     .waste-cta{display:flex;}
   }
 </style>
+<style>
+  /* ===== 追加分10：第7回「4商品の比較表」（#products、既存スタイルは変更しない）。.payback-card / table.payback-table / mk-own の見た目を踏襲 ===== */
+  .compare{max-width:960px;margin-bottom:30px;}
+  .compare-title{font-size:17px;margin-bottom:6px;}
+  .compare-lead{font-size:12.5px;color:#33424e;line-height:1.95;}
+  .compare-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:22px 24px;margin-top:14px;max-width:960px;box-shadow:0 6px 18px rgba(30,50,70,.08);}
+  table.compare-table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:.84rem;line-height:1.7;background:rgba(255,255,255,.7);}
+  table.compare-table caption{text-align:left;font-weight:700;font-size:.85rem;color:var(--teal-deep);padding-bottom:6px;}
+  table.compare-table th,table.compare-table td{padding:8px 12px;border:1px solid #eadfc2;text-align:left;vertical-align:top;overflow-wrap:anywhere;}
+  table.compare-table thead th{background:rgba(253,246,223,.95);text-align:center;}
+  table.compare-table thead th:first-child{width:14%;text-align:left;}
+  table.compare-table tbody th{font-weight:700;color:var(--teal-deep);}
+  table.compare-table td.cmp-price{font-weight:800;font-variant-numeric:tabular-nums;}
+  table.compare-table .cmp-rec{background:rgba(38,80,72,.12);color:var(--teal-deep);font-weight:800;}
+  .compare-note{margin-top:12px;font-size:.78rem;color:var(--sub);line-height:1.8;}
+  @media(max-width:760px){
+    .compare-card{padding:16px 14px;}
+    table.compare-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+    table.compare-table,table.compare-table tbody,table.compare-table tr,table.compare-table th,table.compare-table td{display:block;width:100%;}
+    table.compare-table caption{display:block;}
+    table.compare-table tr{border:1px solid #eadfc2;border-radius:8px;margin-bottom:10px;background:rgba(255,255,255,.8);overflow:hidden;}
+    table.compare-table tbody th{border:0;border-bottom:1px solid #f0e7cd;padding:7px 12px;background:rgba(253,246,223,.95);}
+    table.compare-table td{border:0;border-bottom:1px solid #f0e7cd;display:flex;align-items:baseline;gap:12px;padding:7px 12px;}
+    table.compare-table td:last-child{border-bottom:0;}
+    table.compare-table td::before{content:attr(data-label);flex:0 0 7em;font-weight:700;font-size:.78rem;color:var(--sub);}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -776,6 +803,29 @@
       <h3>集計自動化は、4段の階段です</h3>
       <p>1段目は書面診断 ¥3,000（税込・2日）。いまの集計手順をヒアリングシートに書いて送ると、自動化できる部分と残る部分を、メモ1枚で返します。2段目は本編 ¥40,000（税込・7日）。診断の中身をすべて含んで、集計表が出来上がるテンプレートかフローを作って納めます。診断から進んだ場合、診断料は差し引くので合計は¥40,000のままです。3段目はプレミアム ¥60,000（税込・10日）。本編をすべて含み、対象は集計3プロセスまで。4段目はオーダーメイド。既製の段に合わない業務は、範囲と金額を見積もりで決めてから始めます。</p>
       <div class="family-steps" aria-hidden="true"><span>書面診断 ¥3,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>本編 ¥40,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>プレミアム ¥60,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>オーダーメイド 要相談</span></div>
+    </div>
+  </div>
+  <div class="compare">
+    <h3 class="compare-title">4つを、並べて比べる。</h3>
+    <p class="compare-lead">迷うのは、価格ではなく中身の違いのはずです。対象の広さ・届くもの・納期を、1枚に並べました。</p>
+    <div class="compare-card">
+      <table class="compare-table">
+        <caption>集計自動化の商品比較（すべて税込）</caption>
+        <thead>
+          <tr><th scope="col">項目</th><th scope="col">書面診断</th><th scope="col" class="cmp-rec">本編</th><th scope="col">プレミアム</th><th scope="col">見守り・手直し</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">価格（税込）</th><td data-label="書面診断" class="cmp-price">¥3,000</td><td data-label="本編" class="cmp-price cmp-rec">¥40,000</td><td data-label="プレミアム" class="cmp-price">¥60,000</td><td data-label="見守り・手直し" class="cmp-price">¥5,000／月</td></tr>
+          <tr><th scope="row">こんな方に</th><td data-label="書面診断">まず、消える作業を切り分けたい</td><td data-label="本編">集計1プロセスを自動にしたい</td><td data-label="プレミアム">集計が複数の流れに分かれている</td><td data-label="見守り・手直し">本編・プレミアムを買った方だけ</td></tr>
+          <tr><th scope="row">対象範囲</th><td data-label="書面診断">集計1業務の切り分け</td><td data-label="本編">定型業務1プロセス</td><td data-label="プレミアム">集計3プロセスまで</td><td data-label="見守り・手直し">納品したテンプレート／フロー</td></tr>
+          <tr><th scope="row">届くもの</th><td data-label="書面診断">切り分けメモ1枚</td><td data-label="本編">ExcelテンプレートかPower Automateフロー1本＋使い方マニュアル＋設計書</td><td data-label="プレミアム">本編の内容をすべて（3プロセス分）</td><td data-label="見守り・手直し">月1回の動作確認と、軽微な手直し（月1回まで）</td></tr>
+          <tr><th scope="row">納期・期間</th><td data-label="書面診断">2日</td><td data-label="本編">7日</td><td data-label="プレミアム">10日</td><td data-label="見守り・手直し">月額・任意の継続</td></tr>
+          <tr><th scope="row">納品後の対応</th><td data-label="書面診断">本編に進む場合の進め方と金額（合計¥40,000）を提示</td><td data-label="本編">質疑応答7日間（チャット）＋仕様どおりに動かない不具合の修正は初回の月次運用が終わるまで</td><td data-label="プレミアム">本編と同じ</td><td data-label="見守り・手直し">月1回の動作確認に含む</td></tr>
+          <tr><th scope="row">打ち合わせ</th><td data-label="書面診断">なし（書面・チャットのみ）</td><td data-label="本編">なし（書面・チャットのみ）</td><td data-label="プレミアム">なし（書面・チャットのみ）</td><td data-label="見守り・手直し">なし（書面・チャットのみ）</td></tr>
+          <tr><th scope="row">買い方</th><td data-label="書面診断">下の商品カードから購入先へ</td><td data-label="本編">下の商品カードから購入先へ</td><td data-label="プレミアム">下の商品カードから購入先へ</td><td data-label="見守り・手直し">本編の購入先チャットで申込</td></tr>
+        </tbody>
+      </table>
+      <p class="compare-note">迷ったら書面診断から。診断だけで終われば¥3,000のみで、本編に進んでも診断料を引くので合計は¥40,000のままです。構造設計（¥30,000）とオーダーメイドは、この階段とは別の商品です。下の商品カードにあります。</p>
     </div>
   </div>
   <div class="grid" id="cards"></div>
