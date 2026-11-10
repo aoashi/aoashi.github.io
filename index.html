@@ -141,6 +141,26 @@
   table.pivot thead th{background:rgba(253,246,223,.95);text-align:center;}
   table.pivot thead th:first-child{text-align:left;}
   .demo-note{margin-top:14px;font-size:.82rem;color:var(--sub);max-width:660px;}
+  /* おすすめ教材（Brainアフィリエイト・広告） */
+  .learn{padding:64px 0 8px;}
+  .learn p.lead{color:#33424e;max-width:700px;margin-top:12px;font-size:13.5px;line-height:2;}
+  .ad-note{display:flex;gap:10px;align-items:flex-start;max-width:760px;margin-top:18px;background:#fffdf5;border:1.5px dashed var(--brass-deep);border-radius:8px;padding:12px 16px;font-size:11.5px;line-height:1.8;color:#5a4a28;}
+  .ad-tag{flex:none;background:var(--brass-deep);color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;padding:3px 9px;border-radius:4px;margin-top:2px;}
+  .learn-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:24px 26px;margin-top:22px;max-width:960px;box-shadow:0 6px 18px rgba(30,50,70,.08);}
+  .learn-card h3{font-size:19px;margin:0 0 4px;line-height:1.5;}
+  .learn-meta{font-size:11.5px;color:var(--sub);font-weight:700;letter-spacing:.04em;}
+  .learn-stats{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 4px;font-weight:700;color:var(--teal-deep);font-size:.95rem;}
+  .learn-points{margin:14px 0 0;padding-left:1.2em;font-size:12.5px;line-height:2;color:#33424e;}
+  .learn-diff{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px;}
+  .learn-diff>div{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:rgba(255,255,255,.55);}
+  .learn-diff h4{margin:0 0 6px;font-size:13px;color:var(--teal-deep);}
+  .learn-diff p{margin:0;font-size:11.5px;line-height:1.9;color:var(--sub);}
+  .learn-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px;}
+  .learn-price{font-size:22px;font-weight:800;color:var(--teal-deep);}
+  .learn-price small{font-size:10px;font-weight:600;color:var(--sub);}
+  .learn-fine{font-size:10.5px;color:var(--sub);margin-top:12px;line-height:1.8;max-width:760px;}
+  .learn-back{margin-top:18px;font-size:12px;display:flex;flex-wrap:wrap;gap:8px 24px;}
+  .learn-back a{color:var(--teal-deep);font-weight:700;}
   /* 哲学（この店について） */
   .story{background:var(--teal-deep);color:#fdf9ec;border-radius:12px;display:grid;grid-template-columns:.9fr 1fr auto;gap:56px;padding:52px;margin:64px 0 78px;align-items:center;}
   .story .eyebrow{color:var(--brass);}
@@ -230,6 +250,8 @@
     .benefits{flex-wrap:wrap;font-size:11px}.benefits span{display:none}
     .sectiontop{display:block}.filters{margin-top:20px}
     .catalog{padding:48px 0 4px}
+    .learn{padding:44px 0 4px}
+    .learn-diff{grid-template-columns:1fr}
     .grid{grid-template-columns:1fr}
     .visual{height:250px}
     .story{grid-template-columns:1fr;gap:18px;padding:28px;margin:44px 0 48px}
@@ -826,9 +848,48 @@
         </tbody>
       </table>
       <p class="compare-note">迷ったら書面診断から。診断だけで終われば¥3,000のみで、本編に進んでも診断料を引くので合計は¥40,000のままです。構造設計（¥30,000）とオーダーメイドは、この階段とは別の商品です。下の商品カードにあります。</p>
+      <p class="compare-note">この比較表は、集計自動化の商品だけを並べています。Threadsとnoteの発信そのものを学びたい方には、販売実績のある他者の教材を<a href="#learn">おすすめ教材（広告）</a>で1点紹介しています。</p>
     </div>
   </div>
   <div class="grid" id="cards"></div>
+</section>
+
+<section class="learn reveal" id="learn">
+  <div class="eyebrow">RECOMMENDED BOOK / おすすめ教材（広告）</div>
+  <h2>Threads×noteを本気でやるなら、型を先に学ぶ手もある。</h2>
+  <p class="lead">この店の商品は、集計自動化と、その延長にある note の構造設計です。ただ、Threads での発信そのもの——投稿の組み立てから note の販売までの型——は、この店では教えていません。そこをゼロから学びたい方のために、販売実績のある他者の教材を1点だけ紹介します。</p>
+  <div class="ad-note"><span class="ad-tag">広告</span><span>このセクションは広告です。下のボタンはアフィリエイトリンクで、購入が成立すると、この店に紹介料が入ります。商品の価格と条件は、リンク先の Brain の商品ページで決まります。</span></div>
+  <div class="learn-card">
+    <div class="learn-meta">Brain（教材）｜販売者：あおい</div>
+    <h3>ゼロから始めるThreads×note</h3>
+    <div class="learn-stats"><span>販売部数 260部突破</span><span>レビュー 216件・評価 5.0</span></div>
+    <p class="learn-fine">※ 部数とレビューは、Brain の商品ページにおける販売者の公開表示です。この店自身の販売実績ではありません。</p>
+    <ul class="learn-points">
+      <li>Threads の発信と note の販売を、ゼロから始める人向けにまとめた教材です。</li>
+      <li>中身の詳細と目次は、リンク先の商品ページで確認できます。</li>
+      <li>購入・決済・教材の提供は Brain の仕組みで行われます。この店が販売・納品する商品ではありません。</li>
+    </ul>
+    <div class="learn-diff">
+      <div>
+        <h4>この教材 —— 型を買って、自分で回す</h4>
+        <p>販売実績のある販売者の型を学んで、自分で運用する進め方です。主題は Threads×note の発信と販売で、集計自動化は扱いません。価格は ¥41,800（税込）。</p>
+      </div>
+      <div>
+        <h4>この店の構造設計 ¥30,000 —— 設計してもらう</h4>
+        <p>あなたの題材と数字に合わせて、note が売れる構造を書面で設計して返す、この店の個別対応です。Threads の運用の型そのものは渡しません。詳しくは<a href="#products">料金と比較</a>へ。</p>
+      </div>
+    </div>
+    <div class="learn-cta">
+      <span class="learn-price">¥41,800 <small>（税込・Brainでの販売価格）</small></span>
+      <a class="primary" href="https://brain-market.com/u/momokonoheya/a/bykTMyYjMgoTZsNWa0JXY?from=bczNwcjNgojclNXd" target="_blank" rel="noopener sponsored" data-ga="affiliate" data-ga-label="brain_threads_note">Brainで商品ページを見る <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      <span class="ad-tag">広告</span>
+    </div>
+    <p class="learn-fine">この教材で絶対に稼げる、とは言えません。成果は題材と運用次第です。買うかどうか迷う場合は、先に<a href="#contact">無料相談</a>で、この店の商品との違いを聞いてください。</p>
+  </div>
+  <div class="learn-back">
+    <a href="#products">集計自動化の料金と比較する</a>
+    <a href="#contact">自分の作業の相談は、無料相談へ</a>
+  </div>
 </section>
 
 <section class="demo-sec reveal" id="demo">
@@ -887,6 +948,7 @@
     <details><summary>Excelがない環境でも使えますか？</summary><p>テンプレートは、Microsoft Excel（Microsoft 365／2019以降のデスクトップ版）が前提です。Power Automateのフローにする場合は、Microsoft 365のライセンスと接続設定が要ります。環境は設計書の段階で確認するので、合わない場合は、作り始める前に止められます。</p></details>
     <details><summary>納品後に直してほしい点が出たら？</summary><p>3つに分けて対応します。使い方の質問は、納品後7日間、チャットでお答えします。合意した仕様どおりに動かない不具合は、初回の月次運用が終わるまで直します。仕様そのものの追加や変更は、別のお見積もりです。</p></details>
     <details><summary>既製プランに合わない業務でも頼めますか？</summary><p>オーダーメイドで受けます。入口は書面診断か、チャットでの相談です。範囲と進め方を設計書にまとめ、金額と納期は見積もりで決めてから始めます。見積もりだけで終わっても構いません。</p></details>
+    <details><summary>Threadsやnoteの発信そのものも、教えてもらえますか？</summary><p>この店では教えていません。この店の商品は、集計自動化と、noteが売れる構造を設計して返すところまでです。発信の型から学びたい方には、販売実績のある他者の教材を<a href="#learn">おすすめ教材（広告）</a>で1点紹介しています。</p></details>
     <details><summary>返金・キャンセルはできますか？</summary><p>デジタル商品は、その性質上、納品後の返金・キャンセルは原則としてお受けできません。サービスは、制作に着手する前までキャンセルできます。詳しくは<a href="legal.html">特定商取引法に基づく表記</a>をご覧ください。</p></details>
   </div>
 </section>
@@ -1183,6 +1245,20 @@ onScrollBuddy();
 /* ================= 出現アニメーション ================= */
 const io = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting) e.target.classList.add("in-view"); }); }, { threshold:.1 });
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ================= アフィリエイトリンクのクリック計測（GA） ================= */
+document.addEventListener("click", function(e){
+  var t = e.target;
+  var a = (t && t.closest) ? t.closest("[data-ga='affiliate']") : null;
+  if(!a) return;
+  if(typeof gtag === "function"){
+    gtag("event", "affiliate_click", {
+      event_category: "affiliate",
+      event_label: a.getAttribute("data-ga-label") || "brain_threads_note",
+      link_url: a.href
+    });
+  }
+});
 
 /* ================= 触れる集計デモ（架空データ22件） ================= */
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
