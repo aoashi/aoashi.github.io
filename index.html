@@ -343,6 +343,20 @@
     .scope-card{padding:16px 14px;}
     .scope-card li{font-size:12.5px;}
   }
+  /* ===== 追加分（第8回）：出口の明示（#exit）。.scope / .scope-card の見た目を踏襲 ===== */
+  .exit{padding:56px 0 8px;}
+  .exit p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .exit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .exit-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .exit-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;}
+  .exit-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .exit-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;}
+  @media(max-width:760px){
+    .exit{padding:40px 0 4px;}
+    .exit-grid{grid-template-columns:1fr;gap:14px;}
+    .exit-card{padding:16px 14px;}
+    .exit-card p{font-size:12.5px;}
+  }
   /* ===== 追加分6：相場の中の位置（#market）。.payback-card / .payback-table の見た目を踏襲 ===== */
   .market{padding:56px 0 8px;}
   .market p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
@@ -871,6 +885,27 @@
     <li class="flow-step"><span class="flow-num">05</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>見守り ¥5,000/月</h3><p>納品したあとも、月1回の動作確認と小さな手直し。本編を買った方だけの、任意の継続プランです。</p></li>
   </ol>
   <p class="flow-note">やり取りは、すべて書面・チャットで完結します。電話・会議はありません。</p>
+</section>
+
+<section class="exit reveal" id="exit">
+  <div class="eyebrow">EXIT / 残るものと、やめ方</div>
+  <h2>見守りを付けなくても、納品物は残ります。</h2>
+  <p class="lead">本編¥40,000は買い切りです。見守り・手直し¥5,000/月は任意のプランで、付けないから納品物が使えなくなることはありません。払ったあと、手元に何が残るかを先に書いておきます。</p>
+  <div class="exit-grid">
+    <div class="exit-card">
+      <h3>納品物は、手元に残ります</h3>
+      <p>ExcelテンプレートかPower Automateフローと、使い方マニュアルを納品します。元が取れた後も、毎月そのまま使えます。</p>
+    </div>
+    <div class="exit-card">
+      <h3>見守りは、任意です</h3>
+      <p>見守り・手直し¥5,000/月は、本編・プレミアムを買った方だけの任意プランです。月1回の動作確認と小さな手直しへの備えで、申し込みは納品後に、本編の購入先のチャットからできます。</p>
+    </div>
+    <div class="exit-card">
+      <h3>担当が変わっても、引き継げます</h3>
+      <p>使い方マニュアルが付くので、担当者が変わっても手順を追えます。お預かりした業務データは、この作業のためだけに使い、納品後に削除します。</p>
+    </div>
+  </div>
+  <p class="exit-note">仕様どおりに動かない不具合は、見守りに入っていなくても、初回の月次運用が終わるまで直します。返金・キャンセルの条件は<a href="legal.html">特定商取引法に基づく表記</a>にまとめています。</p>
 </section>
 
 <section class="faq reveal" id="faq">
