@@ -559,6 +559,33 @@
     table.compare-table td::before{content:attr(data-label);flex:0 0 7em;font-weight:700;font-size:.78rem;color:var(--sub);}
   }
 </style>
+<style>
+  /* ===== 追加分（第9回）：納品後の残作業のBefore/After（#beforeafter、既存スタイルは変更しない）。.scope-card / .exit-card の見た目を踏襲 ===== */
+  .ba{padding:56px 0 8px;}
+  .ba p.lead{max-width:760px;margin-top:12px;font-size:13.5px;}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;max-width:960px;}
+  .ba-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .ba-card.ba-after{background:var(--paper);border-color:var(--teal);border-top-color:var(--teal);}
+  .ba-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;}
+  .ba-card h4{font-size:13px;font-weight:800;color:var(--teal-deep);margin:16px 0 10px;padding-top:12px;border-top:2px dotted var(--line);line-height:1.6;}
+  .ba-card ol,.ba-card ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;}
+  .ba-card ol{counter-reset:ba;}
+  .ba-card li{position:relative;padding-left:28px;font-size:13px;line-height:1.75;overflow-wrap:anywhere;}
+  .ba-card ol li{counter-increment:ba;}
+  .ba-card li::before{position:absolute;left:0;top:.2em;width:19px;height:19px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;line-height:1;color:var(--paper);}
+  .ba-card ol li::before{content:counter(ba);background:var(--brass);}
+  .ba-card.ba-after ol li::before{background:var(--teal);}
+  .ba-card ul li::before{content:"✓";background:var(--teal);}
+  .ba-burden{list-style:none;margin:16px 0 0;padding:0;max-width:960px;display:grid;gap:8px;}
+  .ba-burden li{background:var(--card);border:1.5px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:10px 14px;font-size:13px;line-height:1.75;overflow-wrap:anywhere;}
+  .ba-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted var(--line);font-size:12.5px;line-height:1.95;}
+  @media(max-width:760px){
+    .ba{padding:40px 0 4px;}
+    .ba-grid{grid-template-columns:1fr;gap:14px;}
+    .ba-card{padding:16px 14px;}
+    .ba-card li,.ba-burden li{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -859,6 +886,44 @@
     <div id="pivot-wrap"></div>
   </div>
   <p class="demo-note">※ 架空データのサンプルです。実在の顧客の実績ではありません。</p>
+</section>
+
+<section class="ba reveal" id="beforeafter">
+  <div class="eyebrow">BEFORE / AFTER / 納品後のあなたの作業</div>
+  <h2>納品のあと、あなたの作業は2つだけ。</h2>
+  <p class="lead">いま手で回している月次集計は、だいたい6つの工程に分かれます。本編¥40,000でテンプレート／フローを納めたあと、毎月あなたがやるのは2つだけ。残りは、仕組みの側がやります。</p>
+  <div class="ba-grid">
+    <div class="ba-card ba-before">
+      <h3>いまの月次集計（手作業）</h3>
+      <ol>
+        <li>システムからCSVを出す</li>
+        <li>店舗名・カテゴリの表記ゆれを、目で直す</li>
+        <li>数字を集計表へ手で転記する</li>
+        <li>店舗別・カテゴリ別に集計する</li>
+        <li>合計が合わない箇所を探して、直す</li>
+        <li>月次レポートへ数字を貼り直す</li>
+      </ol>
+    </div>
+    <div class="ba-card ba-after">
+      <h3>納品のあと（あなたがやること）</h3>
+      <ol>
+        <li>CSVを、決まった場所に置く</li>
+        <li>出てきた集計結果を確認する</li>
+      </ol>
+      <h4>仕組みの側がやること</h4>
+      <ul>
+        <li>表記ゆれをルールで揃える</li>
+        <li>転記と集計（店舗別・カテゴリ別、前月比較まで）</li>
+        <li>集計結果をレポートの形に整える</li>
+      </ul>
+    </div>
+  </div>
+  <ul class="ba-burden">
+    <li>仕組みを作るのは、あおあし（設計書で範囲と金額を固定してから作ります）</li>
+    <li>毎月の操作は、上の2つだけ（電話・会議はありません）</li>
+    <li>仕様どおりに動かない不具合は、あおあしが直します（初回の月次運用が終わるまで）</li>
+  </ul>
+  <p class="ba-note">※ 工程の分け方は、上の触れるデモと同じ月次集計の例です。あなたの業務で何が消えて何が残るかは、書面診断¥3,000の切り分けメモで、手順を見て判定します。受注実績はまだ0件です。</p>
 </section>
 
 <section class="story reveal" id="about">
