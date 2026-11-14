@@ -197,6 +197,24 @@
   .family-steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-weight:700;font-size:12.5px;color:var(--teal-deep);}
   .family-steps span{border:1.5px solid var(--teal);border-radius:20px;padding:4px 13px;background:rgba(255,255,255,.65);}
   .family-steps .farr{display:inline-flex;color:var(--sub);}
+  /* 価格の算数（診断¥3,000＋本編¥40,000 → 合計¥40,000） */
+  .pricemath{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 24px;margin:0 0 30px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .pricemath-title{font-size:16px;font-weight:800;line-height:1.6;color:var(--teal-deep);margin:0 0 12px;}
+  .pricemath-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-weight:700;font-size:12.5px;color:var(--teal-deep);}
+  .pricemath-chip{border:1.5px solid var(--teal);border-radius:20px;padding:4px 13px;background:rgba(255,255,255,.65);line-height:1.7;overflow-wrap:anywhere;}
+  .pricemath-chip.is-strike{border-color:var(--line);color:var(--sub);background:transparent;}
+  .pricemath-chip.is-strike del{text-decoration:line-through;text-decoration-thickness:1.5px;}
+  .pricemath-chip.is-total{background:var(--teal);border-color:var(--teal);color:var(--paper);font-weight:800;}
+  .pricemath-op{display:inline-flex;align-items:center;color:var(--sub);font-weight:800;}
+  .pricemath-note{font-size:12.5px;color:#33424e;line-height:1.95;margin:12px 0 0;}
+  @media(max-width:760px){
+    .pricemath{padding:18px 18px;}
+    .pricemath-title{font-size:15px;}
+    .pricemath-row{flex-direction:column;align-items:stretch;gap:6px;}
+    .pricemath-chip{text-align:center;white-space:normal;}
+    .pricemath-op{justify-content:center;}
+    .pricemath-op svg.lucide{transform:rotate(90deg);}
+  }
   /* モーダル：プラン選択（カード型の自作セレクタ） */
   .plan-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;clear:both;padding-top:16px;}
   .plan-card{position:relative;border:2px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 12px;text-align:left;transition:border-color .15s,background .15s,box-shadow .15s;}
@@ -849,6 +867,19 @@
       <p>1段目は書面診断 ¥3,000（税込・2日）。いまの集計手順をヒアリングシートに書いて送ると、自動化できる部分と残る部分を、メモ1枚で返します。2段目は本編 ¥40,000（税込・7日）。診断の中身をすべて含んで、集計表が出来上がるテンプレートかフローを作って納めます。診断から進んだ場合、診断料は差し引くので合計は¥40,000のままです。3段目はプレミアム ¥60,000（税込・10日）。本編をすべて含み、対象は集計3プロセスまで。4段目はオーダーメイド。既製の段に合わない業務は、範囲と金額を見積もりで決めてから始めます。</p>
       <div class="family-steps" aria-hidden="true"><span>書面診断 ¥3,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>本編 ¥40,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>プレミアム ¥60,000</span><span class="farr"><i data-lucide="arrow-right"></i></span><span>オーダーメイド 要相談</span></div>
     </div>
+  </div>
+  <div class="pricemath">
+    <h3 class="pricemath-title">別々に買うと ¥43,000。診断から進めば、合計 ¥40,000 です。</h3>
+    <div class="pricemath-row">
+      <span class="pricemath-chip">書面診断 ¥3,000</span>
+      <span class="pricemath-op" aria-hidden="true">＋</span>
+      <span class="pricemath-chip">本編 ¥40,000</span>
+      <span class="pricemath-op" aria-hidden="true">＝</span>
+      <span class="pricemath-chip is-strike"><del>¥43,000</del></span>
+      <span class="pricemath-op" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+      <span class="pricemath-chip is-total">合計 ¥40,000</span>
+    </div>
+    <p class="pricemath-note">診断料¥3,000は、本編に進むときに全額充当します。診断だけで終われば、¥3,000のみです。</p>
   </div>
   <div class="compare">
     <h3 class="compare-title">4つを、並べて比べる。</h3>
