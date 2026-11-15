@@ -608,6 +608,43 @@
     .ba-card li,.ba-burden li{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分（第12回）：書面診断のメモ見本（#memosample、既存スタイルは変更しない）。.compare-card / .exit-card / table.compare-table の見た目を踏襲 ===== */
+  .memosample{padding:56px 0 8px;}
+  .memosample p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .memosample-card{background:var(--paper);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:26px 30px 24px;margin-top:18px;max-width:960px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .memosample-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;padding-bottom:12px;margin-bottom:14px;border-bottom:2px dotted var(--line);}
+  .memosample-title{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0;line-height:1.6;overflow-wrap:anywhere;}
+  .memosample-verdict{margin:0;font-size:13px;font-weight:800;color:var(--teal-deep);background:rgba(38,80,72,.12);border-radius:6px;padding:4px 10px;line-height:1.6;overflow-wrap:anywhere;}
+  table.memosample-table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:.84rem;line-height:1.7;background:rgba(255,255,255,.7);counter-reset:memostep;}
+  table.memosample-table th,table.memosample-table td{padding:8px 12px;border:1px solid #eadfc2;text-align:left;vertical-align:top;overflow-wrap:anywhere;}
+  table.memosample-table thead th{background:rgba(253,246,223,.95);text-align:center;}
+  table.memosample-table thead th:nth-child(1){width:36%;text-align:left;}
+  table.memosample-table thead th:nth-child(2){width:16%;}
+  table.memosample-table tbody th{font-weight:700;color:var(--teal-deep);}
+  table.memosample-table tbody tr{counter-increment:memostep;}
+  table.memosample-table tbody th::before{content:counter(memostep) ". ";color:var(--sub);}
+  table.memosample-table td.memosample-judge{text-align:center;}
+  .memosample-badge{display:inline-block;padding:1px 10px;border-radius:999px;font-size:.8rem;font-weight:800;line-height:1.7;white-space:nowrap;}
+  .memosample-badge.is-gone{background:var(--teal);color:var(--paper);}
+  .memosample-badge.is-stay{background:rgba(70,86,95,.12);color:var(--sub);border:1px solid rgba(70,86,95,.25);}
+  .memosample-badge.is-less{background:var(--brass-light);color:var(--ink);border:1px solid var(--brass);}
+  .memosample-price{margin:14px 0 0;padding-top:12px;border-top:2px dotted var(--line);font-size:13px;line-height:1.85;font-weight:700;color:var(--teal-deep);overflow-wrap:anywhere;}
+  .memosample-note{margin-top:14px;max-width:960px;font-size:12.5px;line-height:1.95;color:var(--sub);overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .memosample{padding:40px 0 4px;}
+    .memosample-card{padding:18px 14px 16px;}
+    table.memosample-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+    table.memosample-table,table.memosample-table tbody,table.memosample-table tr,table.memosample-table th,table.memosample-table td{display:block;width:100%;}
+    table.memosample-table tr{border:1px solid #eadfc2;border-radius:8px;margin-bottom:10px;background:rgba(255,255,255,.8);overflow:hidden;}
+    table.memosample-table tbody th{border:0;border-bottom:1px solid #f0e7cd;padding:7px 12px;background:rgba(253,246,223,.95);}
+    table.memosample-table td{border:0;border-bottom:1px solid #f0e7cd;display:flex;align-items:baseline;gap:12px;padding:7px 12px;}
+    table.memosample-table td.memosample-judge{text-align:left;}
+    table.memosample-table td:last-child{border-bottom:0;}
+    table.memosample-table td::before{content:attr(data-label);flex:0 0 4.5em;font-weight:700;font-size:.78rem;color:var(--sub);}
+    .memosample-price{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -846,6 +883,31 @@
     <p class="payback-ltv">本編¥40,000は、公開相場の下のほうに置いてあります。しかも診断¥3,000込みで合計は固定。後から見積もりが膨らむ形ではありません。</p>
     <p class="payback-note">※ 相場は2026年11月8日に各社の公開ページで確認した目安で、業務の内容と規模で変わります。あおあしの受注実績はまだ0件です。価格は実績ではなく、相場と作業量から置いています。</p>
   </div>
+</section>
+
+<section class="memosample reveal" id="memosample">
+  <div class="eyebrow">SAMPLE / 書面診断のメモ見本</div>
+  <h2>書面診断で返ってくるメモは、こんな1枚です。</h2>
+  <p class="lead">書面診断 ¥3,000 で返す切り分けメモは、A4・1枚です。下は、このページの触れるデモと同じ月次売上集計（架空の売上データ22件の業務）を題材にした記入例です。あなたのメモは、ヒアリングシートに書いていただいた手順を見て判定します。</p>
+  <div class="memosample-card">
+    <div class="memosample-head">
+      <h3 class="memosample-title">切り分けメモ（見本）｜題材：月次売上集計</h3>
+      <p class="memosample-verdict">判定：自動化できます（定型業務1プロセス・本編の対象範囲内です）</p>
+    </div>
+    <table class="memosample-table">
+      <thead><tr><th scope="col">いまの工程</th><th scope="col">判定</th><th scope="col">理由</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">システムからCSVを出す</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-stay">残る（あなた）</span></td><td data-label="理由">元のデータは、あなたの側でしか出せないためです</td></tr>
+        <tr><th scope="row">店舗名・カテゴリの表記ゆれを目で直す</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-gone">消える</span></td><td data-label="理由">表記を揃えるルールを仕組み側に持たせるためです</td></tr>
+        <tr><th scope="row">数字を集計表へ手で転記する</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-gone">消える</span></td><td data-label="理由">CSVから直接集計するためです</td></tr>
+        <tr><th scope="row">店舗別・カテゴリ別に集計する</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-gone">消える</span></td><td data-label="理由">仕組み側で集計し、前月比較まで作るためです</td></tr>
+        <tr><th scope="row">合計が合わない箇所を探して直す</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-less">減る</span></td><td data-label="理由">表記ゆれが原因の不一致は出なくなります。最後の確認は残ります</td></tr>
+        <tr><th scope="row">月次レポートへ数字を貼り直す</th><td class="memosample-judge" data-label="判定"><span class="memosample-badge is-gone">消える</span></td><td data-label="理由">集計結果をレポートの形に整えて出すためです</td></tr>
+      </tbody>
+    </table>
+    <p class="memosample-price">本編に進む場合：¥40,000（税込）・納期7日。診断料¥3,000は全額充当するので、合計は¥40,000のままです。診断だけで終われば、¥3,000のみです。</p>
+  </div>
+  <p class="memosample-note">※ これは見本（記入例）です。架空の業務を題材にしており、実在の顧客の診断結果ではありません。あおあしの受注実績はまだ0件です。</p>
 </section>
 
 <section class="catalog" id="products">
