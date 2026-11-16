@@ -645,6 +645,24 @@
     .memosample-price{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分（第13回）：自分で組むと詰まる場所（#pitfalls、既存スタイルは変更しない）。.exit-grid / .exit-card の見た目を踏襲 ===== */
+  .pitfalls{padding:56px 0 8px;}
+  .pitfalls p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .pitfalls-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .pitfalls-card{display:flex;flex-direction:column;background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .pitfalls-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .pitfalls-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .pitfalls-card p.pitfalls-fix{margin-top:14px;padding-top:12px;border-top:2px dotted var(--line);}
+  .pitfalls-label{display:inline-block;margin-right:4px;padding:1px 9px;border-radius:999px;background:rgba(38,80,72,.12);color:var(--teal-deep);font-size:.8rem;font-weight:800;line-height:1.7;}
+  .pitfalls-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .pitfalls{padding:40px 0 4px;}
+    .pitfalls-grid{grid-template-columns:1fr;gap:14px;}
+    .pitfalls-card{padding:16px 14px;}
+    .pitfalls-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -908,6 +926,30 @@
     <p class="memosample-price">本編に進む場合：¥40,000（税込）・納期7日。診断料¥3,000は全額充当するので、合計は¥40,000のままです。診断だけで終われば、¥3,000のみです。</p>
   </div>
   <p class="memosample-note">※ これは見本（記入例）です。架空の業務を題材にしており、実在の顧客の診断結果ではありません。あおあしの受注実績はまだ0件です。</p>
+</section>
+
+<section class="pitfalls reveal" id="pitfalls">
+  <div class="eyebrow">PITFALLS / 自分で組むと詰まる場所</div>
+  <h2>「自分で組めば安い」は、月末に止まります。</h2>
+  <p class="lead">Excelの関数やマクロで自分で組むこと自体は、間違いではありません。詰まるのは、作ったあとです。月次集計でよく出る3つの詰まりと、あおあしが設計の段階で先に潰す場所を並べます。</p>
+  <div class="pitfalls-grid">
+    <div class="pitfalls-card">
+      <h3>作った人しか、直せない</h3>
+      <p>表記ゆれの直し方や、店舗名の対応のさせ方が、作った人の頭の中と手作業に残ります。担当が変わった月から、集計が止まります。</p>
+      <p class="pitfalls-fix"><span class="pitfalls-label">あおあしの作り方：</span>表記を揃えるルールは仕組みの側に持たせ、使い方マニュアルを付けて納品します。手順は、人の記憶ではなく紙とルールに残ります。</p>
+    </div>
+    <div class="pitfalls-card">
+      <h3>月が変わると、止まる</h3>
+      <p>新しい店舗やカテゴリ、書式の変更が出るたびに、関数や手順をその場で直す必要が出ます。直す時間がない月末ほど、手作業に戻ります。</p>
+      <p class="pitfalls-fix"><span class="pitfalls-label">あおあしの作り方：</span>範囲とルールは、作り始める前に設計書で固定します。仕様どおりに動かない不具合は、初回の月次運用が終わるまで直します。小さな手直しは、見守り¥5,000/月（任意）でも受けられます。</p>
+    </div>
+    <div class="pitfalls-card">
+      <h3>合計が合わない原因探しが、残る</h3>
+      <p>転記だけ自動にしても、表記ゆれが原因の不一致は残ります。結局、全件を目で確認する時間が消えません。</p>
+      <p class="pitfalls-fix"><span class="pitfalls-label">あおあしの作り方：</span>CSVから直接集計し、表記ゆれをルールで揃えるため、表記ゆれが原因の不一致は出なくなります。最後の確認は残ります。そこは消えません。</p>
+    </div>
+  </div>
+  <p class="pitfalls-note">自分で組む時間が取れて、直し続けられるなら、そのほうが安く済みます。あおあしが向くのは、作る時間も直す時間も、月末には無い場合です。あおあしの受注実績はまだ0件です。上の対処は、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="catalog" id="products">
