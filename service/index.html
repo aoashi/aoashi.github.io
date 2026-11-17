@@ -663,6 +663,22 @@
     .pitfalls-card p{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分：あなたにお願いすること（#yourpart、既存スタイルは変更しない）。.exit-grid / .exit-card の見た目を踏襲 ===== */
+  .yourpart{padding:56px 0 8px;}
+  .yourpart p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .yourpart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .yourpart-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .yourpart-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .yourpart-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .yourpart-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .yourpart{padding:40px 0 4px;}
+    .yourpart-grid{grid-template-columns:1fr;gap:14px;}
+    .yourpart-card{padding:16px 14px;}
+    .yourpart-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -1089,6 +1105,27 @@
     <li class="flow-step"><span class="flow-num">05</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>見守り ¥5,000/月</h3><p>納品したあとも、月1回の動作確認と小さな手直し。本編を買った方だけの、任意の継続プランです。</p></li>
   </ol>
   <p class="flow-note">やり取りは、すべて書面・チャットで完結します。電話・会議はありません。</p>
+</section>
+
+<section class="yourpart reveal" id="yourpart">
+  <div class="eyebrow">YOUR PART / あなたにお願いすること</div>
+  <h2>あなたにお願いするのは、この3つだけです。</h2>
+  <p class="lead">お金以外の負担も、先に全部書いておきます。設計と制作はあおあしがやります。あなたにやっていただくのは、次の3つだけです。電話・会議はありません。</p>
+  <div class="yourpart-grid">
+    <div class="yourpart-card">
+      <h3>ヒアリングシートに書く</h3>
+      <p>いまの集計手順を、記入式のシートに書いて送ってください。書面診断ではこの手順を見て、消える作業と残る作業を切り分けます。</p>
+    </div>
+    <div class="yourpart-card">
+      <h3>データの渡し方を決める</h3>
+      <p>お預かりするデータの渡し方は、案件ごとに先に決めます。実データではなく、項目名だけのサンプルや、名前を伏せたデータで進めることもできます。</p>
+    </div>
+    <div class="yourpart-card">
+      <h3>設計書と、納品物を確認する</h3>
+      <p>作り始める前に設計書で範囲と金額を確認し、納品後は出てきた集計結果を確認してください。使い方の質問は、納品後7日間、チャットでお答えします。</p>
+    </div>
+  </div>
+  <p class="yourpart-note">それ以外の作業（表記ゆれを揃えるルール作り、テンプレート／フローの制作、仕様どおりに動かない不具合の修正）は、あおあしがやります。あおあしの受注実績はまだ0件です。上の3つは、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="exit reveal" id="exit">
