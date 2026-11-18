@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>あおあし｜公式サイト</title>
 <meta name="description" content="会社員（建設業・事務職・企画業務）×AI副業。仕組みで稼ぐ過程を、数字で記録しています。無料チェックリスト、仕事の依頼・料金、販売中のもの、発信をまとめた公式ページです。">
+<meta name="theme-color" content="#07090c">
 <link rel="canonical" href="https://aoashi.github.io/">
 <link rel="icon" type="image/png" href="icon-goma.png">
 <meta property="og:type" content="website">
@@ -21,126 +22,262 @@
   gtag('js', new Date());
   gtag('config', 'G-ED2CZMLZZP');
 </script>
+<script>document.documentElement.classList.add('js');</script>
 <style>
-  :root{--navy:#102033;--navy-2:#1b3150;--ink:#1d2a38;--sub:#5a6878;--line:#e3e8ee;--bg:#f3f5f8;--accent:#3d7bd9;}
+  /* v3（2026-11-17）Linear基調：黒地・特大見出し・hairline・光。カードの並列は使わない。 */
+  :root{
+    --bg:#07090c;--fg:#f5f7fa;--sub:#9aa3ad;--line:rgba(255,255,255,.09);
+    --glow-a:#3aa7e0;--glow-b:#1c2f7a;
+    --wrap:1120px;--pad:24px;
+  }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;font-size:15px;}
-  a{color:inherit;}
-  a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
-  .wrap{max-width:720px;margin:0 auto;padding:0 18px;}
-  header.top{background:var(--navy);color:#fff;padding:40px 0 34px;}
-  .brand{display:flex;align-items:center;gap:16px;}
-  .brand img{width:76px;height:76px;border-radius:50%;border:3px solid rgba(255,255,255,.85);background:#fff;flex:none;object-fit:cover;}
-  .brand h1{font-size:28px;font-weight:800;letter-spacing:.08em;line-height:1.3;}
-  .brand .en{display:block;font-size:10px;letter-spacing:.3em;color:#9fb3cc;font-weight:700;}
-  .lead{margin-top:18px;font-size:14.5px;color:#dbe4ef;line-height:1.9;}
-  /* 数字バー */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px;list-style:none;}
-  .stats li{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 8px;text-align:center;}
-  .stats .n{display:block;font-size:21px;font-weight:800;color:#fff;line-height:1.3;letter-spacing:.02em;}
-  .stats .n small{font-size:12px;font-weight:700;margin-left:1px;}
-  .stats .l{display:block;font-size:11px;color:#b9c8da;line-height:1.5;margin-top:2px;}
-  main{padding:8px 0 20px;}
-  section{margin-top:34px;}
-  h2{font-size:13px;letter-spacing:.2em;color:var(--navy);font-weight:800;padding-left:10px;border-left:4px solid var(--navy);margin-bottom:12px;line-height:1.4;}
-  /* 無料の入口（主役）：色ではなく余白・文字サイズ・ボタンで差をつける */
-  .free{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 22px 24px;box-shadow:0 8px 24px rgba(16,32,51,.08);}
-  .free h2{border:0;padding:0;font-size:25px;letter-spacing:.04em;margin-bottom:14px;}
-  .free p{font-size:15.5px;line-height:1.9;}
-  .free p b{color:var(--navy);}
-  .free-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;background:var(--navy);color:#fff;text-decoration:none;font-weight:800;font-size:16.5px;padding:20px 14px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 16px rgba(16,32,51,.25);}
-  .free-btn:hover{background:var(--navy-2);}
-  .free .note{margin-top:12px;font-size:12.5px;color:var(--sub);text-align:center;line-height:1.7;}
-  .cards{display:grid;gap:10px;}
-  .cards + .cards{margin-top:10px;}
-  .card{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 18px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
-  .card:hover{border-color:#b8c6d8;box-shadow:0 4px 12px rgba(16,32,51,.08);}
-  .card b{display:block;font-size:15.5px;color:var(--navy);line-height:1.5;}
-  .card .d{display:block;font-size:12.5px;color:var(--sub);line-height:1.6;margin-top:2px;}
-  .card .go{flex:none;font-size:12px;color:var(--sub);white-space:nowrap;}
-  .cards.sm{grid-template-columns:repeat(3,1fr);gap:8px;}
-  .cards.sm .card{padding:11px 10px;justify-content:center;text-align:center;}
-  .cards.sm .card b{font-size:13.5px;}
-  /* 仕事の依頼 */
-  .work{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;}
-  .steps{font-size:14px;color:var(--ink);line-height:1.9;}
-  .steps b{color:var(--navy);white-space:nowrap;}
-  .steps .ar{color:var(--sub);margin:0 2px;}
-  .steps .sub{display:block;font-size:12.5px;color:var(--sub);margin-top:4px;}
-  .work-btn{display:block;text-align:center;margin-top:14px;background:#fff;color:var(--navy);border:2px solid var(--navy);text-decoration:none;font-weight:800;padding:12px;border-radius:10px;}
-  .work-btn:hover{background:#eef3fa;}
-  .work .cards.sm{margin-top:12px;}
-  /* 発信（最下部・小さめ） */
-  .media .card{padding:11px 14px;}
-  .media .card b{font-size:14px;}
-  .media .card .d{font-size:12px;}
-  footer{margin-top:44px;padding:22px 0 36px;border-top:1px solid var(--line);font-size:12px;color:var(--sub);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
-  footer a{color:var(--navy);}
-  @media(min-width:640px){.cards.two{grid-template-columns:1fr 1fr;}.cards.three{grid-template-columns:repeat(3,1fr);}header.top{padding:56px 0 44px;}.brand h1{font-size:32px;}.free{padding:40px 36px 30px;}.free h2{font-size:28px;}.free-btn{font-size:18px;}}
+  html{background:var(--bg);}
+  body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Noto Sans CJK JP",system-ui,sans-serif;
+       background:var(--bg);color:var(--fg);font-size:15.5px;line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  a:focus-visible{outline:2px solid var(--glow-a);outline-offset:4px;border-radius:6px;}
+  img,video{display:block;max-width:100%;}
+  main{overflow-x:clip;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad);}
+
+  /* 文字の階層：特大の白 ⇔ 小さく細いグレー */
+  .label{display:block;font-size:12px;font-weight:500;letter-spacing:.22em;color:var(--sub);line-height:1.6;}
+  .h1{font-size:clamp(42px,9vw,92px);font-weight:800;line-height:1.05;letter-spacing:-.02em;}
+  .h2{font-size:clamp(34px,6vw,60px);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-top:20px;}
+  .body{font-size:15.5px;font-weight:400;color:var(--sub);line-height:1.9;max-width:34em;}
+  .small{font-size:13px;color:var(--sub);line-height:1.8;}
+
+  /* ボタン：主役は白地・黒字1種類だけ */
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:10px;padding:15px 26px;font-size:15px;font-weight:700;line-height:1.4;
+       transition:background .2s,border-color .2s,transform .2s;}
+  .btn-main{background:#fff;color:#07090c;}
+  .btn-main:hover{background:#dfe4ea;}
+  .btn-sub{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,.28);}
+  .btn-sub:hover{border-color:#fff;}
+  .tlink{display:inline-flex;align-items:center;gap:6px;color:var(--fg);font-size:15px;font-weight:600;}
+  .tlink .ar,.row .ar{transition:transform .2s;}
+  .tlink:hover .ar,.row:hover .ar{transform:translateX(4px);}
+
+  /* 光：差し色はここだけ */
+  .glow{position:relative;isolation:isolate;}
+  .glow::before{content:"";position:absolute;z-index:-1;inset:-18% -22%;pointer-events:none;
+                background:radial-gradient(closest-side,rgba(58,167,224,.7),rgba(28,47,122,.55) 55%,rgba(7,9,12,0) 100%);
+                filter:blur(48px);}
+  .glow.soft::before{opacity:.5;inset:-10% -8%;}
+  .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0c0f14;}
+
+  /* 0. 上部バー */
+  .bar{border-bottom:1px solid var(--line);}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.04em;}
+  .brand img{width:28px;height:28px;border-radius:7px;background:#fff;}
+  .bar .tlink{font-size:13.5px;}
+
+  /* 1. ヒーロー */
+  .hero{padding:72px 0 0;text-align:center;border-bottom:1px solid var(--line);}
+  .hero .h1{margin-top:24px;}
+  .hero .body{margin:28px auto 0;max-width:30em;}
+  .hero .btn{margin-top:36px;}
+  .hero-visual{width:min(420px,80vw);margin:88px auto 0;}
+  .hero-visual img{display:block;width:100%;height:auto;aspect-ratio:1;}
+  .channels{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 36px;padding:72px 0 40px;}
+  .channels a{font-size:14px;font-weight:600;letter-spacing:.04em;color:#6f7781;transition:color .2s;}
+  .channels a:hover{color:var(--fg);}
+
+  /* セクション共通：区切りは余白と hairline */
+  .sec{padding:104px 0;border-bottom:1px solid var(--line);}
+
+  /* 2. 数字 */
+  .stats{list-style:none;display:grid;grid-template-columns:1fr;margin-top:32px;}
+  .stats li{border-top:1px solid var(--line);padding:28px 0 8px;}
+  .stats .n{display:block;font-size:clamp(64px,11vw,112px);font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;}
+  .stats .l{display:block;margin-top:14px;font-size:13.5px;color:var(--sub);}
+
+  /* 3. 無料の入口 */
+  .free .body{margin-top:28px;}
+  .free .btn{margin-top:36px;}
+  .free .small{margin-top:18px;}
+
+  /* 4. 仕事の依頼 */
+  .demo{margin-top:64px;}
+  .demo video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0c0f14;}
+  .prices{list-style:none;margin-top:64px;border-top:1px solid var(--line);}
+  .prices li{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);}
+  .prices .k{font-size:clamp(17px,2.4vw,24px);font-weight:600;}
+  .prices .p{font-size:clamp(26px,4.4vw,44px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.2;}
+  .work .small{margin-top:18px;}
+  .work .btn{margin-top:36px;}
+  .shops{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:32px;}
+
+  /* 5・6. 線で区切った行（行全体がリンク） */
+  .goods-visual{margin-top:64px;}
+  .goods-visual img{width:100%;height:auto;aspect-ratio:1080/330;object-fit:cover;object-position:50% 29%;}
+  .rows{list-style:none;border-top:1px solid var(--line);}
+  .goods .rows{margin-top:64px;}
+  .media .rows{margin-top:32px;}
+  .row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 24px;padding:24px 4px;border-bottom:1px solid var(--line);transition:background .2s;}
+  .row:hover{background:rgba(255,255,255,.025);}
+  .row .t{font-size:clamp(19px,2.6vw,26px);font-weight:700;line-height:1.35;letter-spacing:-.01em;}
+  .row .d{grid-column:1;font-size:13.5px;color:var(--sub);line-height:1.7;}
+  .row .ar{grid-column:2;grid-row:1 / span 2;font-size:22px;color:var(--sub);}
+  .row:hover .ar{color:var(--fg);}
+
+  /* 7. フッター */
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:32px;padding-bottom:48px;font-size:12.5px;color:var(--sub);}
+  footer a{text-decoration:underline;text-underline-offset:3px;}
+  footer a:hover{color:var(--fg);}
+
+  /* スクロール時のフェードイン（JS有効時のみ） */
+  .js .rv{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+  .js .rv.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none;}}
+
+  @media (min-width:760px){
+    :root{--pad:40px;}
+    .hero{padding-top:120px;}
+    .hero .body{font-size:16px;}
+    .hero-visual{margin-top:112px;}
+    .channels{padding:96px 0 48px;gap:14px 56px;}
+    .sec{padding:160px 0;}
+    .stats{grid-template-columns:repeat(3,1fr);gap:0 40px;}
+    .row{padding:28px 8px;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) auto;}
+    .row .d{grid-column:2;font-size:14.5px;}
+    .row .ar{grid-row:1;grid-column:3;}
+    .demo,.goods-visual,.prices{margin-top:80px;}
+  }
 </style>
 </head>
 <body>
-<header class="top">
+
+<!-- 0. 上部バー -->
+<header class="bar">
   <div class="wrap">
-    <div class="brand">
-      <img src="icon-goma.png" alt="あおあしのアイコン" width="76" height="76">
-      <h1><span class="en">AOASHI</span>あおあし</h1>
-    </div>
-    <p class="lead">会社員（建設業・事務職・企画業務）×AI副業。仕組みで稼ぐ過程を、数字で記録しています。</p>
-    <ul class="stats" aria-label="発信の実績（実測）">
-      <li><span class="n">155<small>本</small></span><span class="l">note記事</span></li>
-      <li><span class="n">1,101</span><span class="l">Threads最高表示<br>（1投稿）</span></li>
-      <li><span class="n">6</span><span class="l">発信チャネル</span></li>
-    </ul>
+    <span class="brand"><img src="icon-goma.png" alt="" width="28" height="28">あおあし</span>
+    <a class="tlink" href="service/#contact">無料チェックリスト <span class="ar" aria-hidden="true">→</span></a>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="free" aria-labelledby="h-free">
-    <h2 id="h-free">まず、無料で1枚。</h2>
-    <p>無料チェックリスト<b>『その集計、自動化できるかどうかの見分け方』</b>（A4・1枚）をメールで送ります。あなたの集計が自動化できるかどうか、その場で見分けられます。</p>
-    <a class="free-btn" href="service/#contact">無料チェックリストを受け取る<span aria-hidden="true">→</span></a>
-    <p class="note">相談も同じフォームから送れます。売り込みの電話・会議はありません。</p>
+<main>
+
+  <!-- 1. ヒーロー -->
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="wrap">
+      <span class="label rv">AOASHI — OFFICIAL SITE</span>
+      <h1 id="h-hero" class="h1 rv">仕組みで稼ぐ<br>過程を、数字で<br>記録する。</h1>
+      <p class="body rv">会社員（建設業・事務職・企画業務）として働きながら、AI副業の売上も失敗も、全部数字で残している場所です。</p>
+      <a class="btn btn-main rv" href="service/#contact">無料チェックリストを受け取る</a>
+      <div class="hero-visual glow rv">
+        <img src="icon-goma-cut.png" alt="あおあしのキャラクター（ごま）" width="640" height="640">
+      </div>
+      <ul class="channels" aria-label="発信チャネル">
+        <li><a href="https://www.threads.net/@aoashi_ai" target="_blank" rel="noopener">Threads</a></li>
+        <li><a href="https://www.instagram.com/ai_genjitsu_note/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@aoashi_ai" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://x.com/aoashi_AI" target="_blank" rel="noopener">X</a></li>
+        <li><a href="https://note.com/boroffu" target="_blank" rel="noopener">note</a></li>
+        <li><a href="https://aoashiai.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+      </ul>
+    </div>
   </section>
 
-  <section aria-labelledby="h-work">
-    <h2 id="h-work">仕事の依頼</h2>
-    <div class="work">
-      <p class="steps"><b>書面診断 ¥3,000</b><span class="ar">→</span><b>本編 ¥40,000</b><span class="ar">→</span><b>プレミアム ¥60,000</b><span class="sub">診断から進めば合計は¥40,000のまま</span></p>
-      <a class="work-btn" href="service/">サービスと料金を見る →</a>
-      <div class="cards sm">
-        <a class="card" href="https://coconala.com/users/6336439" target="_blank" rel="noopener"><b>ココナラ</b></a>
-        <a class="card" href="https://www.lancers.jp/menu/detail/1352276" target="_blank" rel="noopener"><b>ランサーズ</b></a>
-        <a class="card" href="https://crowdworks.jp/public/employees/4293097" target="_blank" rel="noopener"><b>CrowdWorks</b></a>
+  <!-- 2. 数字 -->
+  <section class="sec" aria-label="記録（実測）">
+    <div class="wrap">
+      <span class="label rv">記録（実測）</span>
+      <ul class="stats">
+        <li class="rv"><span class="n">155</span><span class="l">note記事</span></li>
+        <li class="rv"><span class="n">1,101</span><span class="l">Threads最高表示（1投稿）</span></li>
+        <li class="rv"><span class="n">6</span><span class="l">発信チャネル</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. 無料の入口（01） -->
+  <section class="sec free" aria-labelledby="h-free">
+    <div class="wrap">
+      <span class="label rv">01 — 無料の入口</span>
+      <h2 id="h-free" class="h2 rv">まず、無料で1枚。</h2>
+      <p class="body rv">無料チェックリスト『その集計、自動化できるかどうかの見分け方』（A4・1枚）をメールで送ります。あなたの集計が自動化できるかどうか、その場で見分けられます。</p>
+      <a class="btn btn-main rv" href="service/#contact">無料チェックリストを受け取る</a>
+      <p class="small rv">相談も同じフォームから送れます。売り込みの電話・会議はありません。</p>
+    </div>
+  </section>
+
+  <!-- 4. 仕事の依頼（02） -->
+  <section class="sec work" aria-labelledby="h-work">
+    <div class="wrap">
+      <span class="label rv">02 — 仕事の依頼</span>
+      <h2 id="h-work" class="h2 rv">集計の自動化を、<br>書面で受ける。</h2>
+      <div class="demo glow soft rv">
+        <div class="frame">
+          <video src="demo-flow.mp4" poster="demo-flow-poster.webp" muted loop autoplay playsinline preload="metadata" aria-label="仕事のデモ動画（音声なし）"></video>
+        </div>
+      </div>
+      <ul class="prices" aria-label="料金">
+        <li class="rv"><span class="k">書面診断</span><span class="p">¥3,000</span></li>
+        <li class="rv"><span class="k">本編</span><span class="p">¥40,000</span></li>
+        <li class="rv"><span class="k">プレミアム</span><span class="p">¥60,000</span></li>
+      </ul>
+      <p class="small rv">診断から本編へ進めば、合計は¥40,000のままです。</p>
+      <a class="btn btn-sub rv" href="service/">サービスと料金を見る</a>
+      <div class="shops rv" aria-label="購入先">
+        <a class="tlink" href="https://coconala.com/users/6336439" target="_blank" rel="noopener">ココナラ <span class="ar" aria-hidden="true">→</span></a>
+        <a class="tlink" href="https://www.lancers.jp/menu/detail/1352276" target="_blank" rel="noopener">ランサーズ <span class="ar" aria-hidden="true">→</span></a>
+        <a class="tlink" href="https://crowdworks.jp/public/employees/4293097" target="_blank" rel="noopener">CrowdWorks <span class="ar" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
 
-  <section aria-labelledby="h-shop">
-    <h2 id="h-shop">買えるもの</h2>
-    <div class="cards">
-      <a class="card" href="https://suzuri.jp/aoashiai/products" target="_blank" rel="noopener"><div><b>グッズ（SUZURI「あおあし」）</b><span class="d">あおあしのキャラクターグッズ</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://dyoota.github.io/brain-navi/" target="_blank" rel="noopener"><div><b>Brain教材ナビ</b><span class="d">Brainの教材を探すための案内ページ</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://note.com/boroffu" target="_blank" rel="noopener"><div><b>note（有料記事）</b><span class="d">有料記事・テンプレート</span></div><span class="go">↗</span></a>
+  <!-- 5. 買えるもの（03） -->
+  <section class="sec goods" aria-labelledby="h-goods">
+    <div class="wrap">
+      <span class="label rv">03 — 買えるもの</span>
+      <h2 id="h-goods" class="h2 rv">グッズと教材。</h2>
+      <div class="goods-visual frame rv">
+        <img src="suzuri-launch.jpg" alt="あおあしのグッズ（ごま 通常・指さし・驚きの3ポーズ）" loading="lazy" width="1080" height="1080">
+      </div>
+      <ul class="rows">
+        <li class="rv"><a class="row" href="https://suzuri.jp/aoashiai/products" target="_blank" rel="noopener"><span class="t">グッズ（SUZURI「あおあし」）</span><span class="d">あおあしのキャラクターグッズ</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://dyoota.github.io/brain-navi/" target="_blank" rel="noopener"><span class="t">Brain教材ナビ</span><span class="d">Brainの教材を探すための案内ページ</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://note.com/boroffu" target="_blank" rel="noopener"><span class="t">note（有料記事）</span><span class="d">有料記事・テンプレート</span><span class="ar" aria-hidden="true">→</span></a></li>
+      </ul>
     </div>
   </section>
 
-  <section class="media" aria-labelledby="h-media">
-    <h2 id="h-media">発信</h2>
-    <div class="cards two">
-      <a class="card" href="https://www.threads.net/@aoashi_ai" target="_blank" rel="noopener"><div><b>Threads</b><span class="d">日々の進捗と気づき</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://www.instagram.com/ai_genjitsu_note/" target="_blank" rel="noopener"><div><b>Instagram</b><span class="d">AI副業の現実を画像で</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://www.youtube.com/@aoashi_ai" target="_blank" rel="noopener"><div><b>YouTube</b><span class="d">作業の様子を動画で</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://x.com/aoashi_AI" target="_blank" rel="noopener"><div><b>X</b><span class="d">短い記録と告知</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://note.com/boroffu" target="_blank" rel="noopener"><div><b>note</b><span class="d">仕組みづくりの記録を記事で</span></div><span class="go">↗</span></a>
-      <a class="card" href="https://aoashiai.substack.com/" target="_blank" rel="noopener"><div><b>Substack</b><span class="d">無料メルマガ。更新をメールで受け取る</span></div><span class="go">↗</span></a>
+  <!-- 6. 発信（04） -->
+  <section class="sec media" aria-label="発信">
+    <div class="wrap">
+      <span class="label rv">04 — 発信</span>
+      <ul class="rows">
+        <li class="rv"><a class="row" href="https://www.threads.net/@aoashi_ai" target="_blank" rel="noopener"><span class="t">Threads</span><span class="d">日々の進捗と気づき</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://www.instagram.com/ai_genjitsu_note/" target="_blank" rel="noopener"><span class="t">Instagram</span><span class="d">AI副業の現実を画像で</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://www.youtube.com/@aoashi_ai" target="_blank" rel="noopener"><span class="t">YouTube</span><span class="d">作業の様子を動画で</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://x.com/aoashi_AI" target="_blank" rel="noopener"><span class="t">X</span><span class="d">短い記録と告知</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://note.com/boroffu" target="_blank" rel="noopener"><span class="t">note</span><span class="d">仕組みづくりの記録を記事で</span><span class="ar" aria-hidden="true">→</span></a></li>
+        <li class="rv"><a class="row" href="https://aoashiai.substack.com/" target="_blank" rel="noopener"><span class="t">Substack</span><span class="d">無料メルマガ。更新をメールで受け取る</span><span class="ar" aria-hidden="true">→</span></a></li>
+      </ul>
     </div>
   </section>
 
-  <footer>
+</main>
+
+<!-- 7. フッター -->
+<footer>
+  <div class="wrap">
     <a href="legal.html">特定商取引法に基づく表記</a>
     <span>© 2026 あおあし</span>
-  </footer>
-</main>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -6% 0px',threshold:0.05});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
 </body>
 </html>
