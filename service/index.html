@@ -679,6 +679,22 @@
     .yourpart-card p{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分：新しいシステムは入れません（#nosystem、既存スタイルは変更しない）。.yourpart-grid / .exit-card の見た目を踏襲 ===== */
+  .nosystem{padding:56px 0 8px;}
+  .nosystem p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .nosystem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .nosystem-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .nosystem-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .nosystem-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .nosystem-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .nosystem{padding:40px 0 4px;}
+    .nosystem-grid{grid-template-columns:1fr;gap:14px;}
+    .nosystem-card{padding:16px 14px;}
+    .nosystem-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -1126,6 +1142,27 @@
     </div>
   </div>
   <p class="yourpart-note">それ以外の作業（表記ゆれを揃えるルール作り、テンプレート／フローの制作、仕様どおりに動かない不具合の修正）は、あおあしがやります。あおあしの受注実績はまだ0件です。上の3つは、商品の設計として先に決めている進め方です。</p>
+</section>
+
+<section class="nosystem reveal" id="nosystem">
+  <div class="eyebrow">NO NEW SYSTEM / 新しいシステムは入れません</div>
+  <h2>新しいシステムは、入れません。</h2>
+  <p class="lead">納品物は、新しいシステムではありません。いま使っているExcelとMicrosoft 365の中で、毎月回るテンプレートかフローです。覚え直す作業は、ありません。</p>
+  <div class="nosystem-grid">
+    <div class="nosystem-card">
+      <h3>いまの環境の中で回ります</h3>
+      <p>テンプレートはMicrosoft Excel、フローはMicrosoft 365のPower Automateで動きます。環境が合うかどうかは、設計書の段階で確認します。</p>
+    </div>
+    <div class="nosystem-card">
+      <h3>毎月の操作は、2つだけです</h3>
+      <p>CSVを決まった場所に置くことと、出てきた集計結果を確認すること。転記と集計は、仕組みの側がやります。</p>
+    </div>
+    <div class="nosystem-card">
+      <h3>使い方は、マニュアルで残ります</h3>
+      <p>使い方マニュアルを付けて納めます。分からない点は、納品後7日間、チャットで質問できます。</p>
+    </div>
+  </div>
+  <p class="nosystem-note">新しいシステムの導入や、社内への説明・研修は要りません。あおあしの受注実績はまだ0件です。上の内容は、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="exit reveal" id="exit">
