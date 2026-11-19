@@ -664,6 +664,24 @@
   }
 </style>
 <style>
+  /* ===== 追加分（第16回）：買わない方がいい場合（#notfit、既存スタイルは変更しない）。.pitfalls-grid / .pitfalls-card の見た目を踏襲 ===== */
+  .notfit{padding:56px 0 8px;}
+  .notfit p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .notfit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .notfit-card{display:flex;flex-direction:column;background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--brass);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .notfit-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .notfit-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .notfit-card p.notfit-fix{margin-top:14px;padding-top:12px;border-top:2px dotted var(--line);}
+  .notfit-label{display:inline-block;margin-right:4px;padding:1px 9px;border-radius:999px;background:rgba(38,80,72,.12);color:var(--teal-deep);font-size:.8rem;font-weight:800;line-height:1.7;}
+  .notfit-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .notfit{padding:40px 0 4px;}
+    .notfit-grid{grid-template-columns:1fr;gap:14px;}
+    .notfit-card{padding:16px 14px;}
+    .notfit-card p{font-size:12.5px;}
+  }
+</style>
+<style>
   /* ===== 追加分：あなたにお願いすること（#yourpart、既存スタイルは変更しない）。.exit-grid / .exit-card の見た目を踏襲 ===== */
   .yourpart{padding:56px 0 8px;}
   .yourpart p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
@@ -982,6 +1000,30 @@
     </div>
   </div>
   <p class="pitfalls-note">自分で組む時間が取れて、直し続けられるなら、そのほうが安く済みます。あおあしが向くのは、作る時間も直す時間も、月末には無い場合です。あおあしの受注実績はまだ0件です。上の対処は、商品の設計として先に決めている進め方です。</p>
+</section>
+
+<section class="notfit reveal" id="notfit">
+  <div class="eyebrow">NOT A FIT / 買わない方がいい場合</div>
+  <h2>こんな場合は、買わない方がいいです。</h2>
+  <p class="lead">向く業務にだけ売るために、先に外れる条件も書いておきます。次の3つに当てはまる場合は、本編¥40,000に進んでも合わないことが多いです。当てはまるかどうか分からない場合は、書面診断¥3,000の切り分けメモで先に判定します。</p>
+  <div class="notfit-grid">
+    <div class="notfit-card">
+      <h3>毎月減らせる時間が、短い場合</h3>
+      <p>本編¥40,000は、毎月減る時間で回収していく買い物です。計算例：毎月1時間減らせる・時給換算¥2,000なら、月に浮く金額は¥2,000（1時間×¥2,000）で、回収は約20ヶ月（¥40,000÷¥2,000）かかります。</p>
+      <p class="notfit-fix"><span class="notfit-label">先に確かめる方法：</span>上の回収シミュレーターに自分の数字を入れてみてください。回収が遠い場合は、診断だけで止めるか、対象を広げてから考える方が合います。</p>
+    </div>
+    <div class="notfit-card">
+      <h3>手順が、毎月変わる場合</h3>
+      <p>対象は「毎月、決まった手順で繰り返す集計」だけです。手順そのものや、途中で入る判断が毎月変わる業務は、テンプレートやフローに固定できません。</p>
+      <p class="notfit-fix"><span class="notfit-label">先に確かめる方法：</span>固定できる部分と変わる部分が混ざっている場合は、書面診断の切り分けメモで、固定できる部分だけを先に切り分けます。</p>
+    </div>
+    <div class="notfit-card">
+      <h3>Excel／Microsoft 365の環境が無い場合</h3>
+      <p>テンプレートは、Microsoft Excel（Microsoft 365／2019以降のデスクトップ版）が前提です。Power Automateのフローにする場合は、Microsoft 365のライセンスと接続設定が要ります。</p>
+      <p class="notfit-fix"><span class="notfit-label">先に確かめる方法：</span>環境が合うかどうかは設計書の段階で確認し、合わない場合は、作り始める前に止めます。診断だけで終われば、費用は診断料¥3,000だけです。</p>
+    </div>
+  </div>
+  <p class="notfit-note">上の3つに当てはまるかどうかは、診断の段階ではっきり伝えます。対象外なら作り始めません。あおあしの受注実績はまだ0件です。上の条件は、商品の設計として先に決めている線引きです。</p>
 </section>
 
 <section class="catalog" id="products">
