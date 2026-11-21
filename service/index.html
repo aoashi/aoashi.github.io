@@ -729,6 +729,22 @@
     .safedata-card p{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分（第18回）：納品後の費用の線引き（#costafter、既存スタイルは変更しない）。.exit-grid / .exit-card の見た目を踏襲 ===== */
+  .costafter{padding:56px 0 8px;}
+  .costafter p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .costafter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .costafter-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .costafter-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .costafter-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .costafter-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .costafter{padding:40px 0 4px;}
+    .costafter-grid{grid-template-columns:1fr;gap:14px;}
+    .costafter-card{padding:16px 14px;}
+    .costafter-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -1263,6 +1279,27 @@
     </div>
   </div>
   <p class="exit-note">仕様どおりに動かない不具合は、見守りに入っていなくても、初回の月次運用が終わるまで直します。返金・キャンセルの条件は<a href="../legal.html">特定商取引法に基づく表記</a>にまとめています。</p>
+</section>
+
+<section class="costafter reveal" id="costafter">
+  <div class="eyebrow">COST AFTER DELIVERY / 納品後の費用</div>
+  <h2>納品後に、追加でお金がかかるのは、この場合だけです。</h2>
+  <p class="lead">直しや変更をお願いしたときの費用の線引きを、先に書いておきます。かからないものは、かからないと書きます。</p>
+  <div class="costafter-grid">
+    <div class="costafter-card">
+      <h3>使い方の質問は、かかりません</h3>
+      <p>納品後7日間は、使い方の質問にチャットでお答えします。追加費用はありません。</p>
+    </div>
+    <div class="costafter-card">
+      <h3>仕様どおりに動かない不具合は、かかりません</h3>
+      <p>合意した仕様どおりに動かない不具合は、初回の月次運用が終わるまで直します。見守り・手直しに入っていなくても同じです。追加費用はありません。</p>
+    </div>
+    <div class="costafter-card">
+      <h3>仕様の追加・変更だけ、別のお見積もりです</h3>
+      <p>集計の形そのものを変える、対象を増やすといった仕様の追加・変更は、別のお見積もりです。金額は先に提示し、合意してから進めます。</p>
+    </div>
+  </div>
+  <p class="costafter-note">見守り・手直し¥5,000/月は任意です。付けなくても、上の「かかりません」は変わりません。あおあしの受注実績はまだ0件です。上の線引きは、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="faq reveal" id="faq">
