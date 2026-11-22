@@ -745,6 +745,22 @@
     .costafter-card p{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分：やめるときの費用（#cancel、既存スタイルは変更しない）。#costafter と同一の宣言 ===== */
+  .cancel{padding:56px 0 8px;}
+  .cancel p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .cancel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .cancel-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .cancel-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .cancel-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .cancel-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .cancel{padding:40px 0 4px;}
+    .cancel-grid{grid-template-columns:1fr;gap:14px;}
+    .cancel-card{padding:16px 14px;}
+    .cancel-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -1300,6 +1316,27 @@
     </div>
   </div>
   <p class="costafter-note">見守り・手直し¥5,000/月は任意です。付けなくても、上の「かかりません」は変わりません。あおあしの受注実績はまだ0件です。上の線引きは、商品の設計として先に決めている進め方です。</p>
+</section>
+
+<section class="cancel reveal" id="cancel">
+  <div class="eyebrow">CANCELLATION / やめるときの費用</div>
+  <h2>やめるときの費用も、先に決めています。</h2>
+  <p class="lead">申し込んだあとで「やっぱり合わなかった」となった場合の扱いを、先に書いておきます。条件の全文は、特定商取引法に基づく表記にあります。</p>
+  <div class="cancel-grid">
+    <div class="cancel-card">
+      <h3>着手する前なら、キャンセルできます</h3>
+      <p>サービスは、制作に着手する前までキャンセルできます。診断だけで終わる場合も、費用は診断料¥3,000のみです。</p>
+    </div>
+    <div class="cancel-card">
+      <h3>着手した後は、進んだ分だけの精算です</h3>
+      <p>着手後のキャンセルは、進捗に応じた金額を協議のうえ精算します。</p>
+    </div>
+    <div class="cancel-card">
+      <h3>納品後は、原則として返金できません</h3>
+      <p>デジタル商品は、その性質上、納品後（ダウンロード可能になった時点／有料記事の閲覧が可能になった時点以降）の返金・キャンセルは、原則としてお受けできません。ただし、仕様どおりに動かない不具合は、初回の月次運用が終わるまで無償で直します。</p>
+    </div>
+  </div>
+  <p class="cancel-note">条件の全文は<a href="../legal.html">特定商取引法に基づく表記</a>にまとめています。あおあしの受注実績はまだ0件です。上の扱いは、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="faq reveal" id="faq">
