@@ -761,6 +761,23 @@
     .cancel-card p{font-size:12.5px;}
   }
 </style>
+<style>
+  /* ===== 追加分：本編7日の進み方（#timeline、既存スタイルは変更しない）。.yourpart パターンの複製リネーム ===== */
+  .timeline{padding:56px 0 8px;}
+  .timeline p.lead{color:#33424e;max-width:760px;margin-top:12px;font-size:13.5px;}
+  .timeline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;max-width:960px;}
+  .timeline-card{background:var(--card);border:1.5px solid var(--line);border-top:3px solid var(--teal);border-radius:10px;padding:20px 22px;box-shadow:0 6px 18px rgba(30,50,70,.08);min-width:0;}
+  .timeline-card h3{font-size:14px;font-weight:800;color:var(--teal-deep);margin:0 0 12px;line-height:1.6;overflow-wrap:anywhere;}
+  .timeline-card p{margin:0;font-size:13px;line-height:1.75;color:#33424e;overflow-wrap:anywhere;}
+  .timeline-calc{margin-top:16px;max-width:960px;background:rgba(38,80,72,.07);border-left:3px solid var(--teal);border-radius:6px;padding:12px 16px;font-size:13px;font-weight:700;color:var(--teal-deep);line-height:1.8;}
+  .timeline-note{margin-top:16px;max-width:960px;padding-top:14px;border-top:2px dotted #d8cfba;font-size:12.5px;color:#33424e;line-height:1.95;overflow-wrap:anywhere;}
+  @media(max-width:760px){
+    .timeline{padding:40px 0 4px;}
+    .timeline-grid{grid-template-columns:1fr;gap:14px;}
+    .timeline-card{padding:16px 14px;}
+    .timeline-card p{font-size:12.5px;}
+  }
+</style>
 </head>
 <body>
 <div class="heat-veil" aria-hidden="true"></div>
@@ -1211,6 +1228,28 @@
     <li class="flow-step"><span class="flow-num">05</span><span class="flow-check" aria-hidden="true"><i data-lucide="check"></i></span><h3>見守り ¥5,000/月</h3><p>納品したあとも、月1回の動作確認と小さな手直し。本編を買った方だけの、任意の継続プランです。</p></li>
   </ol>
   <p class="flow-note">やり取りは、すべて書面・チャットで完結します。電話・会議はありません。</p>
+</section>
+
+<section class="timeline reveal" id="timeline">
+  <div class="eyebrow">TIMELINE / 7日の進み方</div>
+  <h2>本編の7日は、こう進みます。</h2>
+  <p class="lead">納期の「7日」は、届くのを待つだけの7日ではありません。月次集計は使う日が決まっている仕事なので、起点と途中の到達点を先に書いておきます。</p>
+  <div class="timeline-grid">
+    <div class="timeline-card">
+      <h3>起点は、ヒアリングシートが届いた日です</h3>
+      <p>本編の納期は、ヒアリングシートを受け取った日から、暦日で数えます。書面診断だけなら、シートをもとに切り分けメモを2日で返します。</p>
+    </div>
+    <div class="timeline-card">
+      <h3>途中で、設計書を確認します</h3>
+      <p>作り始める前に、設計書で範囲と金額を固定します。設計書の確認をお待ちする期間も、7日の中に含まれます。確認が済んでから、制作に入ります。</p>
+    </div>
+    <div class="timeline-card">
+      <h3>7日で、テンプレート／フローを納めます</h3>
+      <p>納品物は、ExcelテンプレートかPower Automateフローと、使い方マニュアルです。納品後7日間は、使い方の質問にチャットでお答えします。</p>
+    </div>
+  </div>
+  <p class="timeline-calc">使う日からの逆算（本編）：使いたい日 − 7日 ＝ ヒアリングシートを送る目安の日。プレミアムは10日、構造設計は5日、書面診断は2日で、数え方は同じです。</p>
+  <p class="timeline-note">あおあしの受注実績はまだ0件です。上の進み方は、商品の設計として先に決めている進め方です。</p>
 </section>
 
 <section class="yourpart reveal" id="yourpart">
